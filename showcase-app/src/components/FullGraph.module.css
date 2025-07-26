@@ -1,0 +1,90 @@
+/* FullGraph.module.css - Dark Theme Full Graph Component */
+
+.fullGraphContainer {
+  background: var(--background-card);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-default);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+/* Header */
+.fullGraphHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.graphHeaderLeft {
+  flex: 1;
+  min-width: 200px;
+}
+
+.graphTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.graphSubtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Graph content */
+.fullGraphContent {
+  position: relative;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+/* Loading state */
+.fullGraphContainer.loading .fullGraphContent {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fullGraphContainer.loading .fullGraphContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(121, 213, 233, 0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fullGraphContainer {
+    padding: 20px;
+  }
+  
+  .graphTitle {
+    font-size: 18px;
+  }
+  
+  .graphSubtitle {
+    font-size: 13px;
+  }
+}

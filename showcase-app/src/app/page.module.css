@@ -1,0 +1,102 @@
+/* Page specific styles */
+
+.dashboardContent {
+  padding: 24px;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cache Status */
+.cacheStatus {
+  background: var(--background-card);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.cacheInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cacheLabel {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.cacheValue {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.cacheClearBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cacheClearBtn:hover {
+  background: rgba(220, 38, 38, 0.1);
+  border-color: var(--error-color);
+  color: var(--error-color);
+}
+
+/* Metrics Grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Tables Grid */
+.tablesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContent {
+    padding: 16px;
+  }
+  
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .tablesGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

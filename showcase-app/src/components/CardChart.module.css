@@ -1,0 +1,76 @@
+/* CardChart.module.css - Dark Theme Chart Cards */
+
+.cardChartContainer {
+  background: var(--background-card);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-default);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Pie chart specific padding */
+.cardChartContainer.pieChart .chartContent {
+  padding-bottom: 20px;
+}
+
+.cardChartContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border-color: rgba(121, 213, 233, 0.2);
+}
+
+/* Header */
+.cardChartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.chartHeaderLeft {
+  flex: 1;
+}
+
+.chartTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.chartSubtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Chart content */
+.chartContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cardChartContainer {
+    min-height: 240px;
+    padding: 20px;
+  }
+  
+  .chartTitle {
+    font-size: 14px;
+  }
+  
+  .chartSubtitle {
+    font-size: 12px;
+  }
+}
