@@ -73,7 +73,7 @@ const generateOrders = (count: number = 90) => {
 };
 
 // Generate customers
-const generateCustomers = (count: number = 30) => {
+export const generateCustomers = (count: number = 30) => {
   const companies = [
     'Acme Corporation', 'TechStart Inc', 'Digital Solutions Ltd', 'CloudFirst Systems',
     'DataDrive Analytics', 'Innovation Hub', 'Smart Systems Co', 'Future Tech Labs',

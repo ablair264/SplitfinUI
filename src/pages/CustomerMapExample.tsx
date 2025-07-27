@@ -1,11 +1,11 @@
 import React from 'react';
 import { CustomerMapGoogle, CustomerMapFallback } from '../components/CustomerMap';
-import { generateMockCustomers } from '../utils/MOCKDATA';
+import { generateCustomers } from '../utils/MOCKDATA';
 
 // Example page showing how to use CustomerMap with error handling
 export default function CustomerMapExample() {
   // Get mock customers with location data
-  const customers = generateMockCustomers(50).map((customer, index) => ({
+  const customers = generateCustomers(50).map((customer, index) => ({
     ...customer,
     coordinates: {
       latitude: 51.5074 + (Math.random() - 0.5) * 10, // UK centered
