@@ -504,10 +504,15 @@ export default function MasterLayout({
       <nav className="master-sidebar-nav desktop-only">
         {/* Top Actions Bar */}
         <div className="master-sidebar-top-actions">
-          <NotificationCenter 
+          <button 
+            className="master-sidebar-action-btn notifications-btn"
             onClick={onNotificationClick}
-            unreadCount={unreadNotificationsCount}
-          />
+          >
+            <FaBell />
+            {unreadNotificationsCount > 0 && (
+              <span className="action-badge">{unreadNotificationsCount}</span>
+            )}
+          </button>
           <button 
             className="master-sidebar-action-btn messages-btn"
             onClick={onMessagesClick}
@@ -571,10 +576,15 @@ export default function MasterLayout({
             <img src={logoSrc} alt={logoAlt} className="master-mobile-logo" />
           </div>
           <div className="master-mobile-controls">
-            <NotificationCenter 
+            <button 
+              className="master-sidebar-action-btn notifications-btn"
               onClick={onNotificationClick}
-              unreadCount={unreadNotificationsCount}
-            />
+            >
+              <FaBell />
+              {unreadNotificationsCount > 0 && (
+                <span className="action-badge">{unreadNotificationsCount}</span>
+              )}
+            </button>
             <button 
               type="button"
               className="master-mobile-menu-toggle" 
