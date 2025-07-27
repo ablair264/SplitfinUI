@@ -516,11 +516,22 @@ const LandingPage: React.FC = () => {
               </div>
               <DataTable
                 columns={[
-                  { key: 'name', label: 'Product Name', sortable: true },
-                  { key: 'category', label: 'Category', sortable: true },
-                  { key: 'price', label: 'Price', sortable: true, align: 'right', format: (value) => `£${value.toFixed(2)}` },
-                  { key: 'stock', label: 'Stock', sortable: true, align: 'right' },
-                  { key: 'status', label: 'Status', sortable: true }
+                  { key: 'name', header: 'Product Name', width: '30%' },
+                  { key: 'category', header: 'Category', width: '20%' },
+                  { 
+                    key: 'price', 
+                    header: 'Price', 
+                    width: '15%',
+                    render: (item: any) => `£${item.price.toFixed(2)}`,
+                    className: 'text-right'
+                  },
+                  { 
+                    key: 'stock', 
+                    header: 'Stock', 
+                    width: '15%',
+                    className: 'text-right'
+                  },
+                  { key: 'status', header: 'Status', width: '20%' }
                 ]}
                 data={[
                   { id: '1', name: 'Premium Dashboard Kit', category: 'UI Components', price: 129.99, stock: 15, status: 'In Stock' },
@@ -529,9 +540,7 @@ const LandingPage: React.FC = () => {
                   { id: '4', name: 'Chart Builder Pro', category: 'Visualization', price: 79.99, stock: 0, status: 'Out of Stock' },
                   { id: '5', name: 'Report Generator', category: 'Reporting', price: 99.99, stock: 12, status: 'In Stock' }
                 ]}
-                searchable={true}
-                selectable={true}
-                pageSize={5}
+                keyExtractor={(item) => item.id}
                 onRowClick={(row) => console.log('Row clicked:', row)}
               />
             </div>

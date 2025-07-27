@@ -1295,3 +1295,12 @@
     overflow-x: auto;
   }
 }
+
+/* DataTable alignment classes */
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
