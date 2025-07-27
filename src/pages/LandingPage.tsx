@@ -409,7 +409,7 @@ const LandingPage: React.FC = () => {
                       type={chartType === 'horizontal-bars' ? 'bar' : chartType === 'pie-with-legend' ? 'pie' : 'bar'}
                       dataKey="value"
                       colors={selectedColor === 'multicolored' ? Object.values(colorMap) : [getMetricCardColor(0)]}
-                      design={chartType === 'table' ? 'default' : chartType}
+                      design={chartType === 'bar' ? 'default' : (chartType as 'horizontal-bars' | 'pie-with-legend')}
                       height={280}
                       showLegend={chartType === 'pie-with-legend'}
                     />
