@@ -54,6 +54,17 @@ export default function Login({
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
 
+  // Add class to body to prevent double scrollbar
+  React.useEffect(() => {
+    document.documentElement.classList.add('login-active')
+    document.body.classList.add('login-active')
+    
+    return () => {
+      document.documentElement.classList.remove('login-active')
+      document.body.classList.remove('login-active')
+    }
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)

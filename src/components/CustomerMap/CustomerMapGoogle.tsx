@@ -185,7 +185,7 @@ const defaultCallbacks = {
 export default function CustomerMapGoogle({
   customers: propCustomers,
   regions = DEFAULT_UK_REGIONS,
-  googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || '',
+  googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
   defaultCenter = { lat: 54.5, lng: -4 },
   defaultZoom = 6,
   loading = false,
@@ -206,6 +206,10 @@ export default function CustomerMapGoogle({
     low: { color: '#4CAF50' }
   }
 }: CustomerMapProps) {
+  // Log for debugging
+  if (!googleMapsApiKey && import.meta.env.DEV) {
+    console.warn('CustomerMapGoogle: No Google Maps API key found. Set VITE_GOOGLE_MAPS_API_KEY in your environment variables or pass googleMapsApiKey prop.');
+  }
   // Use provided customers or generate mock data
   const customers = propCustomers || generateMockMapCustomers();
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
@@ -291,9 +295,13 @@ export default function CustomerMapGoogle({
   }
 
   if (!googleMapsApiKey) {
+    console.error('Google Maps API key not found. Make sure VITE_GOOGLE_MAPS_API_KEY is set in your environment variables.');
     return (
       <div className="customer-map-error">
         <p>Google Maps API key is required. Please provide a valid API key.</p>
+        <p style={{ fontSize: '0.875rem', marginTop: '0.5rem', opacity: 0.8 }}>
+          Set <code>VITE_GOOGLE_MAPS_API_KEY</code> in your environment variables.
+        </p>
       </div>
     );
   }

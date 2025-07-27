@@ -5,6 +5,26 @@
 /* Import theme variables at the top */
 @import '../../styles/global.css';
 
+/* Ensure no double scrollbars on body when login page is active */
+html:has(.login-page),
+body:has(.login-page) {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* For browsers that don't support :has(), use JavaScript to add a class */
+html.login-active,
+body.login-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* Reset #root constraints when login page is active */
+#root:has(.login-page) {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
 /* Module-specific variables for login page */
 .login-page {
   /* Login page uses a fixed dark theme regardless of system preference */
@@ -159,6 +179,7 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
   padding: 1rem 0;
 }
@@ -177,9 +198,17 @@
   border: 1px solid var(--login-card-border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  max-height: calc(100vh - 2rem);
-  overflow-y: auto;
   margin: auto;
+}
+
+/* Hide scrollbar on login card if present */
+.login-page .login-card::-webkit-scrollbar {
+  display: none;
+}
+
+.login-page .login-card {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Subtle glow effect on card */
@@ -796,6 +825,23 @@
 @media (min-width: 1440px) {
   .login-page .login-container {
     max-width: 420px;
+  }
+}
+
+/* Small height screens */
+@media (max-height: 700px) {
+  .login-page {
+    align-items: flex-start;
+  }
+  
+  .login-page .login-container {
+    align-items: flex-start;
+    padding-top: 2rem;
+    min-height: auto;
+  }
+  
+  .login-page .login-card {
+    margin-top: 0;
   }
 }
 

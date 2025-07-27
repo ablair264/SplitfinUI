@@ -108,13 +108,34 @@ src/
 npm install
 ```
 
-2. Start development server:
+2. Set up environment variables:
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Add your Google Maps API key (required for CustomerMap component)
+# In .env file:
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+```
+
+3. Start development server:
 ```bash
 npm run dev
 ```
 
-3. View the landing page at `http://localhost:5173`
-4. Try the demo at `http://localhost:5173/demo`
+4. View the landing page at `http://localhost:5173`
+5. Try the demo at `http://localhost:5173/demo`
+
+### 🚀 Deployment on Vercel
+
+When deploying to Vercel, add your environment variables in the project settings:
+
+1. Go to your Vercel project dashboard
+2. Navigate to Settings → Environment Variables
+3. Add `VITE_GOOGLE_MAPS_API_KEY` with your API key
+4. Redeploy your application
+
+**Important**: For Vite apps, environment variables must be prefixed with `VITE_` to be accessible in the browser.
 
 ## 🎨 Customization
 
