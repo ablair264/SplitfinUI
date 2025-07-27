@@ -1,0 +1,104 @@
+/* Demo Page Layout Fix - Simplified Approach */
+
+/* 1. Fix the demo page container */
+.demo-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 2. Navigation stays fixed */
+.demo-navigation {
+  flex-shrink: 0;
+}
+
+/* 3. Demo container takes remaining space */
+.demo-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 4. Demo content fills container */
+.demo-content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.demo-scroll-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 5. Dashboard wrapper fills height */
+.demo-dashboard-wrapper,
+.demo-customers-wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 6. MasterLayout container fills height */
+.demo-dashboard-wrapper .master-layout-container,
+.demo-customers-wrapper .master-layout-container {
+  height: 100%;
+  display: flex;
+}
+
+/* 7. Main content area scrolls */
+.demo-dashboard-wrapper .master-main-content,
+.demo-customers-wrapper .master-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.demo-dashboard-wrapper .master-content-area,
+.demo-customers-wrapper .master-content-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 8. Dashboard content visibility */
+.demo-dashboard-wrapper .dashboard-wrapper {
+  height: auto;
+  min-height: 100%;
+}
+
+.demo-dashboard-wrapper .enhanced-dashboard {
+  height: auto;
+  min-height: 100%;
+}
+
+/* 9. Info panel stays at bottom */
+.demo-info-panel {
+  flex-shrink: 0;
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+/* 10. Remove any problematic overrides */
+.demo-dashboard-wrapper .dashboard-wrapper,
+.demo-dashboard-wrapper .enhanced-dashboard,
+.demo-dashboard-wrapper .view-content {
+  transform: none;
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .demo-container {
+    padding: 1rem;
+  }
+  
+  .demo-dashboard-wrapper .master-mobile-nav {
+    z-index: 1000;
+  }
+}

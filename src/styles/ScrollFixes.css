@@ -1,0 +1,84 @@
+/* Additional global fixes for scrolling issues */
+
+/* Reset height constraints that might block scrolling */
+html, body {
+  height: auto !important;
+  min-height: 100vh;
+}
+
+/* Ensure all page wrappers allow scrolling */
+.page-wrapper,
+.content-wrapper,
+.main-content,
+[class*="wrapper"],
+[class*="container"] {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Fix for Routes container */
+main,
+[role="main"] {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* Specific fixes for problematic areas */
+.master-layout-container {
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+.master-main-content {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+.master-content-area {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: 100%;
+  max-height: calc(100vh - 60px);
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Dashboard specific */
+.dashboard-wrapper,
+.enhanced-dashboard {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* Customers specific */
+.customers-management {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* Landing page specific */
+.landing-page {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
+/* Demo page specific scroll enable */
+body:has(.demo-page-fullscreen) {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+/* React root when in demo */
+#root:has(.demo-page-fullscreen) {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* App container when in demo */
+.App:has(.demo-page-fullscreen) {
+  overflow: visible !important;
+  height: auto !important;
+}

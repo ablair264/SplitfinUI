@@ -1,0 +1,224 @@
+/* Demo Page MasterLayout Fixes */
+
+/* Import MasterLayout styles if not already loaded */
+@import '../layouts/MasterLayout.css';
+
+/* Base resets for demo context */
+* {
+  box-sizing: border-box;
+}
+
+/* Hide duplicate sidebars - ensure desktop/mobile classes work */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  
+  .mobile-only {
+    display: block;
+  }
+}
+
+/* Fix sidebar styling in demo context */
+.demo-dashboard-wrapper .master-sidebar-nav,
+.demo-customers-wrapper .master-sidebar-nav {
+  background: #1a1f2a;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  width: 280px;
+  height: 100%;
+}
+
+/* Fix main content area */
+.demo-dashboard-wrapper .master-main-content,
+.demo-customers-wrapper .master-main-content {
+  background: transparent;
+}
+
+/* Ensure logo shows properly */
+.demo-dashboard-wrapper .master-logo-image,
+.demo-customers-wrapper .master-logo-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Fix user section styling */
+.demo-dashboard-wrapper .master-sidebar-user-section,
+.demo-customers-wrapper .master-sidebar-user-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.demo-dashboard-wrapper .master-user-avatar,
+.demo-customers-wrapper .master-user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+/* Fix navigation styling */
+.demo-dashboard-wrapper .master-sidebar-nav-sections,
+.demo-customers-wrapper .master-sidebar-nav-sections {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 0;
+}
+
+.demo-dashboard-wrapper .master-sidebar-nav-item,
+.demo-customers-wrapper .master-sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.demo-dashboard-wrapper .master-sidebar-nav-item:hover,
+.demo-customers-wrapper .master-sidebar-nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.demo-dashboard-wrapper .master-sidebar-nav-item.active,
+.demo-customers-wrapper .master-sidebar-nav-item.active {
+  background: rgba(121, 213, 233, 0.1);
+  color: #79d5e9;
+  border-left: 3px solid #79d5e9;
+}
+
+/* Fix dropdown styling */
+.demo-dashboard-wrapper .master-sidebar-dropdown,
+.demo-customers-wrapper .master-sidebar-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.demo-dashboard-wrapper .master-sidebar-dropdown.open,
+.demo-customers-wrapper .master-sidebar-dropdown.open {
+  max-height: 500px;
+}
+
+.demo-dashboard-wrapper .master-sidebar-dropdown-item,
+.demo-customers-wrapper .master-sidebar-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem 0.5rem 3rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: all 0.2s;
+  font-size: 0.813rem;
+}
+
+.demo-dashboard-wrapper .master-sidebar-dropdown-item:hover,
+.demo-customers-wrapper .master-sidebar-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.demo-dashboard-wrapper .master-sidebar-dropdown-item.active,
+.demo-customers-wrapper .master-sidebar-dropdown-item.active {
+  color: #79d5e9;
+}
+
+/* Fix footer styling */
+.demo-dashboard-wrapper .master-sidebar-footer,
+.demo-customers-wrapper .master-sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+/* Remove the duplicate splitfin logo that's showing in the middle */
+body > img,
+.demo-dashboard-wrapper > img,
+.demo-customers-wrapper > img {
+  display: none !important;
+}
+
+/* Ensure proper scrolling */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+}
+
+.demo-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.demo-container {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.demo-scroll-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.demo-dashboard-wrapper,
+.demo-customers-wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+
+.demo-dashboard-wrapper .master-layout-container,
+.demo-customers-wrapper .master-layout-container {
+  height: 100%;
+}
+
+.demo-dashboard-wrapper .master-content-area,
+.demo-customers-wrapper .master-content-area {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Ensure info panel doesn't overlap */
+.demo-info-panel {
+  position: relative;
+  z-index: 1;
+}

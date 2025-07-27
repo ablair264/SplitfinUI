@@ -1,0 +1,175 @@
+/* Demo Page Styles - Works with Enhanced MasterLayout */
+
+/* 1. Layout structure for demo page */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.App {
+  height: 100%;
+  overflow: hidden;
+}
+
+.demo-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.demo-navigation {
+  flex-shrink: 0;
+}
+
+.demo-container {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.demo-content {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.demo-scroll-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.demo-dashboard-wrapper,
+.demo-customers-wrapper,
+.login-demo-wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+
+.demo-info-panel {
+  flex-shrink: 0;
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+/* 2. MasterLayout adjustments for demo context */
+.demo-dashboard-wrapper .master-layout-container,
+.demo-customers-wrapper .master-layout-container {
+  height: 100%;
+  background: transparent;
+}
+
+.demo-dashboard-wrapper .master-main-content,
+.demo-customers-wrapper .master-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: transparent;
+}
+
+.demo-dashboard-wrapper .master-content-area,
+.demo-customers-wrapper .master-content-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+/* 3. Dashboard content visibility */
+.demo-dashboard-wrapper .dashboard-wrapper,
+.demo-dashboard-wrapper .enhanced-dashboard {
+  height: auto;
+  min-height: 100%;
+  background: transparent;
+}
+
+.demo-dashboard-wrapper .view-content {
+  padding: 2rem;
+  height: auto;
+  min-height: 100%;
+}
+
+/* 4. Hide any stray elements */
+body > img {
+  display: none !important;
+}
+
+/* 5. Login demo specific styles */
+.login-demo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1f2a 0%, #2c3e50 50%, #34495e 100%);
+}
+
+/* 6. Import Dashboard styles */
+@import '../components/Dashboard/dashboard.css';
+
+/* Override dashboard background to match demo context */
+.demo-dashboard-wrapper .dashboard-wrapper,
+.demo-dashboard-wrapper .enhanced-dashboard,
+.demo-dashboard-wrapper .dashboard-enhanced {
+  background: transparent !important;
+}
+
+.demo-dashboard-wrapper .dashboard-container-enhanced {
+  background: transparent !important;
+}
+
+/* Ensure proper text colors in demo context */
+.demo-dashboard-wrapper h1,
+.demo-dashboard-wrapper h2,
+.demo-dashboard-wrapper h3,
+.demo-dashboard-wrapper h4,
+.demo-dashboard-wrapper h5,
+.demo-dashboard-wrapper h6,
+.demo-customers-wrapper h1,
+.demo-customers-wrapper h2,
+.demo-customers-wrapper h3,
+.demo-customers-wrapper h4,
+.demo-customers-wrapper h5,
+.demo-customers-wrapper h6 {
+  color: var(--text-primary, #ffffff);
+}
+
+/* 7. Mobile adjustments */
+@media (max-width: 768px) {
+  .demo-dashboard-wrapper .master-mobile-top-bar,
+  .demo-customers-wrapper .master-mobile-top-bar {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .demo-dashboard-wrapper .master-content-area,
+  .demo-customers-wrapper .master-content-area {
+    padding-top: 60px;
+  }
+}
+
+/* 8. Ensure proper scrolling in all contexts */
+.demo-dashboard-wrapper .dashboard-container-enhanced {
+  max-width: 100%;
+  padding: 0;
+}
+
+.demo-dashboard-wrapper .metrics-grid,
+.demo-dashboard-wrapper .card-charts-grid,
+.demo-dashboard-wrapper .card-tables-grid,
+.demo-dashboard-wrapper .full-graph-container {
+  margin: 0 2rem 2rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .demo-dashboard-wrapper .metrics-grid,
+  .demo-dashboard-wrapper .card-charts-grid,
+  .demo-dashboard-wrapper .card-tables-grid,
+  .demo-dashboard-wrapper .full-graph-container {
+    margin: 0 1rem 1rem 1rem;
+  }
+}

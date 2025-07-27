@@ -1,0 +1,362 @@
+/* Split UI Demo Page - Full Screen Layout */
+
+.demo-page-fullscreen {
+  min-height: 100vh;
+  width: 100vw;
+  background: #0f1419;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Top Navigation Bar */
+.demo-top-nav {
+  background: rgba(26, 35, 50, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0 2rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1000;
+}
+
+.demo-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.demo-back-home {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.demo-back-home:hover {
+  color: #79d5e9;
+}
+
+.demo-nav-separator {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.demo-nav-title {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+}
+
+.demo-nav-center {
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.demo-nav-link {
+  padding: 0.5rem 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.demo-nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.demo-nav-link.active {
+  color: #79d5e9;
+  background: rgba(121, 213, 233, 0.1);
+}
+
+.demo-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: #79d5e9;
+}
+
+.demo-nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.demo-get-started {
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(135deg, #79d5e9 0%, #6bc5dc 100%);
+  color: #0f1419;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.demo-get-started:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(121, 213, 233, 0.3);
+}
+
+/* Full Screen Content Area */
+.demo-fullscreen-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  height: auto;
+}
+
+/* Welcome Screen */
+.demo-welcome-screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.demo-welcome-screen h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #79d5e9 0%, #79e9c5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.demo-welcome-screen p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 3rem;
+}
+
+.demo-quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+.demo-quick-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.demo-quick-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #79d5e9;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.demo-quick-icon {
+  font-size: 3rem;
+}
+
+/* Login Demo - Centered */
+.demo-login-centered {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding: 2rem;
+}
+
+.demo-login-centered .login-page {
+  min-height: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-login-centered .login-container {
+  margin: auto;
+}
+
+/* Full Screen Dashboard/Customer Views */
+.demo-fullscreen-content .master-layout-container {
+  min-height: 100%;
+  width: 100%;
+}
+
+.demo-fullscreen-content .master-main-content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-fullscreen-content .master-content-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+/* Fix specific component sizing */
+.demo-fullscreen-content .dashboard-wrapper {
+  min-height: 100%;
+  height: auto;
+}
+
+.demo-fullscreen-content .enhanced-dashboard {
+  min-height: 100%;
+  height: auto;
+}
+
+.demo-fullscreen-content .customers-management {
+  min-height: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-fullscreen-content .customers-management-content {
+  flex: 1;
+  overflow-y: visible;
+}
+
+/* Ensure body allows scrolling */
+body.demo-active {
+  overflow: auto !important;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .demo-nav-center {
+    position: static;
+    transform: none;
+  }
+  
+  .demo-top-nav {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 1rem;
+  }
+  
+  .demo-nav-left {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .demo-nav-center {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .demo-nav-right {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .demo-welcome-screen h1 {
+    font-size: 2rem;
+  }
+  
+  .demo-welcome-screen p {
+    font-size: 1rem;
+  }
+  
+  .demo-quick-links {
+    grid-template-columns: 1fr;
+  }
+  
+  .demo-nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .demo-nav-title {
+    display: none;
+  }
+  
+  .demo-nav-separator {
+    display: none;
+  }
+}
+
+/* Remove old styles that were causing issues */
+.demo-page,
+.demo-navigation,
+.demo-container,
+.demo-info-panel {
+  display: none !important;
+}
+
+/* Global scroll fixes for demo pages */
+.demo-page-fullscreen * {
+  /* Prevent any element from blocking scroll unless explicitly set */
+  max-height: none;
+}
+
+/* Ensure MasterLayout content scrolls */
+.demo-fullscreen-content .master-sidebar-nav {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.demo-fullscreen-content .master-content-area > * {
+  overflow: visible;
+  min-height: 0;
+}
+
+/* Dashboard specific scroll fixes */
+.demo-fullscreen-content .dashboard-container {
+  overflow: visible;
+  height: auto;
+  min-height: 100%;
+}
+
+.demo-fullscreen-content .dashboard-content {
+  overflow: visible;
+}
+
+/* Customers management scroll fixes */
+.demo-fullscreen-content .customers-container {
+  overflow: visible;
+  height: auto;
+}
+
+.demo-fullscreen-content .customers-list {
+  overflow: visible;
+  height: auto;
+}

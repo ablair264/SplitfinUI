@@ -1,0 +1,171 @@
+/* Demo Page Specific Layout Fixes */
+
+/* When on demo page, set html and body to use full height */
+html:has(.demo-page) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body:has(.demo-page) {
+  height: 100%;
+  overflow: hidden;
+}
+
+#root:has(.demo-page) {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.App:has(.demo-page) {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Fix the Splitfin logo that shouldn't be showing */
+.demo-dashboard-wrapper .master-sidebar-footer,
+.demo-customers-wrapper .master-sidebar-footer {
+  margin-top: auto;
+}
+
+/* Ensure the main content scrolls */
+.demo-dashboard-wrapper .master-layout-container,
+.demo-customers-wrapper .master-layout-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.demo-dashboard-wrapper .master-sidebar-nav,
+.demo-customers-wrapper .master-sidebar-nav {
+  flex-shrink: 0;
+}
+
+.demo-dashboard-wrapper .master-main-content,
+.demo-customers-wrapper .master-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.demo-dashboard-wrapper .master-header-bar,
+.demo-customers-wrapper .master-header-bar {
+  flex-shrink: 0;
+}
+
+.demo-dashboard-wrapper .master-content-area,
+.demo-customers-wrapper .master-content-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ensure dashboard content is visible */
+.demo-dashboard-wrapper .dashboard-wrapper {
+  position: relative;
+  min-height: 100vh;
+  height: auto;
+}
+
+.demo-dashboard-wrapper .enhanced-dashboard {
+  position: relative;
+  min-height: 100vh;
+  height: auto;
+}
+
+.demo-dashboard-wrapper .view-content {
+  padding: 2rem;
+  height: auto;
+  min-height: 100%;
+}
+
+/* Fix for the Dashboard component's wrapper */
+.demo-dashboard-wrapper .dashboard-container-enhanced {
+  background: transparent;
+}
+
+/* Ensure metrics grid is visible */
+.demo-dashboard-wrapper .metrics-grid {
+  display: grid !important;
+  visibility: visible !important;
+}
+
+/* Ensure all dashboard content scrolls properly */
+.demo-dashboard-wrapper .master-content-area > * {
+  height: auto;
+  min-height: 100%;
+}
+
+/* Fix demo container to allow proper flex layout */
+.demo-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.demo-scroll-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* Fix Routes container to take full height */
+.demo-scroll-container > div {
+  height: 100%;
+}
+
+/* Debug: Remove any potential overflow hidden on key elements */
+.demo-page * {
+  /* Reset any overflow hidden that might be inherited */
+}
+
+.demo-dashboard-wrapper,
+.demo-dashboard-wrapper *,
+.demo-customers-wrapper,
+.demo-customers-wrapper * {
+  /* Ensure nothing is clipping content */
+  overflow: visible !important;
+}
+
+/* Then re-apply scrolling only where needed */
+.demo-dashboard-wrapper .master-content-area {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.demo-customers-wrapper .master-content-area {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix for any absolute positioning that might be hiding content */
+.demo-dashboard-wrapper .dashboard-wrapper > *,
+.demo-dashboard-wrapper .enhanced-dashboard > * {
+  position: relative !important;
+}
+
+/* Ensure the dashboard loading screen doesn't block content */
+.demo-dashboard-wrapper .dashboard-loading-container {
+  position: relative !important;
+  min-height: 400px !important;
+}
+
+/* Remove any transforms that might be moving content off-screen */
+.demo-dashboard-wrapper *,
+.demo-customers-wrapper * {
+  transform: none !important;
+}
+
+/* Ensure z-index doesn't hide content */
+.demo-dashboard-wrapper .master-content-area *,
+.demo-customers-wrapper .master-content-area * {
+  z-index: auto !important;
+}

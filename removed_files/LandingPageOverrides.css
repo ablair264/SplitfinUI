@@ -1,0 +1,15 @@
+/* Landing Page specific overrides */
+body:has(.landing-page) {
+  height: auto;
+  overflow: auto;
+}
+
+html:has(.landing-page) {
+  height: auto;
+  overflow: auto;
+}
+
+.landing-page {
+  min-height: 100vh;
+  overflow: visible;
+}
