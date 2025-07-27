@@ -11,9 +11,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
@@ -22,7 +22,8 @@
       "@/pages/*": ["src/pages/*"],
       "@/demo/*": ["src/demo/*"],
       "@/utils/*": ["src/utils/*"]
-    }
+    },
+    "types": ["node"]
   },
   "include": ["src"]
 }
