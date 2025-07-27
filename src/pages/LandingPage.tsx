@@ -1,10 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './LandingPage.css';
+import MetricCard from '../components/Dashboard/shared/MetricCard';
+import CardChart from '../components/Dashboard/shared/CardChart';
+import { ColorProvider } from '../components/Dashboard/shared/ColorProvider';
+import '../components/Dashboard/shared/MetricCard.module.css';
+import '../components/Dashboard/shared/CardChart.module.css';
 
 const LandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  // State for interactive demo components
+  const [selectedColor, setSelectedColor] = useState<'primary' | 'secondary' | 'tertiary' | 'fourth' | 'fifth' | 'sixth' | 'seventh' | 'eighth' | 'ninth' | 'tenth' | 'eleventh' | 'multicolored'>('primary');
+  const [metricVariants, setMetricVariants] = useState({
+    revenue: 'variant1' as 'variant1' | 'variant2' | 'variant3',
+    orders: 'variant2' as 'variant1' | 'variant2' | 'variant3',
+    customers: 'variant3' as 'variant1' | 'variant2' | 'variant3'
+  });
+  const [chartType, setChartType] = useState<'table' | 'bar' | 'horizontal-bars' | 'pie-with-legend'>('table');
+  
+  // Color palette mapping
+  const colorMap = {
+    primary: '#79d5e9',
+    secondary: '#799de9',
+    tertiary: '#79e9c5',
+    fourth: '#FF9F00',
+    fifth: '#C96868',
+    sixth: '#4daeac',
+    seventh: '#61bc8e',
+    eighth: '#fbbf24',
+    ninth: '#dc2626',
+    tenth: '#8b5cf6',
+    eleventh: '#ec4899'
+  };
+  
+  const getMetricCardColor = (index: number = 0) => {
+    if (selectedColor === 'multicolored') {
+      const colors = Object.values(colorMap);
+      return colors[index % colors.length];
+    }
+    return colorMap[selectedColor] || colorMap.primary;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -111,14 +148,295 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Components Preview Section */}
+      {/* Interactive Demo Section */}
       <section id="components" className="components-preview-section">
         <div className="section-container">
           <div className="section-header">
             <h2 className="section-title">
-              Powerful Components
-              <span className="section-subtitle">Everything you need for professional dashboards</span>
+              Another Dashboard.. <span className="title-gradient">with style</span>
+              <span className="section-subtitle">Allow users to pick a different colour, every day of the week</span>
             </h2>
+          </div>
+          
+          {/* Interactive Demo */}
+          <div className="interactive-demo-section" style={{ marginBottom: '3rem' }}>
+            {/* Color Selector */}
+            <div className="demo-controls" style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '1rem',
+              marginBottom: '2rem',
+              padding: '1.5rem',
+              background: 'rgba(255, 255, 255, 0.02)',
+              borderRadius: '12px',
+              border: '1px solid rgba(255, 255, 255, 0.05)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: '500' }}>COLOR THEME</span>
+                <div style={{
+                  display: 'flex',
+                  gap: '0.5rem',
+                  padding: '0.25rem',
+                  background: 'rgba(0, 0, 0, 0.2)',
+                  borderRadius: '8px'
+                }}>
+                  {Object.entries(colorMap).map(([key, color]) => (
+                    <button
+                      key={key}
+                      onClick={() => setSelectedColor(key as any)}
+                      style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '6px',
+                        backgroundColor: color,
+                        border: selectedColor === key ? '2px solid white' : '2px solid transparent',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      title={key}
+                    />
+                  ))}
+                  <button
+                    onClick={() => setSelectedColor('multicolored')}
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '6px',
+                      background: 'linear-gradient(135deg, #79d5e9 0%, #FF9F00 50%, #ec4899 100%)',
+                      border: selectedColor === 'multicolored' ? '2px solid white' : '2px solid transparent',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                    title="Multicolored"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            {/* MetricCards Demo */}
+            <ColorProvider 
+              barChartColors={selectedColor}
+              graphColors={{
+                primary: colorMap[selectedColor] || colorMap.primary,
+                secondary: '#4daeac',
+                tertiary: '#f77d11'
+              }}
+            >
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: '1.5rem',
+                marginBottom: '3rem'
+              }}>
+                <MetricCard
+                  id="demo-revenue"
+                  title="Total Revenue"
+                  value={10720}
+                  subtitle="All channels combined"
+                  trend={{ value: 14, isPositive: true }}
+                  format="currency"
+                  design={metricVariants.revenue}
+                  onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, revenue: variant }))}
+                  color={getMetricCardColor(0)}
+                  cardIndex={0}
+                />
+                
+                <MetricCard
+                  id="demo-orders"
+                  title="Total Orders"
+                  value={30}
+                  subtitle="Processed orders"
+                  trend={{ value: 9, isPositive: true }}
+                  format="number"
+                  design={metricVariants.orders}
+                  onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, orders: variant }))}
+                  color={getMetricCardColor(1)}
+                  cardIndex={1}
+                />
+                
+                <MetricCard
+                  id="demo-customers"
+                  title="Active Customers"
+                  value={28}
+                  subtitle="Unique buyers"
+                  trend={{ value: 5, isPositive: true }}
+                  format="number"
+                  design={metricVariants.customers}
+                  onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, customers: variant }))}
+                  color={getMetricCardColor(2)}
+                  cardIndex={2}
+                />
+              </div>
+              
+              {/* Chart Type Selector and CardChart Demo */}
+              <div style={{ marginTop: '3rem' }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '1rem',
+                  marginBottom: '2rem'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    gap: '0.5rem',
+                    padding: '0.5rem',
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(255, 255, 255, 0.05)'
+                  }}>
+                    <button
+                      onClick={() => setChartType('table')}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        background: chartType === 'table' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                        border: 'none',
+                        color: chartType === 'table' ? 'white' : 'var(--text-secondary)',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: '500',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      Table
+                    </button>
+                    <button
+                      onClick={() => setChartType('bar')}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        background: chartType === 'bar' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                        border: 'none',
+                        color: chartType === 'bar' ? 'white' : 'var(--text-secondary)',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: '500',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      Bar Vertical
+                    </button>
+                    <button
+                      onClick={() => setChartType('horizontal-bars')}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        background: chartType === 'horizontal-bars' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                        border: 'none',
+                        color: chartType === 'horizontal-bars' ? 'white' : 'var(--text-secondary)',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: '500',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      Bar Horizontal
+                    </button>
+                    <button
+                      onClick={() => setChartType('pie-with-legend')}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        background: chartType === 'pie-with-legend' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                        border: 'none',
+                        color: chartType === 'pie-with-legend' ? 'white' : 'var(--text-secondary)',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: '500',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      Pie Chart
+                    </button>
+                  </div>
+                </div>
+                
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                  gap: '1.5rem',
+                  maxWidth: '900px',
+                  margin: '0 auto'
+                }}>
+                  {chartType === 'table' ? (
+                    <div style={{
+                      background: 'var(--card-background)',
+                      borderRadius: '12px',
+                      padding: '1.5rem',
+                      border: '1px solid var(--border-color)'
+                    }}>
+                      <h3 style={{ marginBottom: '0.5rem', fontSize: '1rem', fontWeight: '600' }}>Sales Team Performance</h3>
+                      <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Top 5 agents by revenue</p>
+                      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                        <thead>
+                          <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
+                            <th style={{ padding: '0.75rem 0', textAlign: 'left', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '500' }}>#</th>
+                            <th style={{ padding: '0.75rem 0', textAlign: 'left', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '500' }}>AGENT</th>
+                            <th style={{ padding: '0.75rem 0', textAlign: 'right', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '500' }}>REVENUE</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[
+                            { name: 'Emma Williams', revenue: 45697 },
+                            { name: 'Lisa Thompson', revenue: 41254 },
+                            { name: 'David Kim', revenue: 39853 },
+                            { name: 'Tom Anderson', revenue: 35963 },
+                            { name: 'Rachel Green', revenue: 34151 }
+                          ].map((agent, index) => (
+                            <tr key={index} style={{ borderBottom: index < 4 ? '1px solid rgba(255, 255, 255, 0.05)' : 'none' }}>
+                              <td style={{ padding: '1rem 0', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>{index + 1}</td>
+                              <td style={{ padding: '1rem 0', fontSize: '0.875rem' }}>{agent.name}</td>
+                              <td style={{ padding: '1rem 0', textAlign: 'right', fontSize: '0.875rem', fontWeight: '500', color: getMetricCardColor(index) }}>
+                                £{agent.revenue.toLocaleString()}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <CardChart
+                      id="demo-chart"
+                      title="Sales Team Performance"
+                      subtitle="Top 5 agents by revenue"
+                      data={[
+                        { name: 'Emma Williams', value: 45697 },
+                        { name: 'Lisa Thompson', value: 41254 },
+                        { name: 'David Kim', value: 39853 },
+                        { name: 'Tom Anderson', value: 35963 },
+                        { name: 'Rachel Green', value: 34151 }
+                      ]}
+                      type={chartType === 'horizontal-bars' ? 'bar' : chartType === 'pie-with-legend' ? 'pie' : 'bar'}
+                      dataKey="value"
+                      colors={selectedColor === 'multicolored' ? Object.values(colorMap) : [getMetricCardColor(0)]}
+                      design={chartType === 'table' ? 'default' : chartType}
+                      height={280}
+                      showLegend={chartType === 'pie-with-legend'}
+                    />
+                  )}
+                  
+                  <div style={{
+                    background: 'var(--card-background)',
+                    borderRadius: '12px',
+                    padding: '2rem',
+                    border: '1px solid var(--border-color)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <img 
+                      src="/images/metric-card-example.png" 
+                      alt="Metric Card Example" 
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                        borderRadius: '8px'
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </ColorProvider>
           </div>
           
           <div className="components-grid">

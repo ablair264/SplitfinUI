@@ -495,7 +495,7 @@
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 4rem auto 0;
 }
 
 .component-card {
@@ -1174,5 +1174,54 @@
   
   .components-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* ============================================================
+   INTERACTIVE DEMO SECTION
+   ============================================================ */
+.interactive-demo-section {
+  margin-top: 2rem;
+}
+
+.demo-controls {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Override MetricCard styles for demo */
+.interactive-demo-section [class*="metricCard"] {
+  background: var(--card-background, rgba(26, 35, 50, 0.6));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+}
+
+.interactive-demo-section [class*="cardChart"] {
+  background: var(--card-background, rgba(26, 35, 50, 0.6));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+}
+
+/* Ensure CSS variables are set */
+.interactive-demo-section {
+  --card-background: rgba(26, 35, 50, 0.6);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #e5e7eb;
+  --background-white: #1a2332;
+}
+
+/* Responsive adjustments for demo */
+@media (max-width: 768px) {
+  .demo-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .demo-controls > div {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .demo-controls span {
+    margin-bottom: 0.5rem;
   }
 }
