@@ -4,8 +4,16 @@ import './LandingPage.css';
 import MetricCard from '../components/Dashboard/shared/MetricCard';
 import CardChart from '../components/Dashboard/shared/CardChart';
 import { ColorProvider } from '../components/Dashboard/shared/ColorProvider';
+import FullGraph from '../components/Dashboard/shared/FullGraph';
+import DataTable from '../components/Dashboard/shared/DataTable';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import CardTable from '../components/Dashboard/shared/CardTable';
+import TableCard from '../components/Dashboard/shared/TableCard';
 import '../components/Dashboard/shared/MetricCard.module.css';
 import '../components/Dashboard/shared/CardChart.module.css';
+import '../components/Dashboard/shared/FullGraph.module.css';
+import '../components/Dashboard/shared/DataTable.module.css';
+import '../components/Dashboard/shared/CardTable.module.css';
 
 const LandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -96,13 +104,13 @@ const LandingPage: React.FC = () => {
             </div>
             
             <h1 className="hero-title">
-              Build Beautiful Analytics
-              <span className="title-gradient"> Dashboards</span>
+              React Based Dashboard Components &
+              <span className="title-gradient"> Template</span> with Customer Management Modules.
             </h1>
             
             <p className="hero-subtitle">
-              Professional React components for modern data visualization. 
-              TypeScript-ready, fully customizable, and production-tested.
+              SplitUI is a developer-friendly, ready-to-use Dashboard component collection 
+              that's deployment time is as impressive as it's design.
             </p>
             
             <div className="hero-actions">
@@ -439,169 +447,254 @@ const LandingPage: React.FC = () => {
             </ColorProvider>
           </div>
           
-          <div className="components-grid">
-            <div className="component-card featured">
-              <div className="component-icon">📊</div>
-              <h3>Dashboard Views</h3>
-              <p>Complete dashboard with multiple views including Overview, Revenue, Orders, and Forecasting. Each view is optimized for data visualization with smooth transitions.</p>
-              <div className="component-features">
-                <span className="feature-item">• Real-time data updates</span>
-                <span className="feature-item">• Responsive grid layouts</span>
-                <span className="feature-item">• Customizable date ranges</span>
-                <span className="feature-item">• Export functionality</span>
+          {/* Component Showcase */}
+          <div className="component-showcase" style={{ marginTop: '4rem' }}>
+            <h2 style={{ fontSize: '2rem', marginBottom: '3rem', textAlign: 'center' }}>Featured Components</h2>
+            
+            {/* FullGraph Component */}
+            <div className="showcase-item" style={{ marginBottom: '4rem' }}>
+              <div style={{ marginBottom: '2rem' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>FullGraph Component</h3>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Advanced charting component for comprehensive data visualization</p>
+                <div className="component-features" style={{ marginBottom: '2rem' }}>
+                  <span className="feature-item">• Multiple chart types (line, area, bar, composed)</span>
+                  <span className="feature-item">• Brush tool for data range selection</span>
+                  <span className="feature-item">• Synchronized tooltips across data series</span>
+                  <span className="feature-item">• Customizable grid and axis</span>
+                  <span className="feature-item">• Export to PNG/SVG functionality</span>
+                  <span className="feature-item">• Responsive with auto-resize</span>
+                </div>
               </div>
-              <div className="component-tags">
-                <span className="tag">OverviewView</span>
-                <span className="tag">RevenueView</span>
-                <span className="tag">OrdersView</span>
-                <span className="tag">ForecastingView</span>
+              <ColorProvider 
+                barChartColors={selectedColor}
+                graphColors={{
+                  primary: colorMap[selectedColor] || colorMap.primary,
+                  secondary: '#4daeac',
+                  tertiary: '#f77d11'
+                }}
+              >
+                <FullGraph
+                  id="demo-fullgraph"
+                  title="Revenue & Order Trends"
+                  subtitle="Track your business performance over time"
+                  data={[
+                    { date: '2025-01-01', revenue: 12000, orders: 45 },
+                    { date: '2025-01-02', revenue: 15000, orders: 52 },
+                    { date: '2025-01-03', revenue: 13500, orders: 48 },
+                    { date: '2025-01-04', revenue: 16800, orders: 61 },
+                    { date: '2025-01-05', revenue: 14200, orders: 55 },
+                    { date: '2025-01-06', revenue: 17500, orders: 68 },
+                    { date: '2025-01-07', revenue: 19200, orders: 72 }
+                  ]}
+                  type="composed"
+                  lines={[
+                    { dataKey: 'revenue', color: getMetricCardColor(0), name: 'Revenue', type: 'area' },
+                    { dataKey: 'orders', color: getMetricCardColor(1), name: 'Orders', type: 'line' }
+                  ]}
+                  showBrush={true}
+                  showGrid={true}
+                  showLegend={true}
+                  height={350}
+                />
+              </ColorProvider>
+            </div>
+            
+            {/* DataTable Component */}
+            <div className="showcase-item" style={{ marginBottom: '4rem' }}>
+              <div style={{ marginBottom: '2rem' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>DataTable Component</h3>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Feature-rich table component with advanced functionality</p>
+                <div className="component-features" style={{ marginBottom: '2rem' }}>
+                  <span className="feature-item">• Sortable columns with multi-sort support</span>
+                  <span className="feature-item">• Built-in search and filtering</span>
+                  <span className="feature-item">• Pagination with customizable page sizes</span>
+                  <span className="feature-item">• Row selection with bulk actions</span>
+                  <span className="feature-item">• Column resizing and reordering</span>
+                  <span className="feature-item">• Export to CSV/Excel</span>
+                  <span className="feature-item">• Mobile responsive design</span>
+                </div>
+              </div>
+              <DataTable
+                columns={[
+                  { key: 'name', label: 'Product Name', sortable: true },
+                  { key: 'category', label: 'Category', sortable: true },
+                  { key: 'price', label: 'Price', sortable: true, align: 'right', format: (value) => `£${value.toFixed(2)}` },
+                  { key: 'stock', label: 'Stock', sortable: true, align: 'right' },
+                  { key: 'status', label: 'Status', sortable: true }
+                ]}
+                data={[
+                  { id: '1', name: 'Premium Dashboard Kit', category: 'UI Components', price: 129.99, stock: 15, status: 'In Stock' },
+                  { id: '2', name: 'Analytics Module Pro', category: 'Analytics', price: 89.99, stock: 23, status: 'In Stock' },
+                  { id: '3', name: 'Customer Manager', category: 'CRM', price: 149.99, stock: 8, status: 'Low Stock' },
+                  { id: '4', name: 'Chart Builder Pro', category: 'Visualization', price: 79.99, stock: 0, status: 'Out of Stock' },
+                  { id: '5', name: 'Report Generator', category: 'Reporting', price: 99.99, stock: 12, status: 'In Stock' }
+                ]}
+                searchable={true}
+                selectable={true}
+                pageSize={5}
+                onRowClick={(row) => console.log('Row clicked:', row)}
+              />
+            </div>
+            
+            {/* Breadcrumb Component */}
+            <div className="showcase-item" style={{ marginBottom: '4rem' }}>
+              <div style={{ marginBottom: '2rem' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Breadcrumb Component</h3>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Hierarchical navigation component with automatic path generation</p>
+                <div className="component-features" style={{ marginBottom: '2rem' }}>
+                  <span className="feature-item">• Auto-generates from React Router paths</span>
+                  <span className="feature-item">• Customizable separators and icons</span>
+                  <span className="feature-item">• Truncation for long paths</span>
+                  <span className="feature-item">• Mobile-responsive collapsing</span>
+                  <span className="feature-item">• Custom path name mapping</span>
+                  <span className="feature-item">• Accessible navigation structure</span>
+                </div>
+              </div>
+              <div style={{ 
+                background: 'var(--card-background)', 
+                padding: '1.5rem', 
+                borderRadius: '12px',
+                border: '1px solid var(--border-color)' 
+              }}>
+                <Breadcrumb
+                  title="Analytics"
+                  items={[
+                    { label: 'Analytics', path: '/dashboard/analytics' },
+                    { label: 'Revenue Report' }
+                  ]}
+                />
+                <div style={{ marginTop: '1rem' }}>
+                  <Breadcrumb
+                    title="Products"
+                    items={[
+                      { label: 'Products', path: '/products' },
+                      { label: 'Categories', path: '/products/categories' },
+                      { label: 'Electronics' }
+                    ]}
+                  />
+                </div>
               </div>
             </div>
             
-            <div className="component-card">
-              <div className="component-icon">📈</div>
-              <h3>Metric Cards</h3>
-              <p>Display key performance indicators with beautiful animations. Features include trend indicators, mini charts, percentage changes, and multiple display variants.</p>
-              <div className="component-features">
-                <span className="feature-item">• 3 card variants</span>
-                <span className="feature-item">• Animated sparklines</span>
-                <span className="feature-item">• Trend indicators</span>
-                <span className="feature-item">• Currency formatting</span>
+
+            {/* TableCard Component */}
+            <div className="showcase-item" style={{ marginBottom: '4rem' }}>
+              <div style={{ marginBottom: '2rem' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>TableCard Component</h3>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Simplified table card for ranking displays</p>
+                <div className="component-features" style={{ marginBottom: '2rem' }}>
+                  <span className="feature-item">• Automatic ranking numbers</span>
+                  <span className="feature-item">• Clean minimal design</span>
+                  <span className="feature-item">• Value color customization</span>
+                  <span className="feature-item">• Subtext support</span>
+                  <span className="feature-item">• Perfect for leaderboards</span>
+                  <span className="feature-item">• Mobile optimized</span>
+                </div>
               </div>
-              <div className="component-tags">
-                <span className="tag">MetricCard</span>
-                <span className="tag">StatCard</span>
-                <span className="tag">KPICard</span>
-              </div>
-            </div>
-            
-            <div className="component-card">
-              <div className="component-icon">📋</div>
-              <h3>Data Tables</h3>
-              <p>Advanced tables with built-in sorting, filtering, and pagination. Supports row actions, bulk operations, and responsive mobile views.</p>
-              <div className="component-features">
-                <span className="feature-item">• Column sorting</span>
-                <span className="feature-item">• Search filtering</span>
-                <span className="feature-item">• Pagination controls</span>
-                <span className="feature-item">• Row selection</span>
-              </div>
-              <div className="component-tags">
-                <span className="tag">DataTable</span>
-                <span className="tag">CardTable</span>
-                <span className="tag">TableCard</span>
-              </div>
-            </div>
-            
-            <div className="component-card">
-              <div className="component-icon">🗺️</div>
-              <h3>Customer Map</h3>
-              <p>Interactive Google Maps integration showing customer locations with clustering, filters, and detailed info windows. Perfect for geographic analytics.</p>
-              <div className="component-features">
-                <span className="feature-item">• Marker clustering</span>
-                <span className="feature-item">• Region filtering</span>
-                <span className="feature-item">• Custom info windows</span>
-                <span className="feature-item">• Direction support</span>
-              </div>
-              <div className="component-tags">
-                <span className="tag">CustomerMapGoogle</span>
-                <span className="tag">MapCluster</span>
-              </div>
-            </div>
-            
-            <div className="component-card">
-              <div className="component-icon">👥</div>
-              <h3>Customer Management</h3>
-              <p>Complete customer management system with list views, detailed profiles, and quick actions. Includes search, filters, and bulk operations.</p>
-              <div className="component-features">
-                <span className="feature-item">• Customer profiles</span>
-                <span className="feature-item">• Contact management</span>
-                <span className="feature-item">• Activity tracking</span>
-                <span className="feature-item">• Financial overview</span>
-              </div>
-              <div className="component-tags">
-                <span className="tag">CustomersManagement</span>
-                <span className="tag">CustomerDetail</span>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
+              }}>
+                <TableCard
+                  id="top-agents"
+                  title="Top Sales Agents"
+                  subtitle="By revenue this month"
+                  data={[
+                    { name: 'Emma Williams', value: '£46,820', subtext: '142 deals closed' },
+                    { name: 'Michael Chen', value: '£41,350', subtext: '128 deals closed' },
+                    { name: 'Sarah Johnson', value: '£39,720', subtext: '119 deals closed' },
+                    { name: 'David Kim', value: '£36,890', subtext: '108 deals closed' },
+                    { name: 'Lisa Anderson', value: '£34,560', subtext: '97 deals closed' }
+                  ]}
+                  columns={[
+                    { key: 'name', label: 'Agent' },
+                    { key: 'value', label: 'Revenue', align: 'right' }
+                  ]}
+                  maxRows={5}
+                />
+                
+                <TableCard
+                  id="popular-products"
+                  title="Popular Products"
+                  subtitle="Most sold items"
+                  data={[
+                    { name: 'Dashboard Pro License', value: '247 sales' },
+                    { name: 'Analytics Add-on', value: '189 sales' },
+                    { name: 'Customer Module', value: '156 sales' },
+                    { name: 'Report Builder', value: '134 sales' },
+                    { name: 'API Access', value: '98 sales' }
+                  ]}
+                  columns={[
+                    { key: 'name', label: 'Product' },
+                    { key: 'value', label: 'Sales', align: 'right' }
+                  ]}
+                  maxRows={5}
+                />
               </div>
             </div>
             
-            <div className="component-card">
-              <div className="component-icon">📊</div>
-              <h3>Chart Components</h3>
-              <p>Beautiful, animated charts powered by Recharts. Includes line charts, bar charts, area charts, and pie charts with customizable colors.</p>
-              <div className="component-features">
-                <span className="feature-item">• Multiple chart types</span>
-                <span className="feature-item">• Smooth animations</span>
-                <span className="feature-item">• Responsive design</span>
-                <span className="feature-item">• Custom tooltips</span>
+            {/* CardTable Component */}
+            <div className="showcase-item" style={{ marginBottom: '4rem' }}>
+              <div style={{ marginBottom: '2rem' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>CardTable Component</h3>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Compact table component designed for card layouts</p>
+                <div className="component-features" style={{ marginBottom: '2rem' }}>
+                  <span className="feature-item">• Optimized for dashboard cards</span>
+                  <span className="feature-item">• Automatic row truncation with "View All"</span>
+                  <span className="feature-item">• Custom column formatting</span>
+                  <span className="feature-item">• Row highlighting on hover</span>
+                  <span className="feature-item">• Index column support</span>
+                  <span className="feature-item">• Responsive column widths</span>
+                  <span className="feature-item">• Click handlers for rows</span>
+                </div>
               </div>
-              <div className="component-tags">
-                <span className="tag">CardChart</span>
-                <span className="tag">FullGraph</span>
-                <span className="tag">PieChart</span>
-              </div>
-            </div>
-            
-            <div className="component-card">
-              <div className="component-icon">🔐</div>
-              <h3>Authentication</h3>
-              <p>Stunning login component with social authentication support, form validation, and beautiful animations. Includes remember me and password recovery.</p>
-              <div className="component-features">
-                <span className="feature-item">• Social logins</span>
-                <span className="feature-item">• Form validation</span>
-                <span className="feature-item">• Password recovery</span>
-                <span className="feature-item">• Animated background</span>
-              </div>
-              <div className="component-tags">
-                <span className="tag">Login</span>
-                <span className="tag">AuthForm</span>
-              </div>
-            </div>
-            
-            <div className="component-card">
-              <div className="component-icon">🎨</div>
-              <h3>Theming System</h3>
-              <p>Comprehensive theming with ColorProvider supporting 11 color schemes. Easy theme switching with CSS variables and dark mode support.</p>
-              <div className="component-features">
-                <span className="feature-item">• 11 color themes</span>
-                <span className="feature-item">• Dark mode ready</span>
-                <span className="feature-item">• CSS variables</span>
-                <span className="feature-item">• Theme persistence</span>
-              </div>
-              <div className="component-tags">
-                <span className="tag">ColorProvider</span>
-                <span className="tag">ThemeContext</span>
-              </div>
-            </div>
-            
-            <div className="component-card">
-              <div className="component-icon">🏗️</div>
-              <h3>Layout System</h3>
-              <p>Master layout with collapsible sidebar, breadcrumbs, and mobile responsiveness. Includes notification center and user profile management.</p>
-              <div className="component-features">
-                <span className="feature-item">• Collapsible sidebar</span>
-                <span className="feature-item">• Breadcrumb navigation</span>
-                <span className="feature-item">• Mobile menu</span>
-                <span className="feature-item">• Notification center</span>
-              </div>
-              <div className="component-tags">
-                <span className="tag">MasterLayout</span>
-                <span className="tag">Sidebar</span>
-              </div>
-            </div>
-            
-            <div className="component-card">
-              <div className="component-icon">⚡</div>
-              <h3>Utility Components</h3>
-              <p>Essential utilities including loading states, progress indicators, modals, and AI-powered insights. All with smooth animations.</p>
-              <div className="component-features">
-                <span className="feature-item">• Loading animations</span>
-                <span className="feature-item">• Progress bars</span>
-                <span className="feature-item">• Modal dialogs</span>
-                <span className="feature-item">• Toast notifications</span>
-              </div>
-              <div className="component-tags">
-                <span className="tag">ProgressLoader</span>
-                <span className="tag">AIInsightModal</span>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                gap: '1.5rem'
+              }}>
+                <CardTable
+                  id="top-customers"
+                  title="Top Customers"
+                  subtitle="By total purchase value"
+                  columns={[
+                    { key: 'name', label: 'Customer', width: '50%' },
+                    { key: 'orders', label: 'Orders', align: 'center' },
+                    { key: 'value', label: 'Total', align: 'right', format: (value) => `£${value.toLocaleString()}` }
+                  ]}
+                  data={[
+                    { name: 'Acme Corporation', orders: 45, value: 125430 },
+                    { name: 'TechStart Inc', orders: 38, value: 98750 },
+                    { name: 'Global Ventures', orders: 52, value: 87320 },
+                    { name: 'Innovation Labs', orders: 31, value: 76890 },
+                    { name: 'Digital Solutions', orders: 29, value: 65420 }
+                  ]}
+                  maxRows={5}
+                  showIndex={true}
+                  highlightRows={true}
+                  onViewAll={() => console.log('View all customers')}
+                />
+                
+                <CardTable
+                  id="recent-activities"
+                  title="Recent Activities"
+                  subtitle="Latest system events"
+                  columns={[
+                    { key: 'action', label: 'Action', width: '60%' },
+                    { key: 'user', label: 'User' },
+                    { key: 'time', label: 'Time', align: 'right' }
+                  ]}
+                  data={[
+                    { action: 'New order placed', user: 'John D.', time: '2 min ago' },
+                    { action: 'Customer registered', user: 'System', time: '5 min ago' },
+                    { action: 'Payment received', user: 'Sarah M.', time: '12 min ago' },
+                    { action: 'Product updated', user: 'Admin', time: '1 hour ago' },
+                    { action: 'Report generated', user: 'System', time: '2 hours ago' }
+                  ]}
+                  maxRows={5}
+                  onRowClick={(row) => console.log('Activity clicked:', row)}
+                />
               </div>
             </div>
           </div>
