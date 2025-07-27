@@ -7,6 +7,7 @@ import MasterLayout from '../layouts/MasterLayout'
 import CustomersManagement from '../components/CustomersManagement/CustomersManagement'
 import CustomerMapGoogle from '../components/CustomerMap/CustomerMapGoogle'
 import { Customer, MapCustomer } from '../components/CustomersManagement/types'
+// Import demo-specific styles only
 import './DemoPage.css'
 import './DemoPageClean.css'
 

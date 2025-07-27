@@ -832,14 +832,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           onChartDesignChange={(value) => updateDashboardState({ chartDesign: value })}
         />
         
-        {/* Cache Status Component - Only show in edit mode */}
-        {dashboardState.isEditMode && enableCaching && (
-          <CacheStatus 
-            userId={userId}
-            dateRange={dashboardState.dateRange}
-            onCacheCleared={() => refresh()}
-          />
-        )}
+        {/* Cache Status Component - Hidden (edit mode disabled) */}
 
         <div className="view-content">
           <div className="dashboard-content-wrapper">

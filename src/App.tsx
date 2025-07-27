@@ -3,7 +3,13 @@ import { Routes, Route } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
 import DemoPage from './pages/DemoPage'
 import MetricCardTest from './pages/MetricCardTest'
+
+// Import all CSS files to ensure they're bundled
 import './styles/ScrollFixes.css'
+import './styles/animations.css'
+import './components/Dashboard/dashboard.css'
+import './layouts/masterlayout.css'
+import './components/Login/login.css'
 
 function App() {
   return (

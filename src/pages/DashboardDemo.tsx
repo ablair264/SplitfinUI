@@ -1,24 +1,50 @@
-import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from '../components/Dashboard/Dashboard';
-import OverviewView from '../components/Dashboard/views/OverviewView';
-import RevenueView from '../components/Dashboard/views/RevenueView';
-import OrdersView from '../components/Dashboard/views/OrdersView';
-import ForecastingView from '../components/Dashboard/views/ForecastingView';
+
+// Lazy load view components
+const OverviewView = lazy(() => import('../components/Dashboard/views/OverviewView'));
+const RevenueView = lazy(() => import('../components/Dashboard/views/RevenueView'));
+const OrdersView = lazy(() => import('../components/Dashboard/views/OrdersView'));
+const ForecastingView = lazy(() => import('../components/Dashboard/views/ForecastingView'));
+
+// Loading fallback
+const ViewLoadingFallback = () => (
+  <div style={{ 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    height: '100%', 
+    color: 'var(--text-secondary)' 
+  }}>
+    Loading view...
+  </div>
+);
 
 const DashboardDemo: React.FC = () => {
-  const location = useLocation();
-  
-  // Debug: Check current path
-  console.log('Dashboard Demo - Current path:', location.pathname);
-  
   return (
     <Routes>
       <Route path="/*" element={<Dashboard />}>
-        <Route index element={<OverviewView />} />
-        <Route path="revenue" element={<RevenueView />} />
-        <Route path="orders" element={<OrdersView />} />
-        <Route path="forecasting" element={<ForecastingView />} />
+        <Route index element={
+          <Suspense fallback={<ViewLoadingFallback />}>
+            <OverviewView />
+          </Suspense>
+        } />
+        <Route path="revenue" element={
+          <Suspense fallback={<ViewLoadingFallback />}>
+            <RevenueView />
+          </Suspense>
+        } />
+        <Route path="orders" element={
+          <Suspense fallback={<ViewLoadingFallback />}>
+            <OrdersView />
+          </Suspense>
+        } />
+        <Route path="forecasting" element={
+          <Suspense fallback={<ViewLoadingFallback />}>
+            <ForecastingView />
+          </Suspense>
+        } />
       </Route>
     </Routes>
   );

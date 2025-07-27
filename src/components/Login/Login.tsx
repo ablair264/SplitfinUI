@@ -189,7 +189,7 @@ export default function Login({
                     <div style={{
                       width: '20px',
                       height: '20px',
-                      border: '2px solid #0f1419',
+                      border: '2px solid white',
                       borderTop: '2px solid transparent',
                       borderRadius: '50%',
                       animation: 'spin 1s linear infinite'

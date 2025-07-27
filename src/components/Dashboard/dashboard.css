@@ -64,7 +64,7 @@
 .dashboard-enhanced,
 .dashboard-wrapper {
   min-height: 100vh;
-  background: var(--background-light);
+  background: transparent;
   color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
   overflow-x: hidden;
@@ -294,6 +294,12 @@
 }
 
 @media (max-width: 768px) {
+  .marketplace-badge,
+  .direct-badge {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.688rem;
+  }
+}
   .card-charts-grid,
   .card-tables-grid {
     margin: 0 1rem 1.5rem 1rem;
@@ -1189,16 +1195,6 @@ input:focus-visible,
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(121, 213, 233, 0.3);
 }
-  .dashboard-container-enhanced {
-    padding: 0;
-    max-width: 100%;
-  }
-  
-  .dashboard-enhanced,
-  .dashboard-wrapper {
-    padding-top: 0;
-  }
-}
 
 /* Header styles */
 .dashboard-header-enhanced {
@@ -1977,7 +1973,7 @@ input:focus-visible,
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: var(--background-light);
+  background: transparent;
 }
 
 .loading-content {
@@ -2001,7 +1997,7 @@ input:focus-visible,
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: var(--background-light);
+  background: transparent;
 }
 
 .error-content {
@@ -2091,3 +2087,9 @@ input:focus-visible,
 }
 
 @media (max-width: 768px) {
+  .marketplace-badge,
+  .direct-badge {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.688rem;
+  }
+}
