@@ -126,6 +126,53 @@ npm run dev
 4. View the landing page at `http://localhost:5173`
 5. Try the demo at `http://localhost:5173/demo`
 
+### 🗺️ Google Maps Configuration
+
+The CustomerMap component requires a Google Maps API key. Here's how to set it up:
+
+#### 1. Get a Google Maps API Key
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the **Maps JavaScript API**
+4. Create credentials (API Key)
+
+#### 2. Configure API Key Restrictions
+In Google Cloud Console, under your API key settings:
+
+**Application restrictions:**
+- For testing: Set to "None"
+- For production: Set to "HTTP referrers"
+
+**Website restrictions (for production):**
+```
+http://localhost:*/*
+https://*.vercel.app/*
+https://your-domain.com/*
+```
+
+#### 3. Set Environment Variable
+```bash
+# In your .env file locally:
+VITE_GOOGLE_MAPS_API_KEY=your_api_key_here
+
+# In Vercel:
+# Go to Settings → Environment Variables
+# Add: VITE_GOOGLE_MAPS_API_KEY = your_api_key_here
+```
+
+#### 4. Using the Fallback Component
+If you don't have a Google Maps API key yet, you can use the fallback component:
+
+```jsx
+import { CustomerMapFallback } from './components/CustomerMap';
+
+// Shows customer statistics without the map
+<CustomerMapFallback 
+  customers={customers}
+  mapHeight="600px"
+/>
+```
+
 ### 🚀 Deployment on Vercel
 
 When deploying to Vercel, add your environment variables in the project settings:

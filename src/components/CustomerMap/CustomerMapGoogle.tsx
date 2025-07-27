@@ -207,9 +207,43 @@ export default function CustomerMapGoogle({
   }
 }: CustomerMapProps) {
   // Log for debugging
+  if (import.meta.env.DEV) {
+    console.log('CustomerMapGoogle Debug:', {
+      hasApiKey: !!googleMapsApiKey,
+      keyLength: googleMapsApiKey?.length,
+      keyPrefix: googleMapsApiKey?.substring(0, 10) + '...',
+      env: import.meta.env.MODE
+    });
+  }
+  
   if (!googleMapsApiKey && import.meta.env.DEV) {
     console.warn('CustomerMapGoogle: No Google Maps API key found. Set VITE_GOOGLE_MAPS_API_KEY in your environment variables or pass googleMapsApiKey prop.');
   }
+  
+  // Check if we're in development mode without a key
+  const isDevelopmentWithoutKey = import.meta.env.DEV && !googleMapsApiKey;
+  
+  // Add global error handler for Google Maps
+  React.useEffect(() => {
+    const handleError = (event: any) => {
+      if (event.message?.includes('ApiTargetBlockedMapError')) {
+        console.error('🗺️ Google Maps API Error Detected!');
+        console.error('Even though your key is unrestricted, this error means:');
+        console.error('1. Maps JavaScript API is NOT enabled in your Google Cloud project');
+        console.error('2. OR billing is not set up (required even for free tier)');
+        console.error('3. OR the API key belongs to a different project');
+        console.error('');
+        console.error('To fix:');
+        console.error('1. Go to: https://console.cloud.google.com/apis/library');
+        console.error('2. Search for "Maps JavaScript API"');
+        console.error('3. Click on it and press ENABLE');
+        console.error('4. Make sure billing is enabled for your project');
+      }
+    };
+    
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  }, []);
   // Use provided customers or generate mock data
   const customers = propCustomers || generateMockMapCustomers();
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
@@ -294,14 +328,54 @@ export default function CustomerMapGoogle({
     );
   }
 
-  if (!googleMapsApiKey) {
+  if (!googleMapsApiKey || isDevelopmentWithoutKey) {
     console.error('Google Maps API key not found. Make sure VITE_GOOGLE_MAPS_API_KEY is set in your environment variables.');
     return (
-      <div className="customer-map-error">
+      <div className="customer-map-error" style={{ padding: '2rem', textAlign: 'center' }}>
+        <h3>Google Maps Configuration Required</h3>
         <p>Google Maps API key is required. Please provide a valid API key.</p>
         <p style={{ fontSize: '0.875rem', marginTop: '0.5rem', opacity: 0.8 }}>
           Set <code>VITE_GOOGLE_MAPS_API_KEY</code> in your environment variables.
         </p>
+        
+        {/* Show helpful info if API key exists but is blocked */}
+        {googleMapsApiKey && (
+          <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(255,193,7,0.1)', borderRadius: '8px', textAlign: 'left', maxWidth: '600px', margin: '1.5rem auto' }}>
+            <h4 style={{ marginBottom: '0.5rem', color: '#ff6b6b' }}>⚠️ API Key Detected but Still Blocked!</h4>
+            <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+              Since your key is unrestricted, the issue is likely:
+            </p>
+            <ol style={{ fontSize: '0.875rem', paddingLeft: '1.5rem' }}>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <strong>Maps JavaScript API is NOT enabled</strong>
+                <ul style={{ marginTop: '0.25rem' }}>
+                  <li>Go to: <code>APIs & Services → Library</code></li>
+                  <li>Search for "Maps JavaScript API"</li>
+                  <li>Click <strong>ENABLE</strong></li>
+                </ul>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <strong>Billing is not set up</strong>
+                <ul style={{ marginTop: '0.25rem' }}>
+                  <li>Google requires billing even for free tier</li>
+                  <li>You get $200 free credit monthly</li>
+                  <li>Go to Billing and link a payment method</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Wrong Project</strong>
+                <ul style={{ marginTop: '0.25rem' }}>
+                  <li>Check you're in the right Google Cloud project</li>
+                  <li>The API must be enabled in the SAME project as your key</li>
+                </ul>
+              </li>
+            </ol>
+            <p style={{ fontSize: '0.875rem', marginTop: '1rem', padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '4px' }}>
+              💡 <strong>Quick Test:</strong> Visit{' '}
+              <code style={{ wordBreak: 'break-all' }}>https://maps.googleapis.com/maps/api/js?key={googleMapsApiKey.substring(0, 10)}...</code>
+            </p>
+          </div>
+        )}
       </div>
     );
   }
@@ -364,7 +438,13 @@ export default function CustomerMapGoogle({
       </div>
 
       <div className="map-content">
-        <LoadScript googleMapsApiKey={googleMapsApiKey}>
+        <LoadScript 
+          googleMapsApiKey={googleMapsApiKey}
+          onError={(error) => {
+            console.error('Google Maps Load Error:', error);
+            console.error('This usually means the API is not enabled or billing is not set up.');
+          }}
+        >
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={defaultCenter}
