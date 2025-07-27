@@ -8,8 +8,7 @@ import {
   FaUser, FaQuestionCircle, FaPalette, FaHome, FaDatabase, FaShieldAlt,
   FaBoxes, FaBox, FaImages, FaBook, FaFileAlt as FaCatalogue
 } from 'react-icons/fa';
-import './MasterLayout.css';
-import NotificationCenter from '../components/NotificationCenter';
+import './masterlayout.css';
 
 // Types for configuration
 export interface NavLink {

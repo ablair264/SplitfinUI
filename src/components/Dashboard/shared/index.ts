@@ -7,6 +7,7 @@ export { default as CardChart } from './CardChart';
 export { default as CardTable } from './CardTable';
 export { default as FullGraph } from './FullGraph';
 export { default as TableCard } from './TableCard';
+export { default as SocialMetricCard } from './SocialMetricCard';
 
 // Import CSS for the components
 import './DataTable.module.css';

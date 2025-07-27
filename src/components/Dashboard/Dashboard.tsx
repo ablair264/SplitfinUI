@@ -382,16 +382,11 @@ const Dashboard: React.FC<DashboardProps> = ({
         .sort((a, b) => b.revenue - a.revenue);
     }
     
-    let invoices = [];
+    // Handle invoices - it should always be an array
+    let invoices: DashboardInvoice[] = [];
     if (Array.isArray(data.invoices)) {
       invoices = data.invoices;
-    } else if (data.invoices && typeof data.invoices === 'object') {
-      if (data.invoices.all) invoices = data.invoices.all;
-      else if (data.invoices.invoices) invoices = data.invoices.invoices;
-      else if (data.invoices.outstanding) invoices = data.invoices.outstanding;
     }
-    
-    if (!Array.isArray(invoices)) invoices = [];
     
     return { agents, brands, items, invoices };
   }, [data]);

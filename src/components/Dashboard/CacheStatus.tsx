@@ -1,6 +1,7 @@
 // Cache Status Component for monitoring and managing dashboard cache
 
 import React, { useState, useEffect } from 'react';
+import { enhancedDashboardCache } from '../../utils/cache/enhancedDashboardCache';
 import './CacheStatus.css';
 
 interface CacheStats {
