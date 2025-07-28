@@ -1,15 +1,24 @@
 /* DataTable.module.css - Container Queries Version */
 
 .dataTableContainer {
-  background: #ffffff;
+  background: #1a1f2a; /* Changed to match dark theme */
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   overflow: hidden;
-  border: 1px solid #f0f0f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none !important;
   
   /* Enable container queries */
   container-type: inline-size;
   container-name: data-table;
+}
+
+/* Override global showcase styles */
+:global(.component-showcase) .dataTableContainer,
+:global(.showcase-item) .dataTableContainer,
+:global(.component-showcase) [class*="dataTable"],
+:global(.showcase-item) [class*="dataTable"] {
+  box-shadow: none !important;
+  background: #1a1f2a !important; /* Changed to match dark theme */
 }
 
 /* Container queries for container size adjustments */
@@ -35,8 +44,8 @@
 
 /* Table Header with container queries */
 .tableHeader {
-  background: #79d5e9;
-  border-bottom: 2px solid #f0f0f0;
+  background: transparent; /* Changed to match container background */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -50,7 +59,7 @@
 
 .headerCell {
   font-weight: 600;
-  color: #1a1a1a;
+  color: #e0e0e0;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.5px;
@@ -104,10 +113,10 @@
 
 .tableRow {
   display: flex;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
   min-width: fit-content;
-  background: white;
+  background: transparent;
 }
 
 .tableRow:last-child {
@@ -119,13 +128,13 @@
 }
 
 .tableRow.clickable:hover {
-  background: #f8f9fa;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .tableCell {
   padding: 16px 20px;
   font-size: 14px;
-  color: #4a5568;
+  color: #a0a0a0;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -177,13 +186,13 @@
 }
 
 .customerInfo strong {
-  color: #1a1a1a;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .customerInfo .companyName {
   font-size: 13px;
-  color: #718096;
+  color: #8b8b8b;
 }
 
 /* Container queries for company name */
@@ -221,12 +230,12 @@
 }
 
 .contactInfo .email {
-  color: #4a5568;
+  color: #a0a0a0;
 }
 
 .contactInfo .phone {
   font-size: 13px;
-  color: #718096;
+  color: #8b8b8b;
 }
 
 /* Container queries for contact info */
@@ -293,6 +302,43 @@
   color: #92400e;
 }
 
+/* Additional status badges for orders/shipping */
+.statusBadge.statusPartiallyShipped {
+  background: rgba(251, 191, 36, 0.2);
+  color: #f59e0b;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.statusBadge.statusConfirmed {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.statusBadge.statusFulfilled {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.statusBadge.statusShipped {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.statusBadge.statusProcessing {
+  background: rgba(236, 72, 153, 0.15);
+  color: #ec4899;
+  border: 1px solid rgba(236, 72, 153, 0.25);
+}
+
+.statusBadge.statusCancelled {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
 /* Action Buttons with container queries */
 .actionButtons {
   display: flex;
@@ -326,12 +372,12 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: #f3f4f6;
-  color: #374151;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
 }
 
 .actionBtn:hover {
-  background: #e5e7eb;
+  background: rgba(255, 255, 255, 0.15);
   transform: translateY(-1px);
 }
 
@@ -397,7 +443,7 @@
 .emptyState {
   text-align: center;
   padding: 60px 20px;
-  color: #718096;
+  color: #8b8b8b;
   
   /* Enable container queries for empty state */
   container-type: inline-size;
@@ -444,7 +490,7 @@
 .emptyState h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #2d3748;
+  color: #e0e0e0;
   margin: 0 0 8px 0;
 }
 
@@ -464,7 +510,7 @@
 .emptyState p {
   font-size: 14px;
   margin: 0;
-  color: #718096;
+  color: #8b8b8b;
 }
 
 @container (max-width: 400px) {
@@ -482,7 +528,7 @@
 /* Loading State */
 .dataTable.loading .skeletonText {
   height: 16px;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 4px;
@@ -504,67 +550,15 @@
   }
 }
 
-/* Dark Mode Support with container awareness */
-@media (prefers-color-scheme: dark) {
-  .dataTableContainer {
-    background: #1a1a2e;
-    border-color: #2d2d44;
-  }
-  
-  .tableHeader {
-    background: #16162a;
-    border-bottom-color: #2d2d44;
-  }
-  
-  .headerCell {
-    color: #e0e0e0;
-  }
-  
-  .tableRow {
-    border-bottom-color: #2d2d44;
-    background: #1a1a2e;
-  }
-  
-  .tableRow.clickable:hover {
-    background: #252542;
-  }
-  
-  .tableCell {
-    color: #a0a0a0;
-  }
-  
-  .customerInfo strong {
-    color: #ffffff;
-  }
-  
-  .customerInfo .companyName {
-    color: #8b8b8b;
-  }
-  
-  .contactInfo .email {
-    color: #a0a0a0;
-  }
-  
-  .contactInfo .phone {
-    color: #8b8b8b;
-  }
-  
-  .actionBtn {
-    background: #2d2d44;
-    color: #e0e0e0;
-  }
-  
-  .actionBtn:hover {
-    background: #3a3a52;
-  }
-  
-  .emptyState h3 {
-    color: #e0e0e0;
-  }
-  
-  .emptyState p {
-    color: #8b8b8b;
-  }
+/* Ensure consistent dark theme */
+.dataTable,
+.dataTableContainer * {
+  background-color: transparent;
+}
+
+.dataTableContainer,
+.tableBody {
+  background: #1a1f2a !important;
 }
 
 /* Ultra-small table adaptations */
@@ -576,7 +570,7 @@
   
   .tableCell {
     padding: 4px 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
   
   .tableCell:last-child {
@@ -590,7 +584,7 @@
   .tableCell::before {
     content: attr(data-label) ": ";
     font-weight: 600;
-    color: #718096;
+    color: #8b8b8b;
     font-size: 10px;
     margin-right: 4px;
   }
@@ -608,4 +602,15 @@
   .tableCell {
     padding: 10px 16px;
   }
+}
+
+/* Force remove all shadows from data tables globally */
+.dataTableContainer,
+[class*="dataTable"] {
+  box-shadow: none !important;
+}
+
+/* Ensure all child elements have no shadows */
+.dataTableContainer * {
+  box-shadow: none !important;
 }

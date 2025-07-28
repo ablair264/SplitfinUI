@@ -1270,7 +1270,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Ensure all paragraphs and spans are readable */
-p, span, div:not([class*="badge"]):not([class*="status"]) {
+p, span:not(.tableRow span):not(.tableContent span), div:not([class*="badge"]):not([class*="status"]) {
   color: var(--text-primary);
 }
 

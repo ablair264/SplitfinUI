@@ -1,19 +1,37 @@
 /* CardTable.module.css - Dark Theme Table Cards */
 
 .cardTableContainer {
-  background: var(--background-white);
+  background: #1a1f2a !important; /* Force dark theme */
   border-radius: 16px;
-  padding: 24px;
-  border: 1px solid var(--border-color);
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   height: auto;
-  min-height: 280px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
+  box-shadow: none !important;
+}
+
+/* Override all backgrounds */
+.cardTableContainer,
+.cardTableContainer * {
+  background-color: transparent !important;
+}
+
+.cardTableContainer {
+  background-color: #1a1f2a !important;
+}
+
+/* Override global showcase styles */
+:global(.component-showcase) .cardTableContainer,
+:global(.showcase-item) .cardTableContainer {
+  box-shadow: none !important;
+  background: #1a1f2a !important; /* Force dark theme */
 }
 
 .cardTableContainer:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: none !important;
 }
 
 /* Header */
@@ -22,6 +40,7 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 20px;
+  background: transparent !important;
 }
 
 .tableHeaderLeft {
@@ -61,7 +80,6 @@
 
 .viewAllButton:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(251, 191, 36, 0.3);
 }
 
 .tableOptionsButton {
@@ -89,11 +107,34 @@
   flex: 1;
   overflow: auto;
   min-height: 0;
+  background: transparent !important;
+}
+
+/* Remove all borders from table elements */
+.cardTable,
+.cardTable * {
+  border-collapse: collapse;
+}
+
+.cardTable td,
+.cardTable th,
+.cardTable tr,
+.cardTable tbody,
+.cardTable thead {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure all child elements have no shadows */
+.cardTableContainer * {
+  box-shadow: none !important;
 }
 
 .cardTable {
   width: 100%;
   border-collapse: collapse;
+  border: none !important;
+  outline: none !important;
 }
 
 .cardTable th {
@@ -106,6 +147,7 @@
   letter-spacing: 0.5px;
   border-bottom: 1px solid var(--border-color);
   white-space: nowrap;
+  background: transparent !important;
 }
 
 .cardTable td {
@@ -113,12 +155,18 @@
   color: var(--text-light);
   font-size: 13px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Fix for TableCard text visibility */
 .tableContent {
   display: flex;
   flex-direction: column;
+  gap: 0; /* Remove gap between rows */
 }
 
 .tableContent .tableRow {
@@ -132,6 +180,10 @@
 
 .tableContent .tableRow:last-child {
   border-bottom: none;
+}
+
+.tableContent .tableRow:hover {
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .tableContent .tableRow .rank {
@@ -174,6 +226,7 @@
 
 .cardTable tbody tr {
   transition: background 0.2s;
+  background: transparent !important;
 }
 
 .cardTable tbody tr:hover {
@@ -193,7 +246,7 @@
 }
 
 .cardTable tbody tr:last-child td {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 /* Index column */
@@ -294,4 +347,41 @@
     grid-template-columns: 1fr;
     gap: 16px;
   }
+}
+
+/* Ensure proper spacing */
+.cardTableContainer .tableRow .rank {
+  margin-right: 1rem;
+}
+
+.cardTableContainer .tableRow .value {
+  margin-left: auto;
+}
+
+/* Force override any global cardTable shadows and backgrounds */
+:global(.component-showcase) [class*="cardTable"],
+:global(.showcase-item) [class*="cardTable"],
+:global([class*="cardTable"]) {
+  box-shadow: none !important;
+}
+
+/* Additional override to ensure no shadows */
+.cardTableContainer,
+[class*="cardTable"] {
+  box-shadow: none !important;
+}
+
+/* Force dark background on all table elements */
+.cardTable,
+.cardTable thead,
+.cardTable tbody,
+.cardTable tr,
+.cardTable th,
+.cardTable td {
+  background-color: transparent !important;
+}
+
+/* Container gets the dark background */
+.cardTableContainer {
+  background-color: #1a1f2a !important;
 }

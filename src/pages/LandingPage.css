@@ -281,6 +281,10 @@
   backdrop-filter: blur(10px);
 }
 
+.hero-badge svg {
+  flex-shrink: 0;
+}
+
 .badge-icon {
   font-size: 1.125rem;
 }
@@ -424,6 +428,9 @@
 .hero-visual {
   position: relative;
   animation: fadeInUp 0.8s ease-out 0.2s both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dashboard-preview {
@@ -460,7 +467,7 @@
 .components-preview-section {
   position: relative;
   z-index: 100;
-  padding: 6rem 2rem;
+  padding: 6rem 2rem 2rem;
   background: rgba(26, 35, 50, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -1231,22 +1238,93 @@
    ============================================================ */
 .component-showcase {
   margin-top: 4rem;
+  position: relative;
+  padding: 4rem 0;
+}
+
+/* Add gradient background to showcase section */
+.component-showcase::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  left: -100vw;
+  right: -100vw;
+  bottom: -4rem;
+  background: linear-gradient(135deg, 
+    rgba(15, 25, 35, 0.95) 0%,
+    rgba(25, 45, 65, 0.9) 25%,
+    rgba(30, 60, 80, 0.85) 50%,
+    rgba(40, 80, 100, 0.8) 75%,
+    rgba(50, 100, 120, 0.75) 100%
+  );
+  z-index: -1;
+  animation: gradientShift 20s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+/* Add subtle pattern overlay */
+.component-showcase::after {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  left: -100vw;
+  right: -100vw;
+  bottom: -4rem;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(121, 213, 233, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(77, 174, 172, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Alternative darker gradient option */
+.component-showcase.dark-gradient::before {
+  background: linear-gradient(135deg,
+    #0a1628 0%,
+    #162840 25%,
+    #1e3a52 50%,
+    #2a4c64 75%,
+    #365e76 100%
+  );
 }
 
 .showcase-item {
   margin-bottom: 4rem;
   animation: fadeInUp 0.6s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
-.showcase-item h3 {
+.showcase-item > div:first-child > h3 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: var(--text-primary);
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure no title clash for MetricCardSquare */
+.showcase-item [class*="metricCardSquare"] h3 {
+  font-size: inherit !important;
+  text-shadow: none !important;
+  color: inherit !important;
+  margin: inherit !important;
 }
 
 .showcase-item > div:first-child p {
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .showcase-item .component-features {
@@ -1254,35 +1332,55 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .showcase-item .feature-item {
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   flex-basis: calc(50% - 0.375rem);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Component-specific overrides */
 .component-showcase [class*="dataTable"] {
-  background: var(--card-background);
-  border: 1px solid var(--border-color);
+  background: rgba(20, 28, 38, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .component-showcase [class*="socialMetricCard"] {
-  background: var(--card-background);
-  border: 1px solid var(--border-color);
+  background: rgba(20, 28, 38, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .component-showcase [class*="cardTable"] {
-  background: var(--card-background);
-  border: 1px solid var(--border-color);
+  background: rgba(20, 28, 38, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .component-showcase [class*="fullGraph"] {
-  background: var(--card-background);
-  border: 1px solid var(--border-color);
+  background: rgba(20, 28, 38, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced contrast for showcase items */
+.showcase-item > div:last-child > div {
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.showcase-item > div:last-child > div:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Responsive showcase */
@@ -1303,4 +1401,229 @@
 
 .text-center {
   text-align: center !important;
+}
+
+/* DataTable override for showcase */
+.component-showcase [class*="dataTable"] {
+  background: rgba(26, 35, 50, 0.6) !important;
+  color: #ffffff !important;
+}
+
+.component-showcase [class*="dataTable"] [class*="headerCell"] {
+  color: var(--text-secondary) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.component-showcase [class*="dataTable"] [class*="tableRow"] {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.component-showcase [class*="dataTable"] [class*="tableCell"] {
+  color: #ffffff !important;
+}
+
+/* More specific DataTable overrides */
+.showcase-item [class*="dataTableContainer"] {
+  background: transparent !important;
+}
+
+.showcase-item [class*="dataTable"] {
+  background: rgba(26, 35, 50, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.showcase-item [class*="tableHeader"] {
+  background: transparent !important;
+}
+
+.showcase-item [class*="headerCell"] {
+  color: #a0a0a0 !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+}
+
+.showcase-item [class*="tableBody"] {
+  background: transparent !important;
+}
+
+.showcase-item [class*="tableRow"]:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.showcase-item [class*="tableCell"] {
+  color: #e5e7eb !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Force dark theme for DataTable */
+.showcase-item div[class*="dataTable"] * {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.showcase-item div[class*="dataTable"] {
+  --background: rgba(26, 35, 50, 0.8) !important;
+  --text-primary: #ffffff !important;
+  --text-secondary: #a0a0a0 !important;
+  --border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Fix table value borders */
+.component-showcase [class*="tableRow"] [class*="value"],
+.component-showcase [class*="tableRow"] [class*="rank"],
+.component-showcase [class*="tableRow"] [class*="name"] {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.component-showcase table td {
+  border: none !important;
+}
+
+/* Additional table fixes */
+.component-showcase .tableRow > span,
+.component-showcase .tableRow > div {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.component-showcase [class*="cardTable"] span {
+  border: none !important;
+}
+
+.showcase-item table {
+  border-collapse: collapse;
+}
+
+.showcase-item table * {
+  outline: none !important;
+}
+
+/* Fix CardTable border issues */
+.component-showcase [class*="cardTable"] table,
+.component-showcase [class*="cardTable"] table * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.component-showcase [class*="cardTable"] td,
+.component-showcase [class*="cardTable"] th {
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+
+.component-showcase [class*="cardTable"] tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Ensure no default table borders */
+.showcase-item [class*="cardTableContainer"] table {
+  border: none !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+}
+
+.showcase-item [class*="cardTable"] {
+  border: none !important;
+}
+
+/* Override any browser default table borders */
+.component-showcase table,
+.component-showcase table td,
+.component-showcase table th,
+.component-showcase table tr,
+.component-showcase table tbody,
+.component-showcase table thead {
+  border-style: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+}
+
+/* SocialMetricCard styles for showcase */
+.component-showcase .social-metric-card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.component-showcase .social-metric-card .card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.component-showcase .social-metric-card select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.component-showcase .social-metric-card .platform-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.component-showcase .social-metric-card .progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   STATUS BADGES FOR DARK THEME
+   ============================================================ */
+
+/* Dark theme status badges for landing page */
+.component-showcase .statusBadge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-transform: capitalize !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Match the status badges from the provided image */
+.component-showcase .statusBadge.statusPartiallyShipped {
+  background: rgba(251, 191, 36, 0.2) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(251, 191, 36, 0.4) !important;
+}
+
+.component-showcase .statusBadge.statusConfirmed {
+  background: rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+.component-showcase .statusBadge.statusFulfilled {
+  background: rgba(34, 197, 94, 0.2) !important;
+  color: #4ade80 !important;
+  border: 1px solid rgba(34, 197, 94, 0.4) !important;
+}
+
+/* Map existing status types */
+.component-showcase .statusBadge.statusActive,
+.component-showcase .statusBadge.statusInStock {
+  background: rgba(34, 197, 94, 0.2) !important;
+  color: #4ade80 !important;
+  border: 1px solid rgba(34, 197, 94, 0.4) !important;
+}
+
+.component-showcase .statusBadge.statusPending,
+.component-showcase .statusBadge.statusLowStock {
+  background: rgba(251, 191, 36, 0.2) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(251, 191, 36, 0.4) !important;
+}
+
+.component-showcase .statusBadge.statusInactive,
+.component-showcase .statusBadge.statusOutOfStock {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
 }

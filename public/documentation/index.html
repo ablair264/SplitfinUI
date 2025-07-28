@@ -1,0 +1,2661 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitfinUI Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <div class="doc-layout-container">
+        <!-- Sidebar Navigation -->
+        <nav class="doc-sidebar-nav">
+            <!-- Top Actions Bar -->
+            <div class="doc-sidebar-top-actions">
+                <button class="doc-action-btn theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="doc-action-btn" onclick="window.open('https://github.com/splitfin/ui', '_blank')" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </button>
+                <button class="doc-action-btn" onclick="window.location.href='/'" aria-label="Back to website">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Logo Section -->
+            <div class="doc-sidebar-header">
+                <img src="/logos/splitfinrow.png" alt="SplitfinUI" class="doc-logo-image">
+                <h2 class="doc-title">Documentation</h2>
+            </div>
+
+            <!-- Navigation Sections -->
+            <div class="doc-sidebar-nav-sections">
+                <!-- Getting Started -->
+                <div class="doc-sidebar-nav-section">
+                    <button class="doc-sidebar-nav-item active" onclick="toggleSection('getting-started')">
+                        <span class="nav-icon">🚀</span>
+                        <span class="nav-text">Getting Started</span>
+                        <span class="nav-chevron">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="doc-sidebar-dropdown open" id="getting-started-dropdown">
+                        <a href="#overview" class="doc-sidebar-dropdown-item active">
+                            <span class="dropdown-text">Overview</span>
+                        </a>
+                        <a href="#installation" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Installation</span>
+                        </a>
+                        <a href="#project-structure" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Project Structure</span>
+                        </a>
+                        <a href="#quick-start" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Quick Start</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Components -->
+                <div class="doc-sidebar-nav-section">
+                    <button class="doc-sidebar-nav-item" onclick="toggleSection('components')">
+                        <span class="nav-icon">🧩</span>
+                        <span class="nav-text">Components</span>
+                        <span class="nav-chevron">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="doc-sidebar-dropdown" id="components-dropdown">
+                        <a href="#master-layout" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">MasterLayout</span>
+                        </a>
+                        <a href="#dashboard" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Dashboard</span>
+                        </a>
+                        <a href="#login" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Login</span>
+                        </a>
+                        <a href="#metric-card" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">MetricCard</span>
+                        </a>
+                        <a href="#card-chart" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">CardChart</span>
+                        </a>
+                        <a href="#card-table" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">CardTable</span>
+                        </a>
+                        <a href="#customer-map" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">CustomerMap</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Customisation -->
+                <div class="doc-sidebar-nav-section">
+                    <button class="doc-sidebar-nav-item" onclick="toggleSection('customisation')">
+                        <span class="nav-icon">🎨</span>
+                        <span class="nav-text">Customisation</span>
+                        <span class="nav-chevron">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="doc-sidebar-dropdown" id="customisation-dropdown">
+                        <a href="#theming" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Theming</span>
+                        </a>
+                        <a href="#colours" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Colours</span>
+                        </a>
+                        <a href="#typography" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Typography</span>
+                        </a>
+                        <a href="#css-variables" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">CSS Variables</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Data & Hooks -->
+                <div class="doc-sidebar-nav-section">
+                    <button class="doc-sidebar-nav-item" onclick="toggleSection('data-hooks')">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-text">Data & Hooks</span>
+                        <span class="nav-chevron">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="doc-sidebar-dropdown" id="data-hooks-dropdown">
+                        <a href="#mock-data" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Mock Data</span>
+                        </a>
+                        <a href="#use-dashboard" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">useDashboard Hook</span>
+                        </a>
+                        <a href="#data-integration" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Data Integration</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- TypeScript -->
+                <div class="doc-sidebar-nav-section">
+                    <button class="doc-sidebar-nav-item" onclick="toggleSection('typescript')">
+                        <span class="nav-icon">📘</span>
+                        <span class="nav-text">TypeScript</span>
+                        <span class="nav-chevron">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="doc-sidebar-dropdown" id="typescript-dropdown">
+                        <a href="#type-definitions" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Type Definitions</span>
+                        </a>
+                        <a href="#interfaces" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Interfaces</span>
+                        </a>
+                        <a href="#generics" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Using Generics</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Deployment -->
+                <div class="doc-sidebar-nav-section">
+                    <button class="doc-sidebar-nav-item" onclick="toggleSection('deployment')">
+                        <span class="nav-icon">🚀</span>
+                        <span class="nav-text">Deployment</span>
+                        <span class="nav-chevron">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="doc-sidebar-dropdown" id="deployment-dropdown">
+                        <a href="#vercel" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Vercel</span>
+                        </a>
+                        <a href="#netlify" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Netlify</span>
+                        </a>
+                        <a href="#environment-vars" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Environment Variables</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Examples -->
+                <div class="doc-sidebar-nav-section">
+                    <button class="doc-sidebar-nav-item" onclick="toggleSection('examples')">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">Examples</span>
+                        <span class="nav-chevron">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="doc-sidebar-dropdown" id="examples-dropdown">
+                        <a href="#basic-setup" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Basic Setup</span>
+                        </a>
+                        <a href="#custom-theme" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">Custom Theme</span>
+                        </a>
+                        <a href="#integration" class="doc-sidebar-dropdown-item">
+                            <span class="dropdown-text">API Integration</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="doc-sidebar-footer">
+                <p class="version-info">Version 1.0.0</p>
+                <p class="copyright">© 2025 Splitfin</p>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="doc-main-content">
+            <!-- Content Sections -->
+            <section id="overview" class="doc-section active">
+                <h1>SplitfinUI Documentation</h1>
+                <p class="section-intro">Welcome to the comprehensive documentation for SplitfinUI - a premium React dashboard template with 25+ beautifully designed components.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Modern Design</h3>
+                        <p>Glassmorphism effects, smooth animations, and a contemporary aesthetic that works beautifully in both light and dark modes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Zero Dependencies</h3>
+                        <p>Built with only React as a dependency. No bloated libraries or unnecessary packages - just clean, efficient code.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Fully Responsive</h3>
+                        <p>Mobile-first design approach ensuring your dashboard looks perfect on all devices and screen sizes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>TypeScript Support</h3>
+                        <p>Complete TypeScript definitions for all components, providing excellent developer experience and type safety.</p>
+                    </div>
+                </div>
+
+                <h2>Package Options</h2>
+                <div class="package-comparison">
+                    <div class="package-card compact">
+                        <h3>Compact Package</h3>
+                        <div class="price">£19</div>
+                        <ul>
+                            <li>✓ Login Component</li>
+                            <li>✓ MasterLayout</li>
+                            <li>✓ Dashboard with Overview</li>
+                            <li>✓ Essential Components</li>
+                            <li>✓ Mock Data System</li>
+                            <li>✓ Basic Support</li>
+                        </ul>
+                    </div>
+                    <div class="package-card full">
+                        <h3>Full Package</h3>
+                        <div class="price">£39</div>
+                        <ul>
+                            <li>✓ Everything in Compact</li>
+                            <li>✓ All Dashboard Views</li>
+                            <li>✓ Customer Management</li>
+                            <li>✓ Advanced Components</li>
+                            <li>✓ Google Maps Integration</li>
+                            <li>✓ Premium Support</li>
+                            <li>✓ 1 Year Updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="installation" class="doc-section">
+                <h1>Installation</h1>
+                <p class="section-intro">Get started with SplitfinUI in just a few minutes. Follow these simple steps to set up your development environment.</p>
+
+                <h2>Prerequisites</h2>
+                <ul class="requirement-list">
+                    <li>Node.js 16.0 or higher</li>
+                    <li>npm or yarn package manager</li>
+                    <li>React 18.0 or higher</li>
+                    <li>A code editor (VS Code recommended)</li>
+                </ul>
+
+                <h2>Step 1: Install Dependencies</h2>
+                <div class="code-block">
+                    <pre><code class="language-bash"># Using npm
+npm install
+
+# Using yarn
+yarn install</code></pre>
+                </div>
+
+                <h2>Step 2: Environment Setup</h2>
+                <p>Copy the example environment file and add your configuration:</p>
+                <div class="code-block">
+                    <pre><code class="language-bash"># Copy the example file
+cp .env.example .env</code></pre>
+                </div>
+
+                <p>Edit the <code>.env</code> file with your settings:</p>
+                <div class="code-block">
+                    <pre><code class="language-bash"># Required for CustomerMap component
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+
+# Optional: API endpoints if using external data
+VITE_API_ENDPOINT=https://your-api.com</code></pre>
+                </div>
+
+                <h2>Step 3: Start Development Server</h2>
+                <div class="code-block">
+                    <pre><code class="language-bash"># Start the development server
+npm run dev
+
+# The application will be available at:
+# http://localhost:5173</code></pre>
+                </div>
+
+                <h2>Build for Production</h2>
+                <div class="code-block">
+                    <pre><code class="language-bash"># Create production build
+npm run build
+
+# Preview production build
+npm run preview</code></pre>
+                </div>
+            </section>
+
+            <section id="project-structure" class="doc-section">
+                <h1>Project Structure</h1>
+                <p class="section-intro">Understanding the project structure will help you navigate and customise SplitfinUI effectively.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-text">src/
+├── components/           # All React components
+│   ├── Dashboard/       # Dashboard and sub-components
+│   │   ├── Dashboard.tsx
+│   │   ├── shared/      # Shared dashboard components
+│   │   └── views/       # Dashboard view pages
+│   ├── Login/           # Login component
+│   ├── CustomerMap/     # Google Maps integration
+│   └── CustomersManagement/
+├── hooks/               # Custom React hooks
+│   └── useDashboard.ts  # Dashboard data hook
+├── layouts/             # Layout components
+│   └── MasterLayout.tsx # Main layout wrapper
+├── pages/               # Page components
+│   ├── LandingPage.tsx  # Marketing page
+│   └── DemoPage.tsx     # Component demos
+├── styles/              # Global styles
+├── types/               # TypeScript definitions
+└── utils/               # Utility functions
+    └── MOCKDATA.ts      # Mock data generator</code></pre>
+                </div>
+
+                <h2>Key Files</h2>
+                <div class="info-box">
+                    <h4>App.tsx</h4>
+                    <p>Main application entry point with routing configuration.</p>
+                </div>
+                <div class="info-box">
+                    <h4>main.tsx</h4>
+                    <p>React DOM render point and app initialisation.</p>
+                </div>
+                <div class="info-box">
+                    <h4>vite.config.ts</h4>
+                    <p>Vite configuration for development and build settings.</p>
+                </div>
+            </section>
+
+            <section id="quick-start" class="doc-section">
+                <h1>Quick Start Guide</h1>
+                <p class="section-intro">Get up and running with a basic dashboard in minutes using these examples.</p>
+
+                <h2>Basic Dashboard Setup</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MasterLayout from './layouts/MasterLayout';
+import Dashboard from './components/Dashboard/Dashboard';
+import Login from './components/Login/Login';
+
+function App() {
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+
+  const handleLogin = async (email, password) => {
+    // Your authentication logic here
+    setIsAuthenticated(true);
+  };
+
+  if (!isAuthenticated) {
+    return &lt;Login onLogin={handleLogin} /&gt;;
+  }
+
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;Routes&gt;
+        &lt;Route path="/" element={&lt;MasterLayout /&gt;}&gt;
+          &lt;Route index element={&lt;Dashboard /&gt;} /&gt;
+          &lt;Route path="dashboard/*" element={&lt;Dashboard /&gt;} /&gt;
+        &lt;/Route&gt;
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+export default App;</code></pre>
+                </div>
+
+                <h2>Customising the Navigation</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">const customNavigation = [
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    icon: &lt;ChartIcon /&gt;,
+    links: [
+      { to: '/dashboard', label: 'Overview' },
+      { to: '/dashboard/analytics', label: 'Analytics' }
+    ]
+  },
+  {
+    id: 'products',
+    label: 'Products',
+    icon: &lt;ProductIcon /&gt;,
+    to: '/products' // Direct navigation
+  }
+];
+
+&lt;MasterLayout navigationSections={customNavigation}&gt;
+  {/* Your content */}
+&lt;/MasterLayout&gt;</code></pre>
+                </div>
+
+                <h2>Using Mock Data</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import { useDashboard } from './hooks/useDashboard';
+
+function MyDashboard() {
+  const { data, loading, error, refresh } = useDashboard({
+    userId: 'user-123',
+    dateRange: '30_days',
+    enableCaching: true
+  });
+
+  if (loading) return &lt;LoadingSpinner /&gt;;
+  if (error) return &lt;ErrorMessage error={error} /&gt;;
+
+  return (
+    &lt;Dashboard 
+      data={data}
+      onRefresh={refresh}
+    /&gt;
+  );
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="master-layout" class="doc-section">
+                <h1>MasterLayout Component</h1>
+                <p class="section-intro">The MasterLayout component provides the main application structure with responsive sidebar navigation, header, and content area.</p>
+
+                <h2>Basic Usage</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import MasterLayout from './layouts/MasterLayout';
+
+function App() {
+  return (
+    &lt;MasterLayout
+      user={{
+        id: '1',
+        name: 'John Doe',
+        email: 'john@example.com',
+        role: 'admin'
+      }}
+    &gt;
+      {/* Your content here */}
+    &lt;/MasterLayout&gt;
+  );
+}</code></pre>
+                </div>
+
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prop</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>user</code></td>
+                                <td><code>User</code></td>
+                                <td><code>undefined</code></td>
+                                <td>User object with id, name, email, role, and optional avatar</td>
+                            </tr>
+                            <tr>
+                                <td><code>navigationSections</code></td>
+                                <td><code>NavigationSection[]</code></td>
+                                <td><code>defaultNavigation</code></td>
+                                <td>Array of navigation sections for the sidebar</td>
+                            </tr>
+                            <tr>
+                                <td><code>logoSrc</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'/logos/splitfinrow.png'</code></td>
+                                <td>Path to the logo image</td>
+                            </tr>
+                            <tr>
+                                <td><code>onLogout</code></td>
+                                <td><code>() => void</code></td>
+                                <td><code>undefined</code></td>
+                                <td>Callback function for logout action</td>
+                            </tr>
+                            <tr>
+                                <td><code>showThemeSelector</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>true</code></td>
+                                <td>Show/hide theme selector</td>
+                            </tr>
+                            <tr>
+                                <td><code>enableBreadcrumbs</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>true</code></td>
+                                <td>Enable/disable breadcrumb navigation</td>
+                            </tr>
+                            <tr>
+                                <td><code>unreadMessagesCount</code></td>
+                                <td><code>number</code></td>
+                                <td><code>0</code></td>
+                                <td>Number of unread messages to display</td>
+                            </tr>
+                            <tr>
+                                <td><code>unreadNotificationsCount</code></td>
+                                <td><code>number</code></td>
+                                <td><code>0</code></td>
+                                <td>Number of unread notifications</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Navigation Structure</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">interface NavigationSection {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  links?: NavLink[];  // Sub-navigation items
+  to?: string;        // Direct navigation (no sub-items)
+}
+
+interface NavLink {
+  to: string;
+  label: string;
+  icon?: React.ReactNode;
+  badge?: string | number;
+}</code></pre>
+                </div>
+
+                <h2>Advanced Example</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">const navigation = [
+  {
+    id: 'analytics',
+    label: 'Analytics',
+    icon: &lt;AnalyticsIcon /&gt;,
+    links: [
+      { 
+        to: '/analytics/overview', 
+        label: 'Overview',
+        badge: 'New' 
+      },
+      { 
+        to: '/analytics/reports', 
+        label: 'Reports',
+        icon: &lt;ReportIcon /&gt;
+      }
+    ]
+  }
+];
+
+&lt;MasterLayout
+  user={currentUser}
+  navigationSections={navigation}
+  logoSrc="/custom-logo.png"
+  onLogout={handleLogout}
+  onMessagesClick={() =&gt; setMessagesOpen(true)}
+  unreadMessagesCount={5}
+  customBreadcrumbNames={{
+    'analytics': 'Business Analytics',
+    'reports': 'Custom Reports'
+  }}
+/&gt;</code></pre>
+                </div>
+            </section>
+
+            <section id="dashboard" class="doc-section">
+                <h1>Dashboard Component</h1>
+                <p class="section-intro">The Dashboard component is a comprehensive analytics interface with multiple views, real-time data visualisation, and AI-powered insights.</p>
+
+                <h2>Basic Usage</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import Dashboard from './components/Dashboard/Dashboard';
+
+function App() {
+  return (
+    &lt;Dashboard
+      userId="user-123"
+      theme="dark"
+      enableAIInsights={true}
+    /&gt;
+  );
+}</code></pre>
+                </div>
+
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prop</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>userId</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'demo-user'</code></td>
+                                <td>User identifier for data filtering</td>
+                            </tr>
+                            <tr>
+                                <td><code>apiEndpoint</code></td>
+                                <td><code>string</code></td>
+                                <td><code>undefined</code></td>
+                                <td>API endpoint for data fetching</td>
+                            </tr>
+                            <tr>
+                                <td><code>theme</code></td>
+                                <td><code>'dark' | 'light'</code></td>
+                                <td><code>'dark'</code></td>
+                                <td>Dashboard theme</td>
+                            </tr>
+                            <tr>
+                                <td><code>enableAIInsights</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>true</code></td>
+                                <td>Enable AI-powered insights</td>
+                            </tr>
+                            <tr>
+                                <td><code>enableCaching</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>true</code></td>
+                                <td>Enable data caching</td>
+                            </tr>
+                            <tr>
+                                <td><code>autoRefresh</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>false</code></td>
+                                <td>Auto-refresh data</td>
+                            </tr>
+                            <tr>
+                                <td><code>refreshInterval</code></td>
+                                <td><code>number</code></td>
+                                <td><code>300000</code></td>
+                                <td>Refresh interval in milliseconds</td>
+                            </tr>
+                            <tr>
+                                <td><code>onDataLoad</code></td>
+                                <td><code>(data: DashboardData) => void</code></td>
+                                <td><code>undefined</code></td>
+                                <td>Callback when data loads</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Dashboard Views</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Overview View</h4>
+                        <p>Main dashboard with key metrics, charts, and recent activity.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Revenue View</h4>
+                        <p>Detailed revenue analytics with trend analysis and forecasting.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Orders View</h4>
+                        <p>Order management with filtering, sorting, and status tracking.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Invoices View</h4>
+                        <p>Invoice tracking with payment status and reminders.</p>
+                    </div>
+                </div>
+
+                <h2>Data Integration</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// Using with external API
+&lt;Dashboard
+  userId={currentUser.id}
+  apiEndpoint="https://api.yourdomain.com"
+  onDataLoad={(data) =&gt; {
+    console.log('Dashboard data loaded:', data);
+    // Process or store data
+  }}
+  onError={(error) =&gt; {
+    console.error('Dashboard error:', error);
+    // Handle errors
+  }}
+/&gt;
+
+// Using with mock data (default)
+&lt;Dashboard
+  enableCaching={true}
+  defaultDateRange="30_days"
+/&gt;</code></pre>
+                </div>
+
+                <h2>Custom Metrics</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">const customMetrics = {
+  conversionRate: 3.5,
+  customerLifetimeValue: 1250,
+  netPromoterScore: 72
+};
+
+&lt;Dashboard
+  customMetrics={customMetrics}
+  // Custom metrics will be displayed alongside default metrics
+/&gt;</code></pre>
+                </div>
+            </section>
+
+            <section id="login" class="doc-section">
+                <h1>Login Component</h1>
+                <p class="section-intro">A beautiful, animated login component with social authentication support and complete customisation options.</p>
+
+                <h2>Basic Usage</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import Login from './components/Login/Login';
+
+function App() {
+  const handleLogin = async (email, password) => {
+    // Your authentication logic
+    const response = await authenticateUser(email, password);
+    if (response.success) {
+      // Redirect to dashboard
+    }
+  };
+
+  return &lt;Login onLogin={handleLogin} /&gt;;
+}</code></pre>
+                </div>
+
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prop</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>onLogin</code></td>
+                                <td><code>(email: string, password: string) => Promise&lt;void&gt;</code></td>
+                                <td><code>undefined</code></td>
+                                <td>Login handler function</td>
+                            </tr>
+                            <tr>
+                                <td><code>onSocialLogin</code></td>
+                                <td><code>(provider: 'google' | 'github' | 'apple') => Promise&lt;void&gt;</code></td>
+                                <td><code>undefined</code></td>
+                                <td>Social login handler</td>
+                            </tr>
+                            <tr>
+                                <td><code>logoSrc</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'/logos/splitfinrow.png'</code></td>
+                                <td>Logo image path</td>
+                            </tr>
+                            <tr>
+                                <td><code>title</code></td>
+                                <td><code>string</code></td>
+                                <td><code>undefined</code></td>
+                                <td>Login form title</td>
+                            </tr>
+                            <tr>
+                                <td><code>subtitle</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'Access your dashboard'</code></td>
+                                <td>Login form subtitle</td>
+                            </tr>
+                            <tr>
+                                <td><code>showSocialLogin</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>true</code></td>
+                                <td>Show social login buttons</td>
+                            </tr>
+                            <tr>
+                                <td><code>showDemoHint</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>true</code></td>
+                                <td>Show demo credentials</td>
+                            </tr>
+                            <tr>
+                                <td><code>demoCredentials</code></td>
+                                <td><code>{ email: string, password: string }</code></td>
+                                <td><code>{ email: 'demo@example.com', password: 'demo123' }</code></td>
+                                <td>Demo login credentials</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Social Authentication</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">const handleSocialLogin = async (provider) => {
+  switch (provider) {
+    case 'google':
+      await signInWithGoogle();
+      break;
+    case 'github':
+      await signInWithGitHub();
+      break;
+    case 'apple':
+      await signInWithApple();
+      break;
+  }
+};
+
+&lt;Login
+  onSocialLogin={handleSocialLogin}
+  showSocialLogin={true}
+/&gt;</code></pre>
+                </div>
+
+                <h2>Custom Styling</h2>
+                <p>The login component includes beautiful animations and glassmorphism effects. You can customise the appearance using CSS variables:</p>
+                <div class="code-block">
+                    <pre><code class="language-css">:root {
+  --login-bg-primary: #1a1f2a;
+  --login-bg-secondary: #2c3e50;
+  --login-accent: #79d5e9;
+  --login-text-primary: #ffffff;
+  --login-border: rgba(255, 255, 255, 0.1);
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="metric-card" class="doc-section">
+                <h1>MetricCard Component</h1>
+                <p class="section-intro">Display key metrics with optional charts, trends, and interactive features.</p>
+
+                <h2>Basic Usage</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import MetricCard from './components/Dashboard/shared/MetricCard';
+
+&lt;MetricCard
+  title="Total Revenue"
+  value={125000}
+  format="currency"
+  trend={{ value: 12, isPositive: true }}
+  chartData={revenueData}
+/&gt;</code></pre>
+                </div>
+
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prop</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>title</code></td>
+                                <td><code>string</code></td>
+                                <td>-</td>
+                                <td>Card title</td>
+                            </tr>
+                            <tr>
+                                <td><code>value</code></td>
+                                <td><code>number</code></td>
+                                <td>-</td>
+                                <td>Metric value</td>
+                            </tr>
+                            <tr>
+                                <td><code>format</code></td>
+                                <td><code>'number' | 'currency' | 'percentage'</code></td>
+                                <td><code>'number'</code></td>
+                                <td>Value format</td>
+                            </tr>
+                            <tr>
+                                <td><code>trend</code></td>
+                                <td><code>{ value: number, isPositive: boolean }</code></td>
+                                <td><code>undefined</code></td>
+                                <td>Trend indicator</td>
+                            </tr>
+                            <tr>
+                                <td><code>chartData</code></td>
+                                <td><code>Array&lt;{ name: string, value: number }&gt;</code></td>
+                                <td><code>undefined</code></td>
+                                <td>Chart data points</td>
+                            </tr>
+                            <tr>
+                                <td><code>variant</code></td>
+                                <td><code>'variant1' | 'variant2' | 'variant3'</code></td>
+                                <td><code>'variant1'</code></td>
+                                <td>Visual variant</td>
+                            </tr>
+                            <tr>
+                                <td><code>onAIInsight</code></td>
+                                <td><code>() => void</code></td>
+                                <td><code>undefined</code></td>
+                                <td>AI insight handler</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Variants</h2>
+                <div class="variant-examples">
+                    <div class="variant-card">
+                        <h4>Variant 1</h4>
+                        <p>Clean design with subtle shadows and smooth animations.</p>
+                    </div>
+                    <div class="variant-card">
+                        <h4>Variant 2</h4>
+                        <p>Bold design with gradient backgrounds and stronger visual impact.</p>
+                    </div>
+                    <div class="variant-card">
+                        <h4>Variant 3</h4>
+                        <p>Minimal design focusing on content with light borders.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="card-chart" class="doc-section">
+                <h1>CardChart Component</h1>
+                <p class="section-intro">Flexible charting component supporting multiple chart types and customisation options.</p>
+
+                <h2>Chart Types</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// Bar Chart
+&lt;CardChart
+  title="Monthly Sales"
+  data={salesData}
+  type="bar"
+  color="#79d5e9"
+/&gt;
+
+// Line Chart
+&lt;CardChart
+  title="Revenue Trend"
+  data={revenueData}
+  type="line"
+  showGrid={true}
+/&gt;
+
+// Pie Chart
+&lt;CardChart
+  title="Category Distribution"
+  data={categoryData}
+  type="pie"
+  showLegend={true}
+/&gt;</code></pre>
+                </div>
+
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prop</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>title</code></td>
+                                <td><code>string</code></td>
+                                <td>-</td>
+                                <td>Chart title</td>
+                            </tr>
+                            <tr>
+                                <td><code>data</code></td>
+                                <td><code>Array&lt;object&gt;</code></td>
+                                <td>-</td>
+                                <td>Chart data</td>
+                            </tr>
+                            <tr>
+                                <td><code>type</code></td>
+                                <td><code>'bar' | 'line' | 'pie' | 'area'</code></td>
+                                <td><code>'bar'</code></td>
+                                <td>Chart type</td>
+                            </tr>
+                            <tr>
+                                <td><code>color</code></td>
+                                <td><code>string | string[]</code></td>
+                                <td><code>'#79d5e9'</code></td>
+                                <td>Chart color(s)</td>
+                            </tr>
+                            <tr>
+                                <td><code>height</code></td>
+                                <td><code>number</code></td>
+                                <td><code>300</code></td>
+                                <td>Chart height in pixels</td>
+                            </tr>
+                            <tr>
+                                <td><code>showGrid</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>false</code></td>
+                                <td>Show grid lines</td>
+                            </tr>
+                            <tr>
+                                <td><code>showLegend</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>false</code></td>
+                                <td>Show legend</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="card-table" class="doc-section">
+                <h1>CardTable Component</h1>
+                <p class="section-intro">A versatile table component with sorting, filtering, and responsive design.</p>
+
+                <h2>Basic Usage</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import CardTable from './components/Dashboard/shared/CardTable';
+
+const columns = [
+  { key: 'name', label: 'Customer Name' },
+  { key: 'orders', label: 'Orders', sortable: true },
+  { key: 'revenue', label: 'Revenue', format: 'currency' }
+];
+
+&lt;CardTable
+  title="Top Customers"
+  columns={columns}
+  data={customerData}
+  onRowClick={(row) => console.log('Clicked:', row)}
+/&gt;</code></pre>
+                </div>
+
+                <h2>Column Configuration</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">interface TableColumn {
+  key: string;
+  label: string;
+  sortable?: boolean;
+  format?: 'text' | 'number' | 'currency' | 'date' | 'percentage';
+  align?: 'left' | 'center' | 'right';
+  width?: string;
+  render?: (value: any, row: any) => React.ReactNode;
+}</code></pre>
+                </div>
+
+                <h2>Advanced Features</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// With custom rendering
+const columns = [
+  {
+    key: 'status',
+    label: 'Status',
+    render: (value) => (
+      &lt;span className={`status-badge ${value}`}&gt;
+        {value}
+      &lt;/span&gt;
+    )
+  },
+  {
+    key: 'actions',
+    label: 'Actions',
+    render: (_, row) => (
+      &lt;button onClick={() => handleEdit(row.id)}&gt;
+        Edit
+      &lt;/button&gt;
+    )
+  }
+];
+
+// With pagination
+&lt;CardTable
+  columns={columns}
+  data={data}
+  pageSize={10}
+  showPagination={true}
+  onPageChange={(page) => fetchPage(page)}
+/&gt;</code></pre>
+                </div>
+            </section>
+
+            <section id="customer-map" class="doc-section">
+                <h1>CustomerMap Component</h1>
+                <p class="section-intro">Interactive Google Maps integration for visualising customer locations with clustering and custom markers.</p>
+
+                <h2>Setup</h2>
+                <p>First, ensure you have a Google Maps API key configured in your environment variables:</p>
+                <div class="code-block">
+                    <pre><code class="language-bash">VITE_GOOGLE_MAPS_API_KEY=your_api_key_here</code></pre>
+                </div>
+
+                <h2>Basic Usage</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import CustomerMap from './components/CustomerMap/CustomerMap';
+
+const customers = [
+  {
+    id: '1',
+    name: 'Acme Corp',
+    latitude: 51.5074,
+    longitude: -0.1278,
+    value: 15000
+  },
+  // ... more customers
+];
+
+&lt;CustomerMap
+  customers={customers}
+  mapHeight="600px"
+  defaultCenter={{ lat: 51.5074, lng: -0.1278 }}
+  defaultZoom={10}
+/&gt;</code></pre>
+                </div>
+
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prop</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>customers</code></td>
+                                <td><code>Customer[]</code></td>
+                                <td>-</td>
+                                <td>Array of customer objects with location data</td>
+                            </tr>
+                            <tr>
+                                <td><code>mapHeight</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'500px'</code></td>
+                                <td>Map container height</td>
+                            </tr>
+                            <tr>
+                                <td><code>defaultCenter</code></td>
+                                <td><code>{ lat: number, lng: number }</code></td>
+                                <td><code>{ lat: 53.3498, lng: -2.5938 }</code></td>
+                                <td>Initial map center</td>
+                            </tr>
+                            <tr>
+                                <td><code>defaultZoom</code></td>
+                                <td><code>number</code></td>
+                                <td><code>7</code></td>
+                                <td>Initial zoom level</td>
+                            </tr>
+                            <tr>
+                                <td><code>showClusters</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>true</code></td>
+                                <td>Enable marker clustering</td>
+                            </tr>
+                            <tr>
+                                <td><code>onMarkerClick</code></td>
+                                <td><code>(customer: Customer) => void</code></td>
+                                <td><code>undefined</code></td>
+                                <td>Marker click handler</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Fallback Component</h2>
+                <p>If you don't have a Google Maps API key, use the fallback component:</p>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import { CustomerMapFallback } from './components/CustomerMap';
+
+&lt;CustomerMapFallback
+  customers={customers}
+  mapHeight="600px"
+/&gt;</code></pre>
+                </div>
+            </section>
+
+            <section id="theming" class="doc-section">
+                <h1>Theming</h1>
+                <p class="section-intro">SplitfinUI includes a comprehensive theming system with light and dark modes, customisable colours, and CSS variables.</p>
+
+                <h2>Theme Toggle</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Toggle between light and dark themes
+function toggleTheme() {
+  const html = document.documentElement;
+  if (html.classList.contains('dark-theme')) {
+    html.classList.remove('dark-theme');
+    html.classList.add('light-theme');
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.classList.remove('light-theme');
+    html.classList.add('dark-theme');
+    localStorage.setItem('theme', 'dark');
+  }
+}</code></pre>
+                </div>
+
+                <h2>Applying Themes</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// In your App component
+useEffect(() => {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.classList.add(`${savedTheme}-theme`);
+}, []);</code></pre>
+                </div>
+
+                <h2>Theme Structure</h2>
+                <div class="code-block">
+                    <pre><code class="language-css">/* Dark Theme (Default) */
+:root {
+  --bg-primary: #1a1f2a;
+  --bg-secondary: #2c3e50;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #79d5e9;
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+/* Light Theme */
+.light-theme {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: rgba(30, 41, 59, 0.7);
+  --accent: #6366f1;
+  --border: rgba(30, 41, 59, 0.1);
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="colours" class="doc-section">
+                <h1>Colour System</h1>
+                <p class="section-intro">A carefully crafted colour palette designed for modern dashboards with excellent contrast and accessibility.</p>
+
+                <h2>Primary Colours</h2>
+                <div class="colour-grid">
+                    <div class="colour-card">
+                        <div class="colour-swatch" style="background: #79d5e9;"></div>
+                        <h4>Ocean Blue</h4>
+                        <code>#79d5e9</code>
+                        <p>Primary brand colour</p>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch" style="background: #799de9;"></div>
+                        <h4>Sky Blue</h4>
+                        <code>#799de9</code>
+                        <p>Secondary colour</p>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch" style="background: #79e9c5;"></div>
+                        <h4>Mint Green</h4>
+                        <code>#79e9c5</code>
+                        <p>Success states</p>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch" style="background: #FF9F00;"></div>
+                        <h4>Sunset Orange</h4>
+                        <code>#FF9F00</code>
+                        <p>Warnings & accents</p>
+                    </div>
+                </div>
+
+                <h2>Chart Colours</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">const CHART_COLORS = [
+  '#79d5e9',  // Ocean Blue
+  '#799de9',  // Sky Blue
+  '#79e9c5',  // Mint Green
+  '#FF9F00',  // Sunset Orange
+  '#C96868',  // Rose
+  '#4daeac',  // Teal
+  '#61bc8e',  // Emerald
+  '#fbbf24',  // Amber
+  '#dc2626',  // Red
+  '#8b5cf6',  // Purple
+  '#ec4899'   // Pink
+];</code></pre>
+                </div>
+
+                <h2>Status Colours</h2>
+                <div class="colour-grid">
+                    <div class="colour-card">
+                        <div class="colour-swatch" style="background: #10b981;"></div>
+                        <h4>Success</h4>
+                        <code>#10b981</code>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch" style="background: #f59e0b;"></div>
+                        <h4>Warning</h4>
+                        <code>#f59e0b</code>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch" style="background: #ef4444;"></div>
+                        <h4>Error</h4>
+                        <code>#ef4444</code>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch" style="background: #3b82f6;"></div>
+                        <h4>Info</h4>
+                        <code>#3b82f6</code>
+                    </div>
+                </div>
+            </section>
+
+            <section id="typography" class="doc-section">
+                <h1>Typography</h1>
+                <p class="section-intro">Clean, modern typography system optimised for readability across all devices.</p>
+
+                <h2>Font Stack</h2>
+                <div class="code-block">
+                    <pre><code class="language-css">body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+               'Roboto', 'Inter', sans-serif;
+}</code></pre>
+                </div>
+
+                <h2>Type Scale</h2>
+                <div class="type-examples">
+                    <div class="type-example">
+                        <h1 style="margin: 0;">Heading 1</h1>
+                        <code>font-size: 2.5rem; font-weight: 700;</code>
+                    </div>
+                    <div class="type-example">
+                        <h2 style="margin: 0;">Heading 2</h2>
+                        <code>font-size: 2rem; font-weight: 600;</code>
+                    </div>
+                    <div class="type-example">
+                        <h3 style="margin: 0;">Heading 3</h3>
+                        <code>font-size: 1.5rem; font-weight: 600;</code>
+                    </div>
+                    <div class="type-example">
+                        <p style="margin: 0;">Body Text</p>
+                        <code>font-size: 1rem; font-weight: 400;</code>
+                    </div>
+                    <div class="type-example">
+                        <p style="margin: 0; font-size: 0.875rem;">Small Text</p>
+                        <code>font-size: 0.875rem; font-weight: 400;</code>
+                    </div>
+                </div>
+
+                <h2>Text Utilities</h2>
+                <div class="code-block">
+                    <pre><code class="language-css">/* Text colours */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--accent); }
+
+/* Text alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Font weights */
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }</code></pre>
+                </div>
+            </section>
+
+            <section id="css-variables" class="doc-section">
+                <h1>CSS Variables</h1>
+                <p class="section-intro">Complete reference of all CSS variables available for customisation.</p>
+
+                <h2>Layout Variables</h2>
+                <div class="code-block">
+                    <pre><code class="language-css">:root {
+  /* Backgrounds */
+  --layout-bg-primary: #1a1f2a;
+  --layout-bg-secondary: #2c3e50;
+  --layout-bg-tertiary: #34495e;
+  --layout-sidebar-bg: #1a1f2a;
+  
+  /* Text */
+  --layout-text-primary: #ffffff;
+  --layout-text-secondary: rgba(255, 255, 255, 0.7);
+  --layout-text-muted: rgba(255, 255, 255, 0.5);
+  
+  /* Borders */
+  --layout-border: rgba(255, 255, 255, 0.05);
+  --layout-border-hover: rgba(255, 255, 255, 0.1);
+  
+  /* Accents */
+  --layout-accent: #6366f1;
+  --layout-accent-hover: #5856eb;
+  
+  /* Shadows */
+  --layout-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}</code></pre>
+                </div>
+
+                <h2>Component Variables</h2>
+                <div class="code-block">
+                    <pre><code class="language-css">:root {
+  /* Cards */
+  --card-bg: var(--layout-bg-secondary);
+  --card-border: var(--layout-border);
+  --card-shadow: var(--layout-shadow);
+  --card-radius: 12px;
+  
+  /* Buttons */
+  --btn-primary-bg: var(--layout-accent);
+  --btn-primary-text: #ffffff;
+  --btn-radius: 8px;
+  
+  /* Inputs */
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: var(--layout-border);
+  --input-focus: var(--layout-accent);
+  
+  /* Charts */
+  --chart-grid: rgba(255, 255, 255, 0.1);
+  --chart-text: var(--layout-text-secondary);
+}</code></pre>
+                </div>
+
+                <h2>Custom Properties Example</h2>
+                <div class="code-block">
+                    <pre><code class="language-css">/* Override in your global CSS */
+:root {
+  /* Custom brand colours */
+  --brand-primary: #your-color;
+  --brand-secondary: #your-color;
+  
+  /* Custom spacing */
+  --sidebar-width: 300px;
+  --header-height: 60px;
+  
+  /* Custom animations */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="mock-data" class="doc-section">
+                <h1>Mock Data System</h1>
+                <p class="section-intro">SplitfinUI includes a comprehensive mock data generator for development and demos.</p>
+
+                <h2>Data Structure</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">interface MockData {
+  metrics: {
+    totalRevenue: number;
+    totalOrders: number;
+    totalCustomers: number;
+    averageOrderValue: number;
+    outstandingInvoices: number;
+    marketplaceOrders: number;
+  };
+  orders: Order[];
+  customers: Customer[];
+  invoices: Invoice[];
+  agents: Agent[];
+  brands: Brand[];
+  items: Item[];
+}</code></pre>
+                </div>
+
+                <h2>Generating Mock Data</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">import { generateMockData } from './utils/mockData';
+
+// Generate data for specific date range
+const data = generateMockData({
+  dateRange: '30_days',
+  orderCount: 100,
+  customerCount: 50
+});
+
+// Access generated data
+console.log(data.metrics.totalRevenue);
+console.log(data.orders.length);</code></pre>
+                </div>
+
+                <h2>Customising Mock Data</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Custom data patterns
+const customData = generateMockData({
+  dateRange: '90_days',
+  revenueRange: { min: 1000, max: 5000 },
+  orderStatusDistribution: {
+    completed: 0.7,
+    pending: 0.2,
+    cancelled: 0.1
+  },
+  brands: ['Brand A', 'Brand B', 'Brand C']
+});</code></pre>
+                </div>
+            </section>
+
+            <section id="use-dashboard" class="doc-section">
+                <h1>useDashboard Hook</h1>
+                <p class="section-intro">A powerful React hook for managing dashboard data with caching, refresh, and real-time updates.</p>
+
+                <h2>Basic Usage</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">import { useDashboard } from './hooks/useDashboard';
+
+function MyDashboard() {
+  const {
+    data,
+    loading,
+    error,
+    refresh,
+    isStale,
+    isCached,
+    lastUpdated
+  } = useDashboard({
+    userId: 'user-123',
+    dateRange: '30_days'
+  });
+
+  if (loading) return &lt;LoadingSpinner /&gt;;
+  if (error) return &lt;ErrorMessage error={error} /&gt;;
+
+  return &lt;DashboardContent data={data} /&gt;;
+}</code></pre>
+                </div>
+
+                <h2>Hook Options</h2>
+                <div class="props-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Option</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>userId</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'demo-user'</code></td>
+                                <td>User identifier</td>
+                            </tr>
+                            <tr>
+                                <td><code>dateRange</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'30_days'</code></td>
+                                <td>Data date range</td>
+                            </tr>
+                            <tr>
+                                <td><code>autoRefresh</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>false</code></td>
+                                <td>Enable auto-refresh</td>
+                            </tr>
+                            <tr>
+                                <td><code>apiEndpoint</code></td>
+                                <td><code>string</code></td>
+                                <td><code>undefined</code></td>
+                                <td>API endpoint URL</td>
+                            </tr>
+                            <tr>
+                                <td><code>enableCaching</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>true</code></td>
+                                <td>Enable data caching</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Caching Strategy</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Cache configuration
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const STALE_DURATION = 60 * 1000; // 1 minute
+
+// Data is considered:
+// - Fresh: Less than STALE_DURATION old
+// - Stale: Between STALE_DURATION and CACHE_DURATION
+// - Expired: Older than CACHE_DURATION</code></pre>
+                </div>
+            </section>
+
+            <section id="data-integration" class="doc-section">
+                <h1>Data Integration</h1>
+                <p class="section-intro">Integrate SplitfinUI with your existing backend or API services.</p>
+
+                <h2>API Integration</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Configure API endpoint
+const API_ENDPOINT = 'https://api.yourdomain.com';
+
+// Custom data fetcher
+async function fetchDashboardData(userId, dateRange) {
+  const response = await fetch(`${API_ENDPOINT}/dashboard`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getAuthToken()}`
+    },
+    body: JSON.stringify({ userId, dateRange })
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return response.json();
+}</code></pre>
+                </div>
+
+                <h2>Using with useDashboard</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// Pass custom API endpoint
+&lt;Dashboard
+  userId={currentUser.id}
+  apiEndpoint="https://api.yourdomain.com"
+  onDataLoad={(data) => {
+    // Process loaded data
+    analytics.track('Dashboard Loaded', {
+      userId: currentUser.id,
+      metrics: data.metrics
+    });
+  }}
+/&gt;</code></pre>
+                </div>
+
+                <h2>Data Transformation</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Transform API response to match component format
+function transformApiData(apiResponse) {
+  return {
+    metrics: {
+      totalRevenue: apiResponse.revenue.total,
+      totalOrders: apiResponse.orders.count,
+      totalCustomers: apiResponse.customers.active,
+      averageOrderValue: apiResponse.revenue.average,
+      outstandingInvoices: apiResponse.invoices.outstanding,
+      marketplaceOrders: apiResponse.orders.marketplace
+    },
+    orders: apiResponse.orderList.map(order => ({
+      id: order.orderId,
+      customerId: order.customer.id,
+      customerName: order.customer.name,
+      date: order.createdAt,
+      total: order.amount,
+      status: order.status
+    })),
+    // ... transform other data
+  };
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="type-definitions" class="doc-section">
+                <h1>TypeScript Type Definitions</h1>
+                <p class="section-intro">Complete TypeScript support with comprehensive type definitions for all components.</p>
+
+                <h2>Core Types</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// User type
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  avatar?: string;
+  initials?: string;
+}
+
+// Navigation types
+export interface NavigationSection {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  links?: NavLink[];
+  to?: string;
+}
+
+export interface NavLink {
+  to: string;
+  label: string;
+  icon?: React.ReactNode;
+  badge?: string | number;
+}</code></pre>
+                </div>
+
+                <h2>Dashboard Types</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">export interface DashboardData {
+  metrics: DashboardMetrics;
+  orders: DashboardOrder[];
+  customers: DashboardCustomer[];
+  invoices: DashboardInvoice[];
+  agentPerformance?: DashboardAgentPerformance[];
+  brands: DashboardBrand[];
+  topItems: DashboardTopItem[];
+}
+
+export interface DashboardMetrics {
+  totalRevenue: number;
+  totalOrders: number;
+  totalCustomers: number;
+  averageOrderValue: number;
+  outstandingInvoices: number;
+  marketplaceOrders: number;
+  [key: string]: number; // Allow custom metrics
+}</code></pre>
+                </div>
+
+                <h2>Component Props Types</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// Generic component props
+export interface BaseComponentProps {
+  className?: string;
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
+}
+
+// Extending base props
+export interface MetricCardProps extends BaseComponentProps {
+  title: string;
+  value: number;
+  format?: 'number' | 'currency' | 'percentage';
+  trend?: {
+    value: number;
+    isPositive: boolean;
+  };
+  variant?: 'variant1' | 'variant2' | 'variant3';
+  chartData?: ChartDataPoint[];
+  onAIInsight?: () => void;
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="interfaces" class="doc-section">
+                <h1>TypeScript Interfaces</h1>
+                <p class="section-intro">Detailed interface definitions for working with SplitfinUI components.</p>
+
+                <h2>Data Interfaces</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// Order interface
+export interface DashboardOrder {
+  id: string;
+  customerId: string;
+  customerName?: string;
+  date: string;
+  total: number;
+  status: 'pending' | 'completed' | 'cancelled';
+  is_marketplace_order?: boolean;
+  invoice_status?: 'paid' | 'outstanding' | 'overdue';
+  line_items?: LineItem[];
+}
+
+// Line item interface
+export interface LineItem {
+  item_id?: string;
+  product_id?: string;
+  variant_id?: string;
+  sku?: string;
+  name?: string;
+  brand?: string;
+  quantity: number;
+  total?: number;
+}
+
+// Customer interface
+export interface DashboardCustomer {
+  id: string;
+  name: string;
+  email: string;
+  totalOrders: number;
+  totalSpent: number;
+  lastOrderDate: string;
+  location?: {
+    latitude: number;
+    longitude: number;
+    address?: string;
+  };
+}</code></pre>
+                </div>
+
+                <h2>Hook Interfaces</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// useDashboard hook return type
+export interface UseDashboardReturn {
+  data: DashboardData | null;
+  loading: boolean;
+  error: string | null;
+  refresh: () => Promise&lt;void&gt;;
+  isStale: boolean;
+  isCached: boolean;
+  lastUpdated: Date | null;
+}
+
+// Hook options
+export interface UseDashboardOptions {
+  userId?: string;
+  dateRange?: string;
+  autoRefresh?: boolean;
+  apiEndpoint?: string;
+  enableCaching?: boolean;
+  onError?: (error: Error) => void;
+  onSuccess?: (data: DashboardData) => void;
+}</code></pre>
+                </div>
+
+                <h2>Event Handler Types</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// Common event handlers
+export type ClickHandler&lt;T = void&gt; = (
+  event: React.MouseEvent&lt;HTMLElement&gt;
+) => T;
+
+export type ChangeHandler&lt;T = void&gt; = (
+  event: React.ChangeEvent&lt;HTMLInputElement&gt;
+) => T;
+
+// Component-specific handlers
+export type LoginHandler = (
+  email: string, 
+  password: string
+) => Promise&lt;void&gt;;
+
+export type SocialLoginHandler = (
+  provider: 'google' | 'github' | 'apple'
+) => Promise&lt;void&gt;;
+
+export type DataLoadHandler = (
+  data: DashboardData
+) => void;</code></pre>
+                </div>
+            </section>
+
+            <section id="generics" class="doc-section">
+                <h1>Using TypeScript Generics</h1>
+                <p class="section-intro">Advanced TypeScript patterns for creating flexible, reusable components.</p>
+
+                <h2>Generic Table Component</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// Generic table props
+interface TableProps&lt;T&gt; {
+  data: T[];
+  columns: TableColumn&lt;T&gt;[];
+  onRowClick?: (row: T) => void;
+  keyExtractor: (item: T) => string;
+}
+
+interface TableColumn&lt;T&gt; {
+  key: keyof T;
+  label: string;
+  render?: (value: T[keyof T], row: T) => React.ReactNode;
+}
+
+// Using the generic table
+function CustomerTable() {
+  const columns: TableColumn&lt;Customer&gt;[] = [
+    { key: 'name', label: 'Name' },
+    { 
+      key: 'status', 
+      label: 'Status',
+      render: (value) => &lt;StatusBadge status={value} /&gt;
+    }
+  ];
+
+  return (
+    &lt;Table
+      data={customers}
+      columns={columns}
+      keyExtractor={(customer) => customer.id}
+    /&gt;
+  );
+}</code></pre>
+                </div>
+
+                <h2>Generic Hook Pattern</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// Generic data fetching hook
+function useData&lt;T&gt;(
+  fetcher: () => Promise&lt;T&gt;,
+  deps: any[] = []
+): {
+  data: T | null;
+  loading: boolean;
+  error: Error | null;
+  refetch: () => Promise&lt;void&gt;;
+} {
+  const [data, setData] = useState&lt;T | null&gt;(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState&lt;Error | null&gt;(null);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const result = await fetcher();
+      setData(result);
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, deps);
+
+  return { data, loading, error, refetch: fetchData };
+}</code></pre>
+                </div>
+
+                <h2>Type Guards</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// Type guard functions
+function isCustomer(obj: any): obj is Customer {
+  return obj && 
+    typeof obj.id === 'string' &&
+    typeof obj.name === 'string' &&
+    typeof obj.email === 'string';
+}
+
+function isOrder(obj: any): obj is Order {
+  return obj && 
+    typeof obj.id === 'string' &&
+    typeof obj.total === 'number' &&
+    obj.date instanceof Date;
+}
+
+// Using type guards
+function processData(data: unknown) {
+  if (isCustomer(data)) {
+    // TypeScript knows data is Customer here
+    console.log(data.email);
+  } else if (isOrder(data)) {
+    // TypeScript knows data is Order here
+    console.log(data.total);
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="vercel" class="doc-section">
+                <h1>Deploying to Vercel</h1>
+                <p class="section-intro">Deploy your SplitfinUI application to Vercel with these simple steps.</p>
+
+                <h2>Prerequisites</h2>
+                <ul class="requirement-list">
+                    <li>A Vercel account (free tier available)</li>
+                    <li>Git repository (GitHub, GitLab, or Bitbucket)</li>
+                    <li>Production-ready build</li>
+                </ul>
+
+                <h2>Step 1: Connect Repository</h2>
+                <ol class="numbered-list">
+                    <li>Log in to your Vercel dashboard</li>
+                    <li>Click "New Project"</li>
+                    <li>Import your Git repository</li>
+                    <li>Select the branch to deploy (usually main or master)</li>
+                </ol>
+
+                <h2>Step 2: Configure Build Settings</h2>
+                <div class="code-block">
+                    <pre><code class="language-json">{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite"
+}</code></pre>
+                </div>
+
+                <h2>Step 3: Environment Variables</h2>
+                <p>Add your environment variables in the Vercel dashboard:</p>
+                <div class="code-block">
+                    <pre><code class="language-bash"># In Vercel Dashboard > Settings > Environment Variables
+VITE_GOOGLE_MAPS_API_KEY=your_production_key
+VITE_API_ENDPOINT=https://api.yourdomain.com</code></pre>
+                </div>
+
+                <h2>Vercel Configuration File</h2>
+                <p>Create a <code>vercel.json</code> file in your project root:</p>
+                <div class="code-block">
+                    <pre><code class="language-json">{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="netlify" class="doc-section">
+                <h1>Deploying to Netlify</h1>
+                <p class="section-intro">Deploy your SplitfinUI application to Netlify with continuous deployment.</p>
+
+                <h2>Step 1: Connect to Git</h2>
+                <ol class="numbered-list">
+                    <li>Log in to Netlify</li>
+                    <li>Click "New site from Git"</li>
+                    <li>Choose your Git provider</li>
+                    <li>Select your repository</li>
+                </ol>
+
+                <h2>Step 2: Build Settings</h2>
+                <div class="info-box">
+                    <p><strong>Build command:</strong> <code>npm run build</code></p>
+                    <p><strong>Publish directory:</strong> <code>dist</code></p>
+                </div>
+
+                <h2>Step 3: Redirects</h2>
+                <p>Create a <code>_redirects</code> file in your <code>public</code> directory:</p>
+                <div class="code-block">
+                    <pre><code class="language-text">/* /index.html 200</code></pre>
+                </div>
+
+                <h2>Netlify Configuration</h2>
+                <p>Create a <code>netlify.toml</code> file:</p>
+                <div class="code-block">
+                    <pre><code class="language-toml">[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"</code></pre>
+                </div>
+            </section>
+
+            <section id="environment-vars" class="doc-section">
+                <h1>Environment Variables</h1>
+                <p class="section-intro">Configure environment variables for different deployment environments.</p>
+
+                <h2>Variable Naming</h2>
+                <div class="info-box warning">
+                    <p><strong>Important:</strong> In Vite, all environment variables that should be accessible in the browser must be prefixed with <code>VITE_</code></p>
+                </div>
+
+                <h2>Local Development</h2>
+                <div class="code-block">
+                    <pre><code class="language-bash"># .env.local (for local development)
+VITE_GOOGLE_MAPS_API_KEY=your_dev_api_key
+VITE_API_ENDPOINT=http://localhost:3000
+VITE_ENABLE_ANALYTICS=false
+VITE_DEBUG_MODE=true</code></pre>
+                </div>
+
+                <h2>Production Environment</h2>
+                <div class="code-block">
+                    <pre><code class="language-bash"># .env.production
+VITE_GOOGLE_MAPS_API_KEY=your_production_api_key
+VITE_API_ENDPOINT=https://api.yourdomain.com
+VITE_ENABLE_ANALYTICS=true
+VITE_DEBUG_MODE=false</code></pre>
+                </div>
+
+                <h2>Accessing Variables</h2>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// In your React components
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const apiEndpoint = import.meta.env.VITE_API_ENDPOINT;
+const isDebug = import.meta.env.VITE_DEBUG_MODE === 'true';
+
+// Type-safe environment variables
+interface ImportMetaEnv {
+  readonly VITE_GOOGLE_MAPS_API_KEY: string;
+  readonly VITE_API_ENDPOINT: string;
+  readonly VITE_ENABLE_ANALYTICS: string;
+  readonly VITE_DEBUG_MODE: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}</code></pre>
+                </div>
+
+                <h2>Security Best Practices</h2>
+                <ul class="requirement-list">
+                    <li>Never commit <code>.env</code> files to version control</li>
+                    <li>Use different API keys for development and production</li>
+                    <li>Restrict API keys by domain in production</li>
+                    <li>Rotate keys regularly</li>
+                    <li>Use environment-specific configuration files</li>
+                </ul>
+            </section>
+
+            <section id="basic-setup" class="doc-section">
+                <h1>Basic Setup Example</h1>
+                <p class="section-intro">A complete example of setting up a basic dashboard application with SplitfinUI.</p>
+
+                <h2>Project Structure</h2>
+                <div class="code-block">
+                    <pre><code class="language-text">my-dashboard/
+├── src/
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── routes/
+│   │   ├── Dashboard.tsx
+│   │   ├── Customers.tsx
+│   │   └── Settings.tsx
+│   └── components/
+│       └── (copy SplitfinUI components here)
+├── .env.example
+├── package.json
+└── vite.config.ts</code></pre>
+                </div>
+
+                <h2>App.tsx</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import MasterLayout from './components/layouts/MasterLayout';
+import Login from './components/Login/Login';
+import Dashboard from './routes/Dashboard';
+import Customers from './routes/Customers';
+import Settings from './routes/Settings';
+
+function App() {
+  const [user, setUser] = useState(null);
+
+  const handleLogin = async (email, password) => {
+    try {
+      // Your authentication logic
+      const response = await authenticate(email, password);
+      setUser(response.user);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.clear();
+  };
+
+  if (!user) {
+    return &lt;Login onLogin={handleLogin} /&gt;;
+  }
+
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;Routes&gt;
+        &lt;Route 
+          path="/" 
+          element={
+            &lt;MasterLayout 
+              user={user} 
+              onLogout={handleLogout}
+            /&gt;
+          }
+        &gt;
+          &lt;Route index element={&lt;Navigate to="/dashboard" /&gt;} /&gt;
+          &lt;Route path="dashboard/*" element={&lt;Dashboard /&gt;} /&gt;
+          &lt;Route path="customers/*" element={&lt;Customers /&gt;} /&gt;
+          &lt;Route path="settings/*" element={&lt;Settings /&gt;} /&gt;
+        &lt;/Route&gt;
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+export default App;</code></pre>
+                </div>
+
+                <h2>Dashboard Route</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// routes/Dashboard.tsx
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from '../components/Dashboard/Dashboard';
+import { useDashboard } from '../hooks/useDashboard';
+
+export default function DashboardRoute() {
+  const { data, loading, error, refresh } = useDashboard({
+    dateRange: '30_days',
+    enableCaching: true
+  });
+
+  return (
+    &lt;Routes&gt;
+      &lt;Route 
+        path="/*" 
+        element={
+          &lt;Dashboard
+            data={data}
+            loading={loading}
+            error={error}
+            onRefresh={refresh}
+            enableAIInsights={true}
+          /&gt;
+        } 
+      /&gt;
+    &lt;/Routes&gt;
+  );
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="custom-theme" class="doc-section">
+                <h1>Custom Theme Example</h1>
+                <p class="section-intro">Create a custom theme for your SplitfinUI application with your brand colours.</p>
+
+                <h2>Step 1: Define Theme Variables</h2>
+                <div class="code-block">
+                    <pre><code class="language-css">/* styles/theme.css */
+:root {
+  /* Brand colours */
+  --brand-primary: #FF6B6B;
+  --brand-secondary: #4ECDC4;
+  --brand-accent: #FFE66D;
+  
+  /* Override SplitfinUI variables */
+  --layout-accent: var(--brand-primary);
+  --layout-accent-hover: #FF5252;
+  
+  /* Custom gradients */
+  --gradient-primary: linear-gradient(
+    135deg, 
+    var(--brand-primary) 0%, 
+    var(--brand-secondary) 100%
+  );
+}
+
+/* Light theme overrides */
+.light-theme {
+  --layout-bg-primary: #FAFAFA;
+  --layout-text-primary: #2D3436;
+  --layout-accent: var(--brand-primary);
+}</code></pre>
+                </div>
+
+                <h2>Step 2: Create Theme Context</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// contexts/ThemeContext.tsx
+import React, { createContext, useContext, useState, useEffect } from 'react';
+
+interface ThemeContextType {
+  theme: 'light' | 'dark' | 'custom';
+  setTheme: (theme: 'light' | 'dark' | 'custom') => void;
+  primaryColor: string;
+  setPrimaryColor: (color: string) => void;
+}
+
+const ThemeContext = createContext&lt;ThemeContextType | null&gt;(null);
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState&lt;'light' | 'dark' | 'custom'&gt;('dark');
+  const [primaryColor, setPrimaryColor] = useState('#79d5e9');
+
+  useEffect(() => {
+    // Apply theme class
+    document.documentElement.className = `${theme}-theme`;
+    
+    // Apply custom primary color
+    document.documentElement.style.setProperty(
+      '--layout-accent', 
+      primaryColor
+    );
+  }, [theme, primaryColor]);
+
+  return (
+    &lt;ThemeContext.Provider 
+      value={{ theme, setTheme, primaryColor, setPrimaryColor }}
+    &gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+}
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useTheme must be used within ThemeProvider');
+  }
+  return context;
+};</code></pre>
+                </div>
+
+                <h2>Step 3: Theme Customiser Component</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// components/ThemeCustomizer.tsx
+import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
+
+const presetColors = [
+  { name: 'Ocean Blue', value: '#79d5e9' },
+  { name: 'Sunset Orange', value: '#FF9F00' },
+  { name: 'Forest Green', value: '#10b981' },
+  { name: 'Royal Purple', value: '#8b5cf6' },
+  { name: 'Cherry Red', value: '#ef4444' }
+];
+
+export function ThemeCustomizer() {
+  const { theme, setTheme, primaryColor, setPrimaryColor } = useTheme();
+
+  return (
+    &lt;div className="theme-customizer"&gt;
+      &lt;h3&gt;Customise Theme&lt;/h3&gt;
+      
+      &lt;div className="theme-selector"&gt;
+        &lt;label&gt;Theme Mode&lt;/label&gt;
+        &lt;select 
+          value={theme} 
+          onChange={(e) => setTheme(e.target.value as any)}
+        &gt;
+          &lt;option value="light"&gt;Light&lt;/option&gt;
+          &lt;option value="dark"&gt;Dark&lt;/option&gt;
+          &lt;option value="custom"&gt;Custom&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+
+      &lt;div className="color-picker"&gt;
+        &lt;label&gt;Primary Colour&lt;/label&gt;
+        &lt;div className="color-presets"&gt;
+          {presetColors.map(color => (
+            &lt;button
+              key={color.value}
+              className={`color-preset ${
+                primaryColor === color.value ? 'active' : ''
+              }`}
+              style={{ backgroundColor: color.value }}
+              onClick={() => setPrimaryColor(color.value)}
+              title={color.name}
+            /&gt;
+          ))}
+        &lt;/div&gt;
+        &lt;input
+          type="color"
+          value={primaryColor}
+          onChange={(e) => setPrimaryColor(e.target.value)}
+        /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="integration" class="doc-section">
+                <h1>API Integration Example</h1>
+                <p class="section-intro">Connect SplitfinUI to your backend API for real-time data.</p>
+
+                <h2>API Service Layer</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// services/api.ts
+class ApiService {
+  private baseUrl: string;
+  private token: string | null = null;
+
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
+  setAuthToken(token: string) {
+    this.token = token;
+  }
+
+  private async request&lt;T&gt;(
+    endpoint: string, 
+    options: RequestInit = {}
+  ): Promise&lt;T&gt; {
+    const url = `${this.baseUrl}${endpoint}`;
+    const config: RequestInit = {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(this.token && { 'Authorization': `Bearer ${this.token}` }),
+        ...options.headers,
+      },
+    };
+
+    const response = await fetch(url, config);
+
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
+  // Dashboard endpoints
+  async getDashboardData(params: {
+    userId: string;
+    dateRange: string;
+  }): Promise&lt;DashboardData&gt; {
+    return this.request('/api/dashboard', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
+
+  // Customer endpoints
+  async getCustomers(params?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+  }): Promise&lt;{ customers: Customer[]; total: number }&gt; {
+    const queryString = new URLSearchParams(params as any).toString();
+    return this.request(`/api/customers?${queryString}`);
+  }
+
+  async getCustomer(id: string): Promise&lt;Customer&gt; {
+    return this.request(`/api/customers/${id}`);
+  }
+
+  async updateCustomer(
+    id: string, 
+    data: Partial&lt;Customer&gt;
+  ): Promise&lt;Customer&gt; {
+    return this.request(`/api/customers/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+}
+
+export const api = new ApiService(
+  import.meta.env.VITE_API_ENDPOINT || 'http://localhost:3000'
+);</code></pre>
+                </div>
+
+                <h2>Custom Hook with API</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// hooks/useApiDashboard.ts
+import { useState, useEffect } from 'react';
+import { api } from '../services/api';
+
+export function useApiDashboard(options: {
+  userId: string;
+  dateRange: string;
+}) {
+  const [data, setData] = useState&lt;DashboardData | null&gt;(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState&lt;string | null&gt;(null);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const response = await api.getDashboardData({
+        userId: options.userId,
+        dateRange: options.dateRange,
+      });
+      
+      setData(response);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [options.userId, options.dateRange]);
+
+  return {
+    data,
+    loading,
+    error,
+    refresh: fetchData,
+  };
+}</code></pre>
+                </div>
+
+                <h2>Real-time Updates</h2>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// hooks/useRealtimeData.ts
+import { useEffect } from 'react';
+import { io, Socket } from 'socket.io-client';
+
+export function useRealtimeUpdates(
+  userId: string,
+  onUpdate: (data: any) => void
+) {
+  useEffect(() => {
+    // Connect to WebSocket
+    const socket: Socket = io(import.meta.env.VITE_WS_ENDPOINT, {
+      auth: { userId },
+    });
+
+    // Listen for updates
+    socket.on('dashboard:update', onUpdate);
+    socket.on('order:new', (order) => {
+      onUpdate({ type: 'new_order', data: order });
+    });
+    socket.on('customer:update', (customer) => {
+      onUpdate({ type: 'customer_update', data: customer });
+    });
+
+    // Cleanup
+    return () => {
+      socket.disconnect();
+    };
+  }, [userId, onUpdate]);
+}</code></pre>
+                </div>
+
+                <h2>Error Handling</h2>
+                <div class="code-block">
+                    <pre><code class="language-jsx">// components/ErrorBoundary.tsx
+import React, { Component, ErrorInfo, ReactNode } from 'react';
+
+interface Props {
+  children: ReactNode;
+  fallback?: ReactNode;
+}
+
+interface State {
+  hasError: boolean;
+  error: Error | null;
+}
+
+export class ErrorBoundary extends Component&lt;Props, State&gt; {
+  public state: State = {
+    hasError: false,
+    error: null,
+  };
+
+  public static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error };
+  }
+
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('Uncaught error:', error, errorInfo);
+    
+    // Send to error tracking service
+    if (import.meta.env.PROD) {
+      // trackError(error, errorInfo);
+    }
+  }
+
+  public render() {
+    if (this.state.hasError) {
+      return this.props.fallback || (
+        &lt;div className="error-boundary"&gt;
+          &lt;h2&gt;Something went wrong&lt;/h2&gt;
+          &lt;details&gt;
+            &lt;summary&gt;Error details&lt;/summary&gt;
+            &lt;pre&gt;{this.state.error?.toString()}&lt;/pre&gt;
+          &lt;/details&gt;
+        &lt;/div&gt;
+      );
+    }
+
+    return this.props.children;
+  }
+}</code></pre>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

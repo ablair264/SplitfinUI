@@ -1,0 +1,467 @@
+/* MetricCardSquare.module.css - Dark Theme */
+
+/* CSS Variables from dashboard.css */
+:root {
+  --primary-color: #79d5e9;
+  --primary-dark: #1a1f2a;
+  --secondary-color: #4daeac;
+  --accent-color: #61bc8e;
+  --accent-cta: #fbbf24;
+  --background-light: #0f1419;
+  --background-white: #1a1f2a;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-light: #e5e7eb;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --error-color: #dc2626;
+}
+
+/* Square Card Styles */
+.metricCardSquare {
+  background: var(--background-white);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  width: 280px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  overflow: hidden; /* Keep hidden but allow children to overflow */
+  box-sizing: border-box;
+}
+
+/* Variant-specific styles */
+.metricCardSquare.variant1 {
+  border: 1px solid var(--card-color, var(--primary-color));
+  background: linear-gradient(135deg, var(--background-white) 0%, rgba(var(--card-color-rgb), 0.1) 100%);
+}
+
+.metricCardSquare.variant2 {
+  border-left: 3px solid var(--card-color, var(--primary-color));
+}
+
+.metricCardSquare.variant3 {
+  border-top: 3px solid var(--card-color, var(--primary-color));
+}
+
+.metricCardSquare:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Add keyframe animation for bars */
+@keyframes growBar {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: auto;
+    opacity: 1;
+  }
+}
+
+/* Header styles */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  min-height: 30px;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardTitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Value styles */
+.cardValue {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 8px 0 16px 0;
+  letter-spacing: -1px;
+  line-height: 1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Trend indicator */
+.trendIndicator {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.trendIndicator.positive {
+  color: var(--accent-color);
+}
+
+.trendIndicator.negative {
+  color: var(--error-color);
+}
+
+.trendIcon {
+  font-size: 12px;
+}
+
+.trendValue {
+  font-size: 11px;
+}
+
+/* Variant selector */
+.variantSelector {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  z-index: 20;
+  position: relative;
+}
+
+.variantButton {
+  background: none;
+  border: none;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 9px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 18px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.variantButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.variantButton.active {
+  background: var(--primary-color);
+  color: var(--background-light);
+  font-weight: 500;
+}
+
+/* Content container */
+.cardContent {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 120px;
+  overflow: visible !important;
+  z-index: 1; /* Ensure charts are above background */
+  width: 100%; /* Ensure full width */
+  contain: layout; /* Improve rendering performance */
+}
+
+.metricCardSquare:hover .cardContent {
+  opacity: 0;
+}
+
+/* Table view - covers entire card on hover */
+.tableView {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: var(--background-white);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Apply variant-specific styles to table view */
+.variant1 .tableView {
+  background: linear-gradient(135deg, var(--background-white) 0%, rgba(var(--card-color-rgb), 0.1) 100%);
+}
+
+.metricCardSquare:hover .tableView {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Table styles */
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-size: 11px;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.tableSubHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 8px;
+}
+
+.tableHeaderName,
+.tableHeaderTotal {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tableBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 6px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.tableRow:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tableName {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tableTotal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tableValue {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tablePercentage {
+  font-size: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.tablePercentage.positive {
+  color: var(--accent-color);
+}
+
+.tablePercentage.negative {
+  color: var(--error-color);
+}
+
+/* Recharts customization */
+.metricCardSquare :global(.recharts-surface) {
+  overflow: visible !important;
+}
+
+.metricCardSquare :global(.recharts-wrapper) {
+  position: relative !important;
+  cursor: default !important;
+}
+
+.metricCardSquare :global(.recharts-cartesian-axis-line),
+.metricCardSquare :global(.recharts-cartesian-axis-tick-line),
+.metricCardSquare :global(.recharts-cartesian-grid-horizontal line),
+.metricCardSquare :global(.recharts-cartesian-grid-vertical line) {
+  display: none;
+}
+
+.metricCardSquare :global(.recharts-tooltip-wrapper) {
+  z-index: 10;
+}
+
+.metricCardSquare :global(.recharts-tooltip-cursor) {
+  fill: rgba(255, 255, 255, 0.05);
+}
+
+.metricCardSquare :global(.recharts-default-tooltip) {
+  background: #1a1f2a !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.metricCardSquare :global(.recharts-tooltip-label) {
+  color: #a0a0a0 !important;
+  font-size: 10px !important;
+  margin-bottom: 4px !important;
+}
+
+.metricCardSquare :global(.recharts-tooltip-item) {
+  color: #ffffff !important;
+  font-size: 11px !important;
+}
+
+/* Ensure charts don't overflow */
+.metricCardSquare :global(.recharts-wrapper) {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.metricCardSquare :global(.recharts-surface) {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Ensure chart paths are visible */
+.metricCardSquare :global(.recharts-area-area),
+.metricCardSquare :global(.recharts-area-curve),
+.metricCardSquare :global(.recharts-line-curve),
+.metricCardSquare :global(.recharts-bar-rectangle) {
+  pointer-events: none;
+}
+
+/* Enhance line visibility */
+.metricCardSquare :global(.recharts-line) {
+  filter: drop-shadow(0 0 3px rgba(var(--card-color-rgb), 0.5));
+}
+
+.metricCardSquare :global(.recharts-area) {
+  filter: drop-shadow(0 0 3px rgba(var(--card-color-rgb), 0.3));
+}
+
+/* Fix SVG visibility */
+.metricCardSquare svg {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure chart container is visible */
+.metricCardSquare .cardContent > div {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* Force Recharts visibility */
+.metricCardSquare :global(.recharts-layer),
+.metricCardSquare :global(.recharts-area),
+.metricCardSquare :global(.recharts-line) {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure area and line paths are visible */
+.metricCardSquare :global(.recharts-area-area),
+.metricCardSquare :global(.recharts-area-curve),
+.metricCardSquare :global(.recharts-line-curve) {
+  opacity: 1 !important;
+  fill-opacity: 0.3 !important;
+  stroke-opacity: 1 !important;
+}
+
+/* Ensure Recharts responsiveness */
+.metricCardSquare :global(.recharts-responsive-container) {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+/* Grid layout for square cards */
+.squareCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .squareCardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .metricCardSquare {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .squareCardsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .metricCardSquare {
+    height: 260px;
+    padding: 16px;
+  }
+  
+  .cardValue {
+    font-size: 24px;
+  }
+  
+  .cardTitle {
+    font-size: 11px;
+  }
+}

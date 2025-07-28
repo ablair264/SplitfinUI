@@ -1,502 +1,556 @@
-/* SocialMetricCard.module.css - Dark Theme */
+/* SocialMetricCard.css - Dark Theme matching provided designs */
 
 /* Base card styles */
-.socialMetricCard {
-  background: var(--background-white);
+.social-metric-card {
+  background: #1a1f2a;
   border-radius: 16px;
-  padding: 20px;
+  padding: 24px;
   position: relative;
   transition: all 0.3s ease;
-  border: 1px solid var(--border-color);
-  height: 310px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 320px;
   display: flex;
   flex-direction: column;
-  cursor: pointer;
   overflow: hidden;
-  min-width: 280px;
   box-sizing: border-box;
   width: 100%;
 }
 
-.socialMetricCard:hover {
+.social-metric-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  border-color: rgba(121, 213, 233, 0.3);
+  border-color: rgba(121, 213, 233, 0.2);
 }
 
 /* Header styles */
-.cardHeader {
+.card-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
-.headerLeft {
+.header-left {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
-.cardTitle {
+.card-title {
   font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-weight: 400;
+  color: #ffffff;
   margin: 0;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.cardSubtitle {
-  font-size: 12px;
-  color: var(--text-secondary);
+.card-subtitle {
+  font-size: 11px;
+  color: #8b94a7;
   opacity: 0.7;
+  text-transform: none;
 }
 
-.headerRight {
+.header-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
-.trendIndicator {
+.trend-indicator {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
+  color: #79d5e9;
 }
 
-.trendIndicator.positive {
-  color: var(--accent-color);
+.trend-indicator.positive {
+  color: #79d5e9;
 }
 
-.trendIndicator.negative {
-  color: var(--error-color);
+.trend-indicator.negative {
+  color: #ef4444;
 }
 
-.trendIcon {
+.trend-icon {
   font-size: 16px;
 }
 
-.trendValue {
-  font-size: 14px;
-}
-
-/* Variant selector */
-.variantSelector {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-}
-
-.variantButton {
+.options-button {
   background: none;
   border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  color: var(--text-secondary);
+  color: #8b94a7;
   cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
   transition: all 0.2s ease;
-  min-width: 24px;
-  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.variantButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
-}
-
-.variantButton.active {
-  background: var(--primary-color);
-  color: var(--background-light);
-  font-weight: 500;
-}
-
-.optionsButton {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  opacity: 0.5;
-}
-
-.socialMetricCard:hover .optionsButton {
-  opacity: 1;
-}
-
-.optionsButton:hover {
-  background: var(--hover-bg);
-  color: var(--text-primary);
+.options-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
 }
 
 /* Content area */
-.cardContent {
+.card-content {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* Grid View Styles */
-.gridContainer {
+/* Grid View Styles - matching Image 3 */
+.social-grid-view {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
   flex: 1;
 }
 
-.platformCard {
+.social-platform-item {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
+  flex-direction: column;
+  padding: 20px 16px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
   cursor: pointer;
-  position: relative;
-}
-
-.platformCard:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-  transform: scale(1.02);
-}
-
-.platformIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
+  gap: 16px;
   align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
 }
 
-.platformInfo {
-  flex: 1;
-  min-width: 0;
+.social-platform-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
 }
 
-.platformName {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
-  font-weight: 500;
-}
-
-.platformMetrics {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-  margin-bottom: 4px;
-}
-
-.currentValue {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1;
-}
-
-.targetValue {
-  font-size: 14px;
-  color: var(--text-secondary);
-  opacity: 0.7;
-}
-
-.growthIndicator {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.growthIndicator.positive {
-  color: var(--accent-color);
-}
-
-.growthIndicator.negative {
-  color: var(--error-color);
-}
-
-/* Focus View Styles */
-.focusContainer {
+.platform-progress-section {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1;
-}
-
-.focusHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
-}
-
-.focusPlatformInfo {
-  display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.focusIcon {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
+.platform-icon-wrapper {
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
 }
 
-.focusDetails {
+.platform-icon-wrapper svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Instagram specific icon */
+.platform-icon-wrapper svg[viewBox="0 0 24 24"]:first-child {
+  width: 32px;
+  height: 32px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.platform-details {
+  text-align: center;
+}
+
+.platform-name {
+  font-size: 13px;
+  color: #8b94a7;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.platform-stats {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
   gap: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  justify-content: center;
 }
 
-.focusPlatformName {
+.platform-stats .current {
+  color: #ffffff;
+}
+
+.platform-stats .separator {
+  color: #4b5563;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.platform-stats .target {
+  color: #4b5563;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.platform-trend {
   font-size: 14px;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-.focusStats {
+  font-weight: 600;
+  color: #79d5e9;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 2px;
 }
 
-.followerCount {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.followerLabel {
+.trend-arrow {
   font-size: 12px;
-  color: var(--text-secondary);
-  opacity: 0.8;
 }
 
-.interactions {
-  font-size: 11px;
-  color: var(--text-secondary);
-  opacity: 0.7;
-}
-
-.focusMetric {
-  text-align: right;
-}
-
-.focusValue {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1;
-}
-
-.focusTarget {
-  font-size: 20px;
-  color: var(--primary-color);
-  opacity: 0.8;
-}
-
-.focusChart {
-  flex: 1;
-  margin: 0 -8px;
-  min-height: 120px;
-}
-
-.dateRange {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--text-secondary);
-  margin-top: 8px;
-  padding: 0 8px;
-  opacity: 0.7;
-}
-
-/* Pie View Styles */
-.pieContainer {
-  display: flex;
-  gap: 20px;
-  flex: 1;
-}
-
-.pieChartSection {
-  flex: 1;
-  min-height: 200px;
-}
-
-.pieStats {
-  flex: 1;
+/* Focus View Styles - matching Image 2 */
+.social-focus-view {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 16px;
 }
 
-.pieMetrics {
+.focus-header-info {
+  margin-bottom: 8px;
+}
+
+.timestamp-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.timestamp {
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.stats-row {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+  font-size: 12px;
+  color: #8b94a7;
 }
 
-.totalFollowers {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1;
+.views-count {
+  color: #8b94a7;
 }
 
-.totalTarget {
-  font-size: 18px;
-  color: var(--text-secondary);
-  opacity: 0.7;
+.interactions-count {
+  color: #8b94a7;
 }
 
-.deficit {
+.platform-icon-badge {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.deficitValue {
-  font-size: 14px;
-  color: var(--error-color);
-  font-weight: 500;
+.platform-icon-badge svg {
+  width: 24px;
+  height: 24px;
 }
 
-.platformList {
+.focus-chart-container {
+  flex: 1;
+  position: relative;
+  margin: 16px 0;
+}
+
+.focus-chart-container svg {
+  width: 100%;
+  height: 120px;
+}
+
+.chart-markers {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.marker {
+  position: absolute;
+  font-size: 11px;
+  color: #5ec6cc;
+  text-transform: capitalize;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #8b94a7;
+  margin-top: 8px;
+}
+
+.focus-metric-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.metric-current {
+  color: #ffffff;
+}
+
+.metric-separator {
+  color: #4b5563;
+  font-weight: 400;
+  font-size: 32px;
+}
+
+.metric-target {
+  color: #5ec6cc;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+/* Pie View Styles - matching Image 1 */
+.social-pie-view {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  flex: 1;
+  gap: 20px;
 }
 
-.platformRow {
+.pie-chart-section {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.pie-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.pie-segment {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.pie-segment:hover {
+  opacity: 0.8;
+}
+
+.pie-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legend-item {
+  display: grid;
+  grid-template-columns: 16px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.legend-item:hover {
+  opacity: 0.8;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Style for Instagram color */
+.legend-color[style*="#5ec6cc"] {
+  background-color: #5ec6cc !important;
+}
+
+.legend-name {
+  font-size: 14px;
+  color: #8b94a7;
+  font-weight: 400;
+}
+
+.legend-percentage {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.legend-views {
+  font-size: 12px;
+  color: #79d5e9;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pie-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 0;
+  margin-bottom: 8px;
 }
 
-.platformIndicator {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-}
-
-.colorDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.platformLabel {
-  font-size: 12px;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-.platformPercentage {
-  font-size: 12px;
-  color: var(--text-primary);
-  font-weight: 600;
-  margin-left: auto;
-  margin-right: 8px;
-}
-
-.platformStats {
-  display: flex;
-  align-items: center;
-}
-
-.viewCount {
+.footer-label {
   font-size: 11px;
-  color: var(--accent-color);
-  font-weight: 500;
+  color: #8b94a7;
+  font-weight: 400;
 }
 
-/* Design variants */
-.designGrid {
-  /* Default styling already applied */
+.footer-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
 }
 
-.designFocus {
-  background: linear-gradient(135deg, var(--background-white) 0%, rgba(121, 213, 233, 0.05) 100%);
+.footer-value .current {
+  color: #ffffff;
 }
 
-.designPie {
-  border-left: 4px solid var(--primary-color);
+.footer-value .separator {
+  color: #4b5563;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.footer-value .target {
+  color: #4b5563;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.footer-value.negative {
+  color: #ef4444;
+}
+
+/* Platform specific styling for TikTok's black background */
+.platform-icon[style*="#000000"] {
+  border: 2px solid #ff0050 !important;
+}
+
+.platform-badge[style*="#000000"] {
+  border: 2px solid #ff0050 !important;
+}
+
+/* Instagram gradient background for grid view */
+.social-platform-item:nth-child(1) .platform-icon-wrapper {
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+}
+
+/* Facebook blue background */
+.social-platform-item:nth-child(2) .platform-icon-wrapper {
+  background: #1877f2;
+}
+
+/* TikTok black with border */
+.social-platform-item:nth-child(3) .platform-icon-wrapper {
+  background: #000000;
+  border: 2px solid #000000;
+  position: relative;
+}
+
+/* YouTube red background */
+.social-platform-item:nth-child(4) .platform-icon-wrapper {
+  background: #ff0000;
+}
+
+/* Special styling for YouTube's gray lower section */
+.social-platform-item:nth-child(4) .progress-bar-container {
+  background: #2a3142;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .socialMetricCard {
-    height: auto;
+  .social-metric-card {
     min-height: 280px;
-    padding: 16px;
+    padding: 20px;
   }
   
-  .gridContainer {
+  .social-grid-view {
     grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  
-  .platformCard {
-    padding: 8px;
-    gap: 8px;
-  }
-  
-  .platformIcon {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-  }
-  
-  .currentValue {
-    font-size: 16px;
-  }
-  
-  .focusValue {
-    font-size: 24px;
-  }
-  
-  .pieContainer {
-    flex-direction: column;
     gap: 12px;
   }
   
-  .pieChartSection {
-    min-height: 150px;
+  .platform-icon-wrapper {
+    width: 48px;
+    height: 48px;
   }
   
-  .totalFollowers {
+  .platform-stats {
+    font-size: 18px;
+  }
+  
+  .focus-metric-display {
+    font-size: 32px;
+  }
+  
+  .metric-separator {
     font-size: 24px;
+  }
+  
+  .metric-target {
+    font-size: 24px;
+  }
+  
+  .pie-chart-section {
+    width: 150px;
+    height: 150px;
   }
 }
 
 /* Loading state */
-.socialMetricCard.loading .currentValue,
-.socialMetricCard.loading .focusValue,
-.socialMetricCard.loading .totalFollowers {
-  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+.social-metric-card.loading .platform-stats,
+.social-metric-card.loading .focus-metric-display {
+  background: linear-gradient(90deg, #2a3142 25%, #3a4152 50%, #2a3142 75%);
   background-size: 200% 100%;
   animation: loading 1.5s ease-in-out infinite;
   color: transparent;

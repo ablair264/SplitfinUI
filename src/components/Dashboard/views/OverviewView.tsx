@@ -7,6 +7,7 @@ import FullGraph from '../shared/FullGraph';
 import { TableCard } from '../shared';
 import { ProgressLoader } from '../ProgressLoader';
 import MetricIcon from '../shared/MetricIcon';
+import MetricCardSquare from '../shared/MetricCardSquare';
 // import { useColors } from '../shared/ColorProvider'; // Removed - using props instead
 
 // Define the interface for the context data
@@ -340,6 +341,169 @@ const OverviewView: React.FC = () => {
           onRowClick={(row) => navigate(`/order/${row.id}`)}
           onViewAll={() => navigate('/orders')}
         />
+      </div>
+      
+      {/* Square Metric Cards Section */}
+      <div style={{
+        marginTop: '24px',
+        marginBottom: '24px'
+      }}>
+        <h3 style={{
+          fontSize: '1.25rem',
+          fontWeight: '600',
+          marginBottom: '16px',
+          color: 'var(--text-primary)'
+        }}>Key Metrics Overview</h3>
+        <div 
+          className="square-cards-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 280px)',
+            gridTemplateRows: 'repeat(2, 280px)',
+            gap: '1rem',
+            justifyContent: 'center',
+            maxWidth: '900px',
+            margin: '0 auto'
+          }}
+        >
+          <style>
+            {`
+              @media (max-width: 900px) {
+                .square-cards-grid {
+                  grid-template-columns: repeat(2, 280px) !important;
+                  grid-template-rows: repeat(3, 280px) !important;
+                  gap: 1rem !important;
+                }
+              }
+              @media (max-width: 600px) {
+                .square-cards-grid {
+                  grid-template-columns: 280px !important;
+                  grid-template-rows: repeat(6, 280px) !important;
+                  gap: 1rem !important;
+                }
+              }
+            `}
+          </style>
+          <MetricCardSquare
+            id="square-orders"
+            title="Total Orders"
+            value={data?.metrics.totalOrders || 4586}
+            trend={{ value: 5, isPositive: true }}
+            format="number"
+            design={dashboardState.cardVariants.squareOrders || 'variant3'}
+            onVariantChange={(variant) => {
+              updateDashboardState({ 
+                cardVariants: { ...dashboardState.cardVariants, squareOrders: variant }
+              });
+            }}
+            color={getMetricCardColor(0)}
+            cardIndex={0}
+            chartData={[
+              { name: 'Online Store', value: 1500, percentage: 5 },
+              { name: 'Amazon', value: 400, percentage: 10 },
+              { name: 'eBay', value: 400, percentage: 4 },
+              { name: 'Retail', value: 700, percentage: 10 }
+            ]}
+          />
+          
+          <MetricCardSquare
+            id="square-revenue"
+            title="Total Revenue"
+            value={data?.metrics.totalRevenue || 28450}
+            trend={{ value: 12, isPositive: true }}
+            format="currency"
+            design={dashboardState.cardVariants.squareRevenue || 'variant1'}
+            onVariantChange={(variant) => {
+              updateDashboardState({ 
+                cardVariants: { ...dashboardState.cardVariants, squareRevenue: variant }
+              });
+            }}
+            color={getMetricCardColor(1)}
+            cardIndex={1}
+            chartData={[
+              { name: 'Product Sales', value: 18500, percentage: 15 },
+              { name: 'Services', value: 7200, percentage: 8 },
+              { name: 'Subscriptions', value: 1750, percentage: 12 },
+              { name: 'Other', value: 1000, percentage: 5 }
+            ]}
+          />
+          
+          <MetricCardSquare
+            id="square-customers"
+            title="Active Users"
+            value={data?.metrics.totalCustomers || 1247}
+            trend={{ value: 8, isPositive: true }}
+            format="number"
+            design={dashboardState.cardVariants.squareCustomers || 'variant2'}
+            onVariantChange={(variant) => {
+              updateDashboardState({ 
+                cardVariants: { ...dashboardState.cardVariants, squareCustomers: variant }
+              });
+            }}
+            color={getMetricCardColor(2)}
+            cardIndex={2}
+            chartData={[
+              { name: 'Mobile', value: 450, percentage: 12 },
+              { name: 'Desktop', value: 380, percentage: 6 },
+              { name: 'Tablet', value: 280, percentage: 18 },
+              { name: 'API', value: 137, percentage: 3 }
+            ]}
+          />
+          
+          <MetricCardSquare
+            id="square-conversion"
+            title="Conversion Rate"
+            value={3.2}
+            trend={{ value: 0.5, isPositive: true }}
+            format="percentage"
+            design={dashboardState.cardVariants.squareConversion || 'variant2'}
+            onVariantChange={(variant) => {
+              updateDashboardState({ 
+                cardVariants: { ...dashboardState.cardVariants, squareConversion: variant }
+              });
+            }}
+            color={getMetricCardColor(3)}
+            cardIndex={3}
+          />
+          
+          <MetricCardSquare
+            id="square-cart"
+            title="Cart Abandonment"
+            value={68.5}
+            trend={{ value: 2.3, isPositive: false }}
+            format="percentage"
+            design={dashboardState.cardVariants.squareCart || 'variant1'}
+            onVariantChange={(variant) => {
+              updateDashboardState({ 
+                cardVariants: { ...dashboardState.cardVariants, squareCart: variant }
+              });
+            }}
+            color={getMetricCardColor(4)}
+            cardIndex={4}
+          />
+          
+          <MetricCardSquare
+            id="square-satisfaction"
+            title="Customer Satisfaction"
+            value={4.8}
+            trend={{ value: 0.2, isPositive: true }}
+            format="number"
+            design={dashboardState.cardVariants.squareSatisfaction || 'variant3'}
+            onVariantChange={(variant) => {
+              updateDashboardState({ 
+                cardVariants: { ...dashboardState.cardVariants, squareSatisfaction: variant }
+              });
+            }}
+            color={getMetricCardColor(5)}
+            cardIndex={5}
+            chartData={[
+              { name: '5 Stars', value: 850, percentage: 15 },
+              { name: '4 Stars', value: 620, percentage: 8 },
+              { name: '3 Stars', value: 180, percentage: -12 },
+              { name: '2 Stars', value: 50, percentage: -5 }
+            ]}
+          />
+        </div>
       </div>
       
        {/* Main Revenue & Order Trends Chart */}
