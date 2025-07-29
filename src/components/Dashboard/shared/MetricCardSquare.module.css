@@ -207,6 +207,8 @@
   background: var(--background-white);
   border-radius: inherit;
   pointer-events: none;
+  overflow: hidden;
+  max-height: 100%;
 }
 
 /* Apply variant-specific styles to table view */
@@ -225,6 +227,8 @@
   flex-direction: column;
   flex: 1;
   font-size: 11px;
+  overflow: hidden;
+  height: 100%;
 }
 
 .tableHeader {
@@ -257,6 +261,10 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100% - 60px);
+  padding-right: 4px;
 }
 
 .tableRow {

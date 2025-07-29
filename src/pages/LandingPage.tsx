@@ -35,6 +35,7 @@ const LandingPage: React.FC = () => {
     customers: 'variant3' as 'variant1' | 'variant2' | 'variant3'
   });
   const [chartType, setChartType] = useState<'table' | 'bar' | 'horizontal-bars' | 'pie-with-legend'>('table');
+  const [metricDisplayMode, setMetricDisplayMode] = useState<'full' | 'compact' | 'square' | 'all'>('all');
   
   // Color palette mapping
   const colorMap = {
@@ -69,12 +70,9 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="landing-page">
-      {/* Animated background layers from login */}
-      <div className="animated-bg-layer"></div>
+      {/* Animated background layers from login - enhanced for landing page */}
       <div className="gradient-overlay"></div>
-      <div className="mesh-pattern"></div>
       <div className="floating-accent"></div>
-      <div className="floating-accent secondary"></div>
       
       {/* Navigation */}
       <nav className={`landing-nav ${scrolled ? 'scrolled' : ''}`}>
@@ -88,7 +86,27 @@ const LandingPage: React.FC = () => {
             <a href="#features" className="nav-link">Features</a>
             <a href="#pricing" className="nav-link">Pricing</a>
             <a href="/documentation" className="nav-link" target="_blank">Documentation</a>
-            <Link to="/demo" className="nav-link demo-link">Live Demo</Link>
+            
+            {/* Navigation buttons styled like MetricCard compact variant */}
+            <Link to="/demo" className="nav-button-compact">
+              <div className="nav-button-icon">
+                <span style={{ fontSize: '20px' }}>D</span>
+              </div>
+              <span className="nav-button-text">Live Demo</span>
+              <svg className="nav-button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </Link>
+            
+            <a href="#pricing" className="nav-button-compact">
+              <div className="nav-button-icon">
+                <span style={{ fontSize: '20px' }}>£</span>
+              </div>
+              <span className="nav-button-text">View Pricing</span>
+              <svg className="nav-button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
           </div>
           
           <button 
@@ -146,7 +164,7 @@ const LandingPage: React.FC = () => {
               </div>
               <div className="stat-divider"></div>
               <div className="stat">
-                <span className="stat-value">From £29</span>
+                <span className="stat-value">From £10</span>
                 <span className="stat-label">Starting Price</span>
               </div>
             </div>
@@ -154,15 +172,15 @@ const LandingPage: React.FC = () => {
           
           <div className="hero-visual">
             <img 
-              src="/dashboard.png" 
-              alt="Split UI Dashboard Preview" 
-              className="dashboard-image"
+              src="/splitui.png" 
+              alt="Split UI Logo" 
+              className="hero-logo"
               style={{
                 width: '100%',
-                maxWidth: '800px',
+                maxWidth: '400px',
                 height: 'auto',
-                borderRadius: '16px',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)'
+                filter: 'brightness(1.1) drop-shadow(0 25px 50px rgba(121, 213, 233, 0.3))',
+                animation: 'gentleFloat 20s ease-in-out infinite'
               }}
             />
             <div className="dashboard-glow"></div>
@@ -170,31 +188,33 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Interactive Demo Section */}
+      {/* Components Section with new title */}
       <section id="components" className="components-preview-section">
         <div className="section-container">
           <div className="section-header">
             <h2 className="section-title">
-              Another Dashboard.. <span className="title-gradient">with style</span>
-              <span className="section-subtitle">Allow users to pick a different colour, every day of the week</span>
+              Components built for <span className="title-gradient">real data and engagement</span>
+              <span className="section-subtitle">Professional dashboard components that adapt to your design needs</span>
             </h2>
           </div>
           
           {/* Interactive Demo */}
           <div className="interactive-demo-section" style={{ marginBottom: '3rem' }}>
-            {/* Color Selector */}
+            {/* Color Selector and Display Mode Selector */}
             <div className="demo-controls" style={{
               display: 'flex',
               justifyContent: 'center',
-              gap: '1rem',
+              gap: '2rem',
               marginBottom: '2rem',
               padding: '1.5rem',
               background: 'rgba(20, 28, 38, 0.95)',
               borderRadius: '12px',
               border: '1px solid rgba(255, 255, 255, 0.1)',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-              backdropFilter: 'blur(10px)'
+              backdropFilter: 'blur(10px)',
+              flexWrap: 'wrap'
             }}>
+              {/* Color Theme Selector */}
               <div className="dark-theme-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: '500' }}>COLOR THEME</span>
                 <div style={{
@@ -235,9 +255,41 @@ const LandingPage: React.FC = () => {
                   />
                 </div>
               </div>
+              
+              {/* Display Mode Selector */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: '500' }}>DISPLAY MODE</span>
+                <div style={{
+                  display: 'flex',
+                  gap: '0.5rem',
+                  padding: '0.25rem',
+                  background: 'rgba(0, 0, 0, 0.3)',
+                  borderRadius: '8px'
+                }}>
+                  {['Full', 'Compact', 'Square', 'All'].map((mode) => (
+                    <button
+                      key={mode}
+                      onClick={() => setMetricDisplayMode(mode.toLowerCase() as any)}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        background: metricDisplayMode === mode.toLowerCase() ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                        border: 'none',
+                        color: metricDisplayMode === mode.toLowerCase() ? 'white' : 'var(--text-secondary)',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: '500',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      {mode}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
             
-            {/* MetricCards Demo - Full Display */}
+            {/* MetricCards Display based on selection */}
             <ColorProvider 
               barChartColors={selectedColor}
               graphColors={{
@@ -246,182 +298,539 @@ const LandingPage: React.FC = () => {
                 tertiary: '#f77d11'
               }}
             >
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '2rem'
-              }}>
-                <MetricCard
-                  id="demo-revenue"
-                  title="Total Revenue"
-                  value={10720}
-                  subtitle="All channels combined"
-                  trend={{ value: 14, isPositive: true }}
-                  format="currency"
-                  design={metricVariants.revenue}
-                  onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, revenue: variant }))}
-                  color={getMetricCardColor(0)}
-                  cardIndex={0}
-                />
-                
-                <MetricCard
-                  id="demo-orders"
-                  title="Total Orders"
-                  value={30}
-                  subtitle="Processed orders"
-                  trend={{ value: 9, isPositive: true }}
-                  format="number"
-                  design={metricVariants.orders}
-                  onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, orders: variant }))}
-                  color={getMetricCardColor(1)}
-                  cardIndex={1}
-                />
-                
-                <MetricCard
-                  id="demo-customers"
-                  title="Active Customers"
-                  value={28}
-                  subtitle="Unique buyers"
-                  trend={{ value: 5, isPositive: true }}
-                  format="number"
-                  design={metricVariants.customers}
-                  onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, customers: variant }))}
-                  color={getMetricCardColor(2)}
-                  cardIndex={2}
-                />
-              </div>
-              
-              {/* MetricCards Demo - Compact Display */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: '1rem',
-                marginBottom: '2rem'
-              }}>
-                <MetricCard
-                  id="demo-compact-sales"
-                  title="Sales Growth"
-                  value={23.5}
-                  trend={{ value: 8, isPositive: true }}
-                  format="percentage"
-                  displayMode="compact"
-                  icon={<MetricIcon name="trending-up" size={24} color={getMetricCardColor(3)} />}
-                  color={getMetricCardColor(3)}
-                  cardIndex={3}
-                />
-                
-                <MetricCard
-                  id="demo-compact-conversion"
-                  title="Conversion Rate"
-                  value={4.8}
-                  trend={{ value: 12, isPositive: true }}
-                  format="percentage"
-                  displayMode="compact"
-                  icon={<MetricIcon name="bar-chart" size={24} color={getMetricCardColor(4)} />}
-                  color={getMetricCardColor(4)}
-                  cardIndex={4}
-                />
-                
-                <MetricCard
-                  id="demo-compact-aov"
-                  title="Average Order Value"
-                  value={357}
-                  trend={{ value: 3, isPositive: false }}
-                  format="currency"
-                  displayMode="compact"
-                  icon={<MetricIcon name="shopping-cart" size={24} color={getMetricCardColor(5)} />}
-                  color={getMetricCardColor(5)}
-                  cardIndex={5}
-                />
-              </div>
-              
-              {/* MetricCardSquare Demo - 5 in a row */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)',
-                gap: '1rem',
-                marginBottom: '3rem',
-                overflowX: 'auto'
-              }}>
-                <MetricCardSquare
-                  id="demo-square-revenue"
-                  title="Revenue"
-                  value={45860}
-                  trend={{ value: 14, isPositive: true }}
-                  format="currency"
-                  design={squareCardVariants.revenue}
-                  onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, revenue: variant }))}
-                  color={getMetricCardColor(0)}
-                  cardIndex={0}
-                />
-                
-                <MetricCardSquare
-                  id="demo-square-orders"
-                  title="Orders"
-                  value={1247}
-                  trend={{ value: 5, isPositive: true }}
-                  format="number"
-                  design={squareCardVariants.orders}
-                  onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, orders: variant }))}
-                  color={getMetricCardColor(1)}
-                  cardIndex={1}
-                />
-                
-                <MetricCardSquare
-                  id="demo-square-customers"
-                  title="Customers"
-                  value={892}
-                  trend={{ value: 8, isPositive: true }}
-                  format="number"
-                  design={squareCardVariants.customers}
-                  onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, customers: variant }))}
-                  color={getMetricCardColor(2)}
-                  cardIndex={2}
-                />
-
-<MetricCardSquare
-                  id="demo-square-revenue"
-                  title="Revenue"
-                  value={45860}
-                  trend={{ value: 14, isPositive: true }}
-                  format="currency"
-                  design={squareCardVariants.revenue}
-                  onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, revenue: variant }))}
-                  color={getMetricCardColor(0)}
-                  cardIndex={0}
-                />
-
+              {/* Full Display Mode */}
+              {(metricDisplayMode === 'full' || metricDisplayMode === 'all') && (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '1.5rem',
+                  marginBottom: metricDisplayMode === 'all' ? '2rem' : '0'
+                }}>
+                  <MetricCard
+                    id="demo-revenue"
+                    title="Total Revenue"
+                    value={10720}
+                    subtitle="All channels combined"
+                    trend={{ value: 14, isPositive: true }}
+                    format="currency"
+                    design={metricVariants.revenue}
+                    onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, revenue: variant }))}
+                    color={getMetricCardColor(0)}
+                    cardIndex={0}
+                  />
+                  
+                  <MetricCard
+                    id="demo-orders"
+                    title="Total Orders"
+                    value={30}
+                    subtitle="Processed orders"
+                    trend={{ value: 9, isPositive: true }}
+                    format="number"
+                    design={metricVariants.orders}
+                    onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, orders: variant }))}
+                    color={getMetricCardColor(1)}
+                    cardIndex={1}
+                  />
+                  
+                  <MetricCard
+                    id="demo-customers"
+                    title="Active Customers"
+                    value={28}
+                    subtitle="Unique buyers"
+                    trend={{ value: 5, isPositive: true }}
+                    format="number"
+                    design={metricVariants.customers}
+                    onVariantChange={(variant) => setMetricVariants(prev => ({ ...prev, customers: variant }))}
+                    color={getMetricCardColor(2)}
+                    cardIndex={2}
+                  />
+                  
+                  {metricDisplayMode === 'full' && (
+                    <>
+                      <MetricCard
+                        id="demo-revenue-2"
+                        title="Monthly Revenue"
+                        value={45860}
+                        subtitle="Current month performance"
+                        trend={{ value: 12, isPositive: true }}
+                        format="currency"
+                        design="variant1"
+                        color={getMetricCardColor(3)}
+                        cardIndex={3}
+                      />
+                      
+                      <MetricCard
+                        id="demo-conversion"
+                        title="Conversion Rate"
+                        value={4.8}
+                        subtitle="Visitor to customer"
+                        trend={{ value: 8, isPositive: true }}
+                        format="percentage"
+                        design="variant2"
+                        color={getMetricCardColor(4)}
+                        cardIndex={4}
+                      />
+                      
+                      <MetricCard
+                        id="demo-sessions"
+                        title="Active Sessions"
+                        value={1247}
+                        subtitle="Current users online"
+                        trend={{ value: 15, isPositive: true }}
+                        format="number"
+                        design="variant3"
+                        color={getMetricCardColor(5)}
+                        cardIndex={5}
+                      />
+                    </>
+                  )}
                 </div>
-              </ColorProvider>
+              )}
               
-              {/* Chart Demo Section - Simplified */}
-              <div style={{ 
-                marginTop: '3rem', 
-                marginBottom: '3rem', 
-                textAlign: 'center', 
-                padding: '2rem',
-                background: 'rgba(20, 28, 38, 0.5)',
-                borderRadius: '12px'
-              }}>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Interactive Chart Components</h3>
-                <p style={{ color: 'var(--text-secondary)' }}>Powerful chart components with multiple visualization options</p>
-              </div>
+              {/* Compact Display Mode */}
+              {(metricDisplayMode === 'compact' || metricDisplayMode === 'all') && (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '1rem',
+                  marginBottom: metricDisplayMode === 'all' ? '2rem' : '0'
+                }}>
+                  <MetricCard
+                    id="demo-compact-sales"
+                    title="Sales Growth"
+                    value={23.5}
+                    trend={{ value: 8, isPositive: true }}
+                    format="percentage"
+                    displayMode="compact"
+                    icon={<MetricIcon name="trending-up" size={24} color={getMetricCardColor(0)} />}
+                    color={getMetricCardColor(0)}
+                    cardIndex={0}
+                  />
+                  
+                  <MetricCard
+                    id="demo-compact-conversion"
+                    title="Conversion Rate"
+                    value={4.8}
+                    trend={{ value: 12, isPositive: true }}
+                    format="percentage"
+                    displayMode="compact"
+                    icon={<MetricIcon name="bar-chart" size={24} color={getMetricCardColor(1)} />}
+                    color={getMetricCardColor(1)}
+                    cardIndex={1}
+                  />
+                  
+                  <MetricCard
+                    id="demo-compact-aov"
+                    title="Average Order Value"
+                    value={357}
+                    trend={{ value: 3, isPositive: false }}
+                    format="currency"
+                    displayMode="compact"
+                    icon={<MetricIcon name="shopping-cart" size={24} color={getMetricCardColor(2)} />}
+                    color={getMetricCardColor(2)}
+                    cardIndex={2}
+                  />
+                  
+                  {metricDisplayMode === 'compact' && (
+                    <>
+                      <MetricCard
+                        id="demo-compact-retention"
+                        title="Customer Retention"
+                        value={78.5}
+                        trend={{ value: 5, isPositive: true }}
+                        format="percentage"
+                        displayMode="compact"
+                        icon={<MetricIcon name="users" size={24} color={getMetricCardColor(3)} />}
+                        color={getMetricCardColor(3)}
+                        cardIndex={3}
+                      />
+                      
+                      <MetricCard
+                        id="demo-compact-bounce"
+                        title="Bounce Rate"
+                        value={32.4}
+                        trend={{ value: 7, isPositive: false }}
+                        format="percentage"
+                        displayMode="compact"
+                        icon={<MetricIcon name="activity" size={24} color={getMetricCardColor(4)} />}
+                        color={getMetricCardColor(4)}
+                        cardIndex={4}
+                      />
+                      
+                      <MetricCard
+                        id="demo-compact-pageviews"
+                        title="Page Views"
+                        value={18420}
+                        trend={{ value: 22, isPositive: true }}
+                        format="number"
+                        displayMode="compact"
+                        icon={<MetricIcon name="eye" size={24} color={getMetricCardColor(5)} />}
+                        color={getMetricCardColor(5)}
+                        cardIndex={5}
+                      />
+                    </>
+                  )}
+                </div>
+              )}
+              
+              {/* Square Display Mode */}
+              {(metricDisplayMode === 'square' || metricDisplayMode === 'all') && (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '1rem',
+                  marginBottom: '3rem',
+                  overflowX: 'auto'
+                }}>
+                  <MetricCardSquare
+                    id="demo-square-revenue"
+                    title="Revenue"
+                    value={45860}
+                    trend={{ value: 14, isPositive: true }}
+                    format="currency"
+                    design={squareCardVariants.revenue}
+                    onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, revenue: variant }))}
+                    color={getMetricCardColor(0)}
+                    cardIndex={0}
+                  />
+                  
+                  <MetricCardSquare
+                    id="demo-square-orders"
+                    title="Orders"
+                    value={1247}
+                    trend={{ value: 5, isPositive: true }}
+                    format="number"
+                    design={squareCardVariants.orders}
+                    onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, orders: variant }))}
+                    color={getMetricCardColor(1)}
+                    cardIndex={1}
+                  />
+                  
+                  <MetricCardSquare
+                    id="demo-square-customers"
+                    title="Customers"
+                    value={892}
+                    trend={{ value: 8, isPositive: true }}
+                    format="number"
+                    design={squareCardVariants.customers}
+                    onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, customers: variant }))}
+                    color={getMetricCardColor(2)}
+                    cardIndex={2}
+                  />
+                  
+                  <MetricCardSquare
+                    id="demo-square-aov"
+                    title="Avg Order"
+                    value={36.78}
+                    trend={{ value: 3, isPositive: false }}
+                    format="currency"
+                    design="variant1"
+                    color={getMetricCardColor(3)}
+                    cardIndex={3}
+                  />
+                  
+                  {metricDisplayMode === 'square' && (
+                    <>
+                      <MetricCardSquare
+                        id="demo-square-sessions"
+                        title="Sessions"
+                        value={2847}
+                        trend={{ value: 18, isPositive: true }}
+                        format="number"
+                        design="variant2"
+                        color={getMetricCardColor(4)}
+                        cardIndex={4}
+                      />
+                      
+                      <MetricCardSquare
+                        id="demo-square-retention"
+                        title="Retention"
+                        value={78.5}
+                        trend={{ value: 6, isPositive: true }}
+                        format="percentage"
+                        design="variant3"
+                        color={getMetricCardColor(5)}
+                        cardIndex={5}
+                      />
+                      
+                      <MetricCardSquare
+                        id="demo-square-bounce"
+                        title="Bounce Rate"
+                        value={32.4}
+                        trend={{ value: 4, isPositive: false }}
+                        format="percentage"
+                        design="variant1"
+                        color={getMetricCardColor(6)}
+                        cardIndex={6}
+                      />
+                      
+                      <MetricCardSquare
+                        id="demo-square-ltv"
+                        title="LTV"
+                        value={485}
+                        trend={{ value: 12, isPositive: true }}
+                        format="currency"
+                        design="variant2"
+                        color={getMetricCardColor(7)}
+                        cardIndex={7}
+                      />
+                    </>
+                  )}
+                </div>
+              )}
+            </ColorProvider>
             
+            {/* Feature Boxes */}
+            <div className="features-grid" style={{ marginTop: '4rem', marginBottom: '4rem' }}>
+              <div className="feature-box">
+                <div className="feature-box-icon">
+                  <MetricIcon name="droplet" size={24} color="#79d5e9" />
+                </div>
+                <h3>Timeless aesthetics</h3>
+                <p>Build beautiful UIs with ease. Start with Google's Material Design, or create your own sophisticated theme.</p>
+              </div>
+              
+              <div className="feature-box">
+                <div className="feature-box-icon">
+                  <MetricIcon name="settings" size={24} color="#799de9" />
+                </div>
+                <h3>Intuitive customization</h3>
+                <p>Our components are as flexible as they are powerful. You always have full control over how they look and behave.</p>
+              </div>
+              
+              <div className="feature-box">
+                <div className="feature-box-icon">
+                  <MetricIcon name="file-text" size={24} color="#79e9c5" />
+                </div>
+                <h3>Unrivaled documentation</h3>
+                <p>The answer to your problem can be found in our docs. How can we be so sure? Because our docs boast over 2,000 contributors.</p>
+              </div>
+              
+              <div className="feature-box">
+                <div className="feature-box-icon">
+                  <MetricIcon name="users" size={24} color="#FF9F00" />
+                </div>
+                <h3>Dedicated to accessibility</h3>
+                <p>We believe in building for everyone. That's why accessibility is a high priority with every new feature we ship.</p>
+              </div>
+            </div>
+            
+            {/* Chart Demo Section with CardChart */}
+            <div style={{ marginTop: '3rem' }}>
+              <div className="section-header" style={{ marginBottom: '2rem' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Interactive Chart Components</h3>
+                <p style={{ color: 'var(--text-secondary)' }}>Powerful visualization tools with multiple display options</p>
+              </div>
+              
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '1rem',
+                marginBottom: '2rem'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  gap: '0.5rem',
+                  padding: '0.5rem',
+                  background: 'rgba(0, 0, 0, 0.3)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <button
+                    onClick={() => setChartType('table')}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      borderRadius: '6px',
+                      background: chartType === 'table' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                      border: 'none',
+                      color: chartType === 'table' ? 'white' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    Table
+                  </button>
+                  <button
+                    onClick={() => setChartType('bar')}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      borderRadius: '6px',
+                      background: chartType === 'bar' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                      border: 'none',
+                      color: chartType === 'bar' ? 'white' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    Bar Vertical
+                  </button>
+                  <button
+                    onClick={() => setChartType('horizontal-bars')}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      borderRadius: '6px',
+                      background: chartType === 'horizontal-bars' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                      border: 'none',
+                      color: chartType === 'horizontal-bars' ? 'white' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    Bar Horizontal
+                  </button>
+                  <button
+                    onClick={() => setChartType('pie-with-legend')}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      borderRadius: '6px',
+                      background: chartType === 'pie-with-legend' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                      border: 'none',
+                      color: chartType === 'pie-with-legend' ? 'white' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    Pie Chart
+                  </button>
+                </div>
+              </div>
+              
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                gap: '1.5rem',
+                maxWidth: '900px',
+                margin: '0 auto'
+              }}>
+                {chartType === 'table' ? (
+                  <div style={{
+                    background: 'rgba(20, 28, 38, 0.95)',
+                    borderRadius: '12px',
+                    padding: '1.5rem',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                  }}>
+                    <h3 style={{ marginBottom: '0.5rem', fontSize: '1rem', fontWeight: '600' }}>Sales Team Performance</h3>
+                    <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Top 5 agents by revenue</p>
+                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                      <thead>
+                        <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
+                          <th style={{ padding: '0.75rem 0', textAlign: 'left', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '500' }}>#</th>
+                          <th style={{ padding: '0.75rem 0', textAlign: 'left', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '500' }}>AGENT</th>
+                          <th style={{ padding: '0.75rem 0', textAlign: 'right', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '500' }}>REVENUE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { name: 'Emma Williams', revenue: 45697 },
+                          { name: 'Lisa Thompson', revenue: 41254 },
+                          { name: 'David Kim', revenue: 39853 },
+                          { name: 'Tom Anderson', revenue: 35963 },
+                          { name: 'Rachel Green', revenue: 34151 }
+                        ].map((agent, index) => (
+                          <tr key={index} style={{ borderBottom: index < 4 ? '1px solid rgba(255, 255, 255, 0.05)' : 'none' }}>
+                            <td style={{ padding: '1rem 0', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>{index + 1}</td>
+                            <td style={{ padding: '1rem 0', fontSize: '0.875rem' }}>{agent.name}</td>
+                            <td style={{ padding: '1rem 0', textAlign: 'right', fontSize: '0.875rem', fontWeight: '500', color: getMetricCardColor(index) }}>
+                              £{agent.revenue.toLocaleString()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <ColorProvider 
+                    barChartColors={selectedColor}
+                    graphColors={{
+                      primary: colorMap[selectedColor] || colorMap.primary,
+                      secondary: '#4daeac',
+                      tertiary: '#f77d11'
+                    }}
+                  >
+                    <CardChart
+                      id="demo-chart"
+                      title="Sales Team Performance"
+                      subtitle="Top 5 agents by revenue"
+                      data={[
+                        { name: 'Emma Williams', value: 45697 },
+                        { name: 'Lisa Thompson', value: 41254 },
+                        { name: 'David Kim', value: 39853 },
+                        { name: 'Tom Anderson', value: 35963 },
+                        { name: 'Rachel Green', value: 34151 }
+                      ]}
+                      type={chartType === 'horizontal-bars' ? 'bar' : chartType === 'pie-with-legend' ? 'pie' : 'bar'}
+                      dataKey="value"
+                      colors={selectedColor === 'multicolored' ? Object.values(colorMap) : [getMetricCardColor(0)]}
+                      design={chartType === 'bar' ? 'default' : (chartType as 'horizontal-bars' | 'pie-with-legend')}
+                      height={280}
+                      showLegend={chartType === 'pie-with-legend'}
+                    />
+                  </ColorProvider>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Other Components Section */}
+      <section className="other-components-section">
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">
+              Other Components
+              <span className="section-subtitle">Advanced data visualization and management tools</span>
+            </h2>
+          </div>
+          
+          {/* Feature boxes for other components */}
+          <div className="features-grid" style={{ marginBottom: '3rem' }}>
+            <div className="feature-box">
+              <div className="feature-box-icon">
+                <MetricIcon name="activity" size={24} color="#79d5e9" />
+              </div>
+              <h3>Advanced Charts</h3>
+              <p>Line, area, bar, and composed charts with brush tools for data range selection</p>
+            </div>
+            
+            <div className="feature-box">
+              <div className="feature-box-icon">
+                <MetricIcon name="grid" size={24} color="#799de9" />
+              </div>
+              <h3>Data Tables</h3>
+              <p>Sortable, searchable tables with pagination and bulk actions</p>
+            </div>
+            
+            <div className="feature-box">
+              <div className="feature-box-icon">
+                <MetricIcon name="list" size={24} color="#79e9c5" />
+              </div>
+              <h3>Card Tables</h3>
+              <p>Compact tables designed for dashboard cards with automatic truncation</p>
+            </div>
+            
+            <div className="feature-box">
+              <div className="feature-box-icon">
+                <MetricIcon name="bar-chart-2" size={24} color="#FF9F00" />
+              </div>
+              <h3>Export Ready</h3>
+              <p>Export to PNG, SVG, CSV, and Excel with built-in functionality</p>
+            </div>
+          </div>
+          
+          {/* Components Display */}
+          <div className="component-showcase">
             {/* FullGraph Component */}
             <div className="showcase-item" style={{ marginBottom: '4rem' }}>
-              <div style={{ marginBottom: '2rem' }}>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>FullGraph Component</h3>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Advanced charting component for comprehensive data visualization</p>
-                <div className="component-features" style={{ marginBottom: '2rem' }}>
-                  <span className="feature-item">• Multiple chart types (line, area, bar, composed)</span>
-                  <span className="feature-item">• Brush tool for data range selection</span>
-                  <span className="feature-item">• Synchronized tooltips across data series</span>
-                  <span className="feature-item">• Customizable grid and axis</span>
-                  <span className="feature-item">• Export to PNG/SVG functionality</span>
-                  <span className="feature-item">• Responsive with auto-resize</span>
-                </div>
-              </div>
               <ColorProvider 
                 barChartColors={selectedColor}
                 graphColors={{
@@ -455,22 +864,9 @@ const LandingPage: React.FC = () => {
                 />
               </ColorProvider>
             </div>
-           
+            
             {/* DataTable Component */}
             <div className="showcase-item" style={{ marginBottom: '4rem' }}>
-              <div style={{ marginBottom: '2rem' }}>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>DataTable Component</h3>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Feature-rich table component with advanced functionality</p>
-                <div className="component-features" style={{ marginBottom: '2rem' }}>
-                  <span className="feature-item">• Sortable columns with multi-sort support</span>
-                  <span className="feature-item">• Built-in search and filtering</span>
-                  <span className="feature-item">• Pagination with customizable page sizes</span>
-                  <span className="feature-item">• Row selection with bulk actions</span>
-                  <span className="feature-item">• Column resizing and reordering</span>
-                  <span className="feature-item">• Export to CSV/Excel</span>
-                  <span className="feature-item">• Mobile responsive design</span>
-                </div>
-              </div>
               <div style={{
                 background: 'rgba(20, 28, 38, 0.95)',
                 borderRadius: '12px',
@@ -543,507 +939,276 @@ const LandingPage: React.FC = () => {
                 />
               </div>
             </div>
-           
-           {/* DataTable with Order Status Badges */}
-           <div className="showcase-item" style={{ marginBottom: '4rem' }}>
-             <div style={{ marginBottom: '2rem' }}>
-               <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Order Status Badges</h3>
-               <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>DataTable with styled status badges for order tracking</p>
-             </div>
-             <div style={{
-               background: 'rgba(20, 28, 38, 0.95)',
-               borderRadius: '12px',
-               padding: '1.5rem',
-               border: '1px solid rgba(255, 255, 255, 0.1)',
-               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
-             }}>
-               <DataTable
-                 columns={[
-                   { key: 'orderId', header: 'Order ID', width: '15%' },
-                   { key: 'customer', header: 'Customer', width: '25%' },
-                   { key: 'date', header: 'Date', width: '20%' },
-                   { 
-                     key: 'total', 
-                     header: 'Total', 
-                     width: '15%',
-                     render: (item: any) => `£${item.total.toFixed(2)}`,
-                     className: 'text-right'
-                   },
-                   { 
-                     key: 'status', 
-                     header: 'Status', 
-                     width: '25%',
-                     render: (item: any) => {
-                       const statusMap: { [key: string]: string } = {
-                         'Partially shipped': 'statusPartiallyShipped',
-                         'Confirmed': 'statusConfirmed',
-                         'Fulfilled': 'statusFulfilled',
-                         'Processing': 'statusProcessing',
-                         'Shipped': 'statusShipped',
-                         'Cancelled': 'statusCancelled'
-                       };
-                       const statusClass = statusMap[item.status] || 'statusDefault';
-                       return (
-                         <span className={`statusBadge ${statusClass}`}>
-                           {item.status}
-                         </span>
-                       );
-                     }
-                   }
-                 ]}
-                 data={[
-                   { id: '1', orderId: '#ORD-2025-001', customer: 'John Smith', date: '2025-01-28', total: 299.99, status: 'Partially shipped' },
-                   { id: '2', orderId: '#ORD-2025-002', customer: 'Emma Johnson', date: '2025-01-28', total: 149.50, status: 'Confirmed' },
-                   { id: '3', orderId: '#ORD-2025-003', customer: 'Michael Brown', date: '2025-01-27', total: 89.99, status: 'Partially shipped' },
-                   { id: '4', orderId: '#ORD-2025-004', customer: 'Sarah Davis', date: '2025-01-27', total: 199.00, status: 'Partially shipped' },
-                   { id: '5', orderId: '#ORD-2025-005', customer: 'David Wilson', date: '2025-01-26', total: 349.99, status: 'Confirmed' },
-                   { id: '6', orderId: '#ORD-2025-006', customer: 'Lisa Anderson', date: '2025-01-26', total: 124.50, status: 'Partially shipped' },
-                   { id: '7', orderId: '#ORD-2025-007', customer: 'James Taylor', date: '2025-01-25', total: 275.00, status: 'Fulfilled' },
-                   { id: '8', orderId: '#ORD-2025-008', customer: 'Patricia Martinez', date: '2025-01-25', total: 99.99, status: 'Confirmed' },
-                   { id: '9', orderId: '#ORD-2025-009', customer: 'Robert Garcia', date: '2025-01-24', total: 189.50, status: 'Partially shipped' },
-                   { id: '10', orderId: '#ORD-2025-010', customer: 'Jennifer Lopez', date: '2025-01-24', total: 425.00, status: 'Partially shipped' }
-                 ]}
-                 keyExtractor={(item) => item.id}
-                 onRowClick={(row) => console.log('Order clicked:', row)}
-               />
-             </div>
-           </div>
-           
-           {/* Breadcrumb Component */}
-           <div className="showcase-item" style={{ marginBottom: '4rem' }}>
-             <div style={{ marginBottom: '2rem' }}>
-               <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Breadcrumb Component</h3>
-               <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Hierarchical navigation component with automatic path generation</p>
-               <div className="component-features" style={{ marginBottom: '2rem' }}>
-                 <span className="feature-item">• Auto-generates from React Router paths</span>
-                 <span className="feature-item">• Customizable separators and icons</span>
-                 <span className="feature-item">• Truncation for long paths</span>
-                 <span className="feature-item">• Mobile-responsive collapsing</span>
-                 <span className="feature-item">• Custom path name mapping</span>
-                 <span className="feature-item">• Accessible navigation structure</span>
-               </div>
-             </div>
-             <div style={{ 
-               background: 'rgba(20, 28, 38, 0.95)', 
-               padding: '1.5rem', 
-               borderRadius: '12px',
-               border: '1px solid rgba(255, 255, 255, 0.1)',
-               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
-             }}>
-               <Breadcrumb
-                 title="Analytics"
-                 items={[
-                   { label: 'Analytics' },
-                   { label: 'Revenue Report' }
-                 ]}
-               />
-               <div style={{ marginTop: '1rem' }}>
-                 <Breadcrumb
-                   title="Products"
-                   items={[
-                     { label: 'Products' },
-                     { label: 'Categories' },
-                     { label: 'Electronics' }
-                   ]}
-                 />
-               </div>
-             </div>
-           </div>
+            
+            {/* CardTable Component */}
+            <div className="showcase-item" style={{ marginBottom: '4rem' }}>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                gap: '1.5rem'
+              }}>
+                <CardTable
+                  id="top-customers"
+                  title="Top Customers"
+                  subtitle="By total purchase value"
+                  columns={[
+                    { key: 'name', label: 'Customer', width: '50%' },
+                    { key: 'orders', label: 'Orders', align: 'center' },
+                    { key: 'value', label: 'Total', align: 'right', format: (value) => `£${value.toLocaleString()}` }
+                  ]}
+                  data={[
+                    { name: 'Acme Corporation', orders: 45, value: 125430 },
+                    { name: 'TechStart Inc', orders: 38, value: 98750 },
+                    { name: 'Global Ventures', orders: 52, value: 87320 },
+                    { name: 'Innovation Labs', orders: 31, value: 76890 },
+                    { name: 'Digital Solutions', orders: 29, value: 65420 }
+                  ]}
+                  maxRows={5}
+                  showIndex={true}
+                  highlightRows={true}
+                  onViewAll={() => console.log('View all customers')}
+                />
+                
+                <CardTable
+                  id="recent-activities"
+                  title="Recent Activities"
+                  subtitle="Latest system events"
+                  columns={[
+                    { key: 'action', label: 'Action', width: '60%' },
+                    { key: 'user', label: 'User' },
+                    { key: 'time', label: 'Time', align: 'right' }
+                  ]}
+                  data={[
+                    { action: 'New order placed', user: 'John D.', time: '2 min ago' },
+                    { action: 'Customer registered', user: 'System', time: '5 min ago' },
+                    { action: 'Payment received', user: 'Sarah M.', time: '12 min ago' },
+                    { action: 'Product updated', user: 'Admin', time: '1 hour ago' },
+                    { action: 'Report generated', user: 'System', time: '2 hours ago' }
+                  ]}
+                  maxRows={5}
+                  onRowClick={(row) => console.log('Activity clicked:', row)}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-           {/* TableCard Component */}
-           <div className="showcase-item" style={{ marginBottom: '4rem' }}>
-             <div style={{ marginBottom: '2rem' }}>
-               <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>TableCard Component</h3>
-               <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Simplified table card for ranking displays</p>
-               <div className="component-features" style={{ marginBottom: '2rem' }}>
-                 <span className="feature-item">• Automatic ranking numbers</span>
-                 <span className="feature-item">• Clean minimal design</span>
-                 <span className="feature-item">• Value color customization</span>
-                 <span className="feature-item">• Subtext support</span>
-                 <span className="feature-item">• Perfect for leaderboards</span>
-                 <span className="feature-item">• Mobile optimized</span>
-               </div>
-             </div>
-             <div style={{
-               display: 'grid',
-               gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-               gap: '1.5rem'
-             }}>
-               <div style={{
-                 background: 'rgba(20, 28, 38, 0.95)',
-                 borderRadius: '12px',
-                 padding: '1.5rem',
-                 border: '1px solid rgba(255, 255, 255, 0.1)',
-                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                 backdropFilter: 'blur(10px)'
-               }}>
-                 <TableCard
-                   id="top-agents"
-                   title="Top Sales Agents"
-                   subtitle="By revenue this month"
-                   data={[
-                     { name: 'Emma Williams', value: '£46,820', subtext: '142 deals closed' },
-                     { name: 'Michael Chen', value: '£41,350', subtext: '128 deals closed' },
-                     { name: 'Sarah Johnson', value: '£39,720', subtext: '119 deals closed' },
-                     { name: 'David Kim', value: '£36,890', subtext: '108 deals closed' },
-                     { name: 'Lisa Anderson', value: '£34,560', subtext: '97 deals closed' }
-                   ]}
-                   columns={[
-                     { key: 'name', label: 'Agent' },
-                     { key: 'value', label: 'Revenue', align: 'right' }
-                   ]}
-                   maxRows={5}
-                 />
-               </div>
-               
-               <div style={{
-                 background: 'rgba(20, 28, 38, 0.95)',
-                 borderRadius: '12px',
-                 padding: '1.5rem',
-                 border: '1px solid rgba(255, 255, 255, 0.1)',
-                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                 backdropFilter: 'blur(10px)'
-               }}>
-                 <TableCard
-                   id="popular-products"
-                   title="Popular Products"
-                   subtitle="Most sold items"
-                   data={[
-                     { name: 'Dashboard Pro License', value: '247 sales' },
-                     { name: 'Analytics Add-on', value: '189 sales' },
-                     { name: 'Customer Module', value: '156 sales' },
-                     { name: 'Report Builder', value: '134 sales' },
-                     { name: 'API Access', value: '98 sales' }
-                   ]}
-                   columns={[
-                     { key: 'name', label: 'Product' },
-                     { key: 'value', label: 'Sales', align: 'right' }
-                   ]}
-                   maxRows={5}
-                 />
-               </div>
-             </div>
-           </div>
-           
-           {/* CardTable Component */}
-           <div className="showcase-item" style={{ marginBottom: '4rem' }}>
-             <div style={{ marginBottom: '2rem' }}>
-               <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>CardTable Component</h3>
-               <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Compact table component designed for card layouts</p>
-               <div className="component-features" style={{ marginBottom: '2rem' }}>
-                 <span className="feature-item">• Optimized for dashboard cards</span>
-                 <span className="feature-item">• Automatic row truncation with "View All"</span>
-                 <span className="feature-item">• Custom column formatting</span>
-                 <span className="feature-item">• Row highlighting on hover</span>
-                 <span className="feature-item">• Index column support</span>
-                 <span className="feature-item">• Responsive column widths</span>
-                 <span className="feature-item">• Click handlers for rows</span>
-               </div>
-             </div>
-             <div style={{
-               display: 'grid',
-               gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-               gap: '1.5rem'
-             }}>
-               <CardTable
-                 id="top-customers"
-                 title="Top Customers"
-                 subtitle="By total purchase value"
-                 columns={[
-                   { key: 'name', label: 'Customer', width: '50%' },
-                   { key: 'orders', label: 'Orders', align: 'center' },
-                   { key: 'value', label: 'Total', align: 'right', format: (value) => `£${value.toLocaleString()}` }
-                 ]}
-                 data={[
-                   { name: 'Acme Corporation', orders: 45, value: 125430 },
-                   { name: 'TechStart Inc', orders: 38, value: 98750 },
-                   { name: 'Global Ventures', orders: 52, value: 87320 },
-                   { name: 'Innovation Labs', orders: 31, value: 76890 },
-                   { name: 'Digital Solutions', orders: 29, value: 65420 }
-                 ]}
-                 maxRows={5}
-                 showIndex={true}
-                 highlightRows={true}
-                 onViewAll={() => console.log('View all customers')}
-               />
-               
-               <CardTable
-                 id="recent-activities"
-                 title="Recent Activities"
-                 subtitle="Latest system events"
-                 columns={[
-                   { key: 'action', label: 'Action', width: '60%' },
-                   { key: 'user', label: 'User' },
-                   { key: 'time', label: 'Time', align: 'right' }
-                 ]}
-                 data={[
-                   { action: 'New order placed', user: 'John D.', time: '2 min ago' },
-                   { action: 'Customer registered', user: 'System', time: '5 min ago' },
-                   { action: 'Payment received', user: 'Sarah M.', time: '12 min ago' },
-                   { action: 'Product updated', user: 'Admin', time: '1 hour ago' },
-                   { action: 'Report generated', user: 'System', time: '2 hours ago' }
-                 ]}
-                 maxRows={5}
-                 onRowClick={(row) => console.log('Activity clicked:', row)}
-               />
-             </div>
-           </div>
-         </div>
-       </div>
-     </section>
+      {/* Pricing Section - Updated */}
+      <section id="pricing" className="pricing-section">
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">
+              Simple, Transparent Pricing
+              <span className="section-subtitle">Choose the package that fits your needs</span>
+            </h2>
+          </div>
+          
+          <div className="pricing-cards">
+            <div className="pricing-card">
+              <div className="price-badge">STARTER</div>
+              <h3 className="price-title">Components Package</h3>
+              <div className="price-amount">
+                <span className="currency">£</span>
+                <span className="amount">10</span>
+              </div>
+              <p className="price-description">Essential dashboard components for your project</p>
+              
+              <ul className="price-features">
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  MetricCard Components (3 variants)
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  CardChart Components
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  FullGraph Component
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  DataTable & CardTable
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Basic Documentation
+                </li>
+              </ul>
+              
+              <button className="price-button">
+                Get Components Package
+              </button>
+            </div>
+            
+            <div className="pricing-card">
+              <div className="price-badge">PROFESSIONAL</div>
+              <h3 className="price-title">Templates Package</h3>
+              <div className="price-amount">
+                <span className="currency">£</span>
+                <span className="amount">10</span>
+              </div>
+              <p className="price-description">Complete dashboard and management templates</p>
+              
+              <ul className="price-features">
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Full Dashboard Template
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Login Component
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Customer Management
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Google Maps Integration
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Layout Components
+                </li>
+              </ul>
+              
+              <button className="price-button">
+                Get Templates Package
+              </button>
+            </div>
+            
+            <div className="pricing-card featured">
+              <div className="price-badge featured">BEST VALUE</div>
+              <div className="featured-glow"></div>
+              <h3 className="price-title">Everything Package</h3>
+              <div className="price-amount">
+                <span className="currency">£</span>
+                <span className="amount">20</span>
+              </div>
+              <p className="price-description">Complete UI kit with all components and templates</p>
+              
+              <ul className="price-features">
+                <li className="highlight">
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Everything in Components
+                </li>
+                <li className="highlight">
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Everything in Templates
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Full Source Code
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Lifetime Updates
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Priority Support
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Commercial License
+                </li>
+              </ul>
+              
+              <button className="price-button featured">
+                Get Everything - Save 50%
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-     {/* Features Section */}
-     <section id="features" className="features-section">
-       <div className="section-container">
-         <div className="section-header">
-           <h2 className="section-title">
-             Why Choose Split UI?
-             <span className="section-subtitle">Built for developers who value quality</span>
-           </h2>
-         </div>
-         
-         <div className="features-layout">
-           <div className="features-left">
-             <div className="feature-item">
-               <div className="feature-icon-wrapper">
-                 <span className="feature-icon">🚀</span>
-               </div>
-               <div className="feature-content">
-                 <h3>Production Ready</h3>
-                 <p>Battle-tested components used in real applications with thousands of users</p>
-               </div>
-             </div>
-             
-             <div className="feature-item">
-               <div className="feature-icon-wrapper">
-                 <span className="feature-icon">🎯</span>
-               </div>
-               <div className="feature-content">
-                 <h3>TypeScript First</h3>
-                 <p>Full type safety with comprehensive TypeScript definitions for every component</p>
-               </div>
-             </div>
-             
-             <div className="feature-item">
-               <div className="feature-icon-wrapper">
-                 <span className="feature-icon">📱</span>
-               </div>
-               <div className="feature-content">
-                 <h3>Responsive Design</h3>
-                 <p>Mobile-first approach ensures perfect display across all devices</p>
-               </div>
-             </div>
-           </div>
-           
-           <div className="features-right">
-             <div className="feature-item">
-               <div className="feature-icon-wrapper">
-                 <span className="feature-icon">⚡</span>
-               </div>
-               <div className="feature-content">
-                 <h3>Lightning Fast</h3>
-                 <p>Optimized performance with zero external dependencies</p>
-               </div>
-             </div>
-             
-             <div className="feature-item">
-               <div className="feature-icon-wrapper">
-                 <span className="feature-icon">🎨</span>
-               </div>
-               <div className="feature-content">
-                 <h3>Customizable</h3>
-                 <p>Easily adapt colors, sizes, and styles to match your brand</p>
-               </div>
-             </div>
-             
-             <div className="feature-item">
-               <div className="feature-icon-wrapper">
-                 <span className="feature-icon">📚</span>
-               </div>
-               <div className="feature-content">
-                 <h3>Well Documented</h3>
-                 <p>Comprehensive docs with examples and best practices</p>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </section>
+      {/* CTA Section */}
+      <section className="cta-section">
+        <div className="section-container">
+          <div className="cta-content">
+            <h2>Ready to Build Amazing Dashboards?</h2>
+            <p>Join hundreds of developers using Split UI</p>
+            <div className="cta-actions">
+              <Link to="/demo" className="cta-button primary large">
+                Try Live Demo
+              </Link>
+              <a href="#pricing" className="cta-button secondary large">
+                Get Started Today
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-     {/* Pricing Section */}
-     <section id="pricing" className="pricing-section">
-       <div className="section-container">
-         <div className="section-header">
-           <h2 className="section-title">
-             Simple, Transparent Pricing
-             <span className="section-subtitle">Choose the package that fits your needs</span>
-           </h2>
-         </div>
-         
-         <div className="pricing-cards">
-           <div className="pricing-card">
-             <div className="price-badge">STARTER</div>
-             <h3 className="price-title">Compact Package</h3>
-             <div className="price-amount">
-               <span className="currency">£</span>
-               <span className="amount">19</span>
-             </div>
-             <p className="price-description">Perfect for small projects and MVPs</p>
-             
-             <ul className="price-features">
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Login Component
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Dashboard Overview
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Core Components (5+)
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Basic Documentation
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 6 Months Updates
-               </li>
-             </ul>
-             
-             <button className="price-button">
-               Get Starter Package
-             </button>
-           </div>
-           
-           <div className="pricing-card featured">
-             <div className="price-badge featured">POPULAR</div>
-             <div className="featured-glow"></div>
-             <h3 className="price-title">Full Package</h3>
-             <div className="price-amount">
-               <span className="currency">£</span>
-               <span className="amount">39</span>
-             </div>
-             <p className="price-description">Everything you need for production apps</p>
-             
-             <ul className="price-features">
-               <li className="highlight">
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Everything in Starter
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 All Components (25+)
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Customer Management
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Google Maps Integration
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Full Documentation
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 1 Year Updates
-               </li>
-               <li>
-                 <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                 </svg>
-                 Priority Support
-               </li>
-             </ul>
-             
-             <button className="price-button featured">
-               Get Full Package
-             </button>
-           </div>
-         </div>
-       </div>
-     </section>
-
-     {/* CTA Section */}
-     <section className="cta-section">
-       <div className="section-container">
-       <div className="cta-content">
-           <h2>Ready to Build Amazing Dashboards?</h2>
-           <p>Join hundreds of developers using Split UI</p>
-           <div className="cta-actions">
-             <Link to="/demo" className="cta-button primary large">
-               Try Live Demo
-             </Link>
-             <a href="#pricing" className="cta-button secondary large">
-               Get Started Today
-             </a>
-           </div>
-         </div>
-       </div>
-     </section>
-
-     {/* Footer */}
-     <footer className="landing-footer">
-       <div className="footer-content">
-         <div className="footer-brand">
-           <img src="/splitui.png" alt="Split UI" className="footer-logo" />
-           <p>Professional React UI Kit for Analytics Dashboards</p>
-         </div>
-         <div className="footer-links">
-           <div className="footer-column">
-             <h4>Product</h4>
-             <a href="#components">Components</a>
-             <a href="#features">Features</a>
-             <a href="#pricing">Pricing</a>
-             <Link to="/demo">Live Demo</Link>
-           </div>
-           <div className="footer-column">
-             <h4>Support</h4>
-             <a href="/documentation" target="_blank">Documentation</a>
-             <a href="#">Support Center</a>
-             <a href="#">License</a>
-           </div>
-           <div className="footer-column">
-             <h4>Company</h4>
-             <a href="#">About</a>
-             <a href="#">Contact</a>
-             <a href="#">Privacy</a>
-           </div>
-         </div>
-       </div>
-       <div className="footer-bottom">
-         <p>&copy; 2024 Split UI. All rights reserved.</p>
-       </div>
-     </footer>
-   </div>
- );
+      {/* Footer */}
+      <footer className="landing-footer">
+        <div className="footer-content">
+          <div className="footer-brand">
+            <img src="/splitui.png" alt="Split UI" className="footer-logo" />
+            <p>Professional React UI Kit for Analytics Dashboards</p>
+          </div>
+          <div className="footer-links">
+            <div className="footer-column">
+              <h4>Product</h4>
+              <a href="#components">Components</a>
+              <a href="#features">Features</a>
+              <a href="#pricing">Pricing</a>
+              <Link to="/demo">Live Demo</Link>
+            </div>
+            <div className="footer-column">
+              <h4>Support</h4>
+              <a href="/documentation" target="_blank">Documentation</a>
+              <a href="#">Support Center</a>
+              <a href="#">License</a>
+            </div>
+            <div className="footer-column">
+              <h4>Company</h4>
+              <a href="#">About</a>
+              <a href="#">Contact</a>
+              <a href="#">Privacy</a>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2024 Split UI. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
 };
 
 export default LandingPage;
