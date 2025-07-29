@@ -22,6 +22,7 @@ export interface MetricCardSquareProps {
   onClick?: () => void;
   onVariantChange?: (variant: 'variant1' | 'variant2' | 'variant3') => void;
   cardIndex?: number;
+  showHoverTable?: boolean;
 }
 
 const MetricCardSquare: React.FC<MetricCardSquareProps> = ({
@@ -35,7 +36,8 @@ const MetricCardSquare: React.FC<MetricCardSquareProps> = ({
   color: propColor,
   onClick,
   onVariantChange,
-  cardIndex = 0
+  cardIndex = 0,
+  showHoverTable = true
 }) => {
   const { getMetricCardColor } = useColors();
   const [isChartReady, setIsChartReady] = useState(false);
@@ -353,9 +355,11 @@ const MetricCardSquare: React.FC<MetricCardSquareProps> = ({
         )}
       </div>
       
-      <div className={styles.tableView}>
-        {renderTable()}
-      </div>
+      {showHoverTable && (
+        <div className={styles.tableView}>
+          {renderTable()}
+        </div>
+      )}
     </div>
   );
 };

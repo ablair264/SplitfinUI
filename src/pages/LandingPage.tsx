@@ -36,6 +36,7 @@ const LandingPage: React.FC = () => {
   });
   const [chartType, setChartType] = useState<'table' | 'bar' | 'horizontal-bars' | 'pie-with-legend'>('table');
   const [metricDisplayMode, setMetricDisplayMode] = useState<'full' | 'compact' | 'square' | 'all'>('all');
+  const [showHoverTable, setShowHoverTable] = useState(true);
   
   // Color palette mapping
   const colorMap = {
@@ -281,6 +282,41 @@ const LandingPage: React.FC = () => {
                   ))}
                 </div>
               </div>
+              
+              {/* Hover Table Toggle - Only show when Square mode is selected */}
+              {metricDisplayMode === 'square' && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: '500' }}>HOVER TABLE</span>
+                  <button
+                    onClick={() => setShowHoverTable(!showHoverTable)}
+                    style={{
+                      position: 'relative',
+                      width: '50px',
+                      height: '26px',
+                      borderRadius: '13px',
+                      background: showHoverTable ? 'var(--primary-color)' : 'rgba(255, 255, 255, 0.2)',
+                      border: 'none',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      outline: 'none'
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '3px',
+                        left: showHoverTable ? '27px' : '3px',
+                        width: '20px',
+                        height: '20px',
+                        borderRadius: '50%',
+                        background: 'white',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+                      }}
+                    />
+                  </button>
+                </div>
+              )}
             </div>
             
             {/* MetricCards Display based on selection */}
@@ -497,6 +533,7 @@ const LandingPage: React.FC = () => {
                     design={squareCardVariants.orders}
                     color={getMetricCardColor(1)}
                     cardIndex={1}
+                    showHoverTable={showHoverTable}
                   />
                   
                   <MetricCardSquare
@@ -508,6 +545,7 @@ const LandingPage: React.FC = () => {
                     design={squareCardVariants.customers}
                     color={getMetricCardColor(2)}
                     cardIndex={2}
+                    showHoverTable={showHoverTable}
                   />
                   
                   <MetricCardSquare
@@ -519,6 +557,7 @@ const LandingPage: React.FC = () => {
                     design="variant1"
                     color={getMetricCardColor(3)}
                     cardIndex={3}
+                    showHoverTable={showHoverTable}
                   />
                 </div>
               )}
