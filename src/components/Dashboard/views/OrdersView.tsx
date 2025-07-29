@@ -5,6 +5,7 @@ import CardTable from '../shared/CardTable';
 import CardChart from '../shared/CardChart';
 import MetricIcon from '../shared/MetricIcon';
 import { TableCard } from '../shared';
+import { ProgressLoader } from '../shared/ProgressLoader';
 
 interface OrdersViewProps {
   data: any;
@@ -34,6 +35,20 @@ const OrdersView: React.FC = () => {
     calculateTrendFromPrevious,
     updateDashboardState
   } = useOutletContext<OrdersViewProps>();
+
+  // Loading state check
+  if (!data || !data.metrics) {
+    return (
+      <div className="orders-view-loading">
+        <ProgressLoader 
+          progress={65} 
+          message="Loading Orders Data..." 
+          submessage="Fetching order metrics and performance data"
+          size={120}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="orders-view">
@@ -104,62 +119,102 @@ const OrdersView: React.FC = () => {
 
       {/* Order Performance Charts */}
       <div className="card-charts-grid">
-        <CardTable
-          id="agent-orders-table"
-          title="Most Orders (Sales Agent)"
-          subtitle="Top performing sales agents"
-          columns={[
-            { key: 'rank', label: '#', width: '10%' },
-            { key: 'name', label: 'Agent', width: '40%' },
-            { key: 'orderCount', label: 'Orders', align: 'right' },
-            { 
-              key: 'totalSales', 
-              label: 'Revenue', 
-              align: 'right',
-              format: (value) => `£${Math.round(value).toLocaleString()}`
-            }
-          ]}
-          data={agents.slice(0, 5).map((agent, index) => ({
-            ...agent,
-            rank: index + 1
-          }))}
-          maxRows={5}
-          showIndex={false}
-          highlightRows={true}
-        />
-
-        {dashboardState.chartDesign === 'table' ? (
-          <TableCard
-            id="brand-orders-chart"
-            title="Most Orders (Brands)"
-            subtitle="Orders distribution by brand"
-            data={brands.slice(0, 5).map(brand => ({
-              name: brand.name || 'Unknown',
-              value: brand.orderCount || 0,
-              subtext: `£${Math.round(brand.revenue || 0).toLocaleString()} revenue`
-            }))}
+        {agents && agents.length > 0 ? (
+          <CardTable
+            id="agent-orders-table"
+            title="Most Orders (Sales Agent)"
+            subtitle="Top performing sales agents"
             columns={[
-              { key: 'name', label: 'Brand Name' },
-              { key: 'value', label: 'Orders' }
+              { key: 'rank', label: '#', width: '10%' },
+              { key: 'name', label: 'Agent', width: '40%' },
+              { key: 'orderCount', label: 'Orders', align: 'right' },
+              { 
+                key: 'totalSales', 
+                label: 'Revenue', 
+                align: 'right',
+                format: (value) => `£${Math.round(value).toLocaleString()}`
+              }
             ]}
-            valueColor={(value) => '#22c55e'}
+            data={agents.slice(0, 5).map((agent, index) => ({
+              ...agent,
+              rank: index + 1
+            }))}
             maxRows={5}
+            showIndex={false}
+            highlightRows={true}
           />
         ) : (
-          <CardChart
-            id="brand-orders-chart"
-            title="Most Orders (Brands)"
-            subtitle="Orders distribution by brand"
-            data={brands.slice(0, 5).map(brand => ({
-              name: brand.name || 'Unknown',
-              value: brand.orderCount || 0
-            }))}
-            type="bar"
-            dataKey="value"
-            colors={getBarChartColors}
-            design={dashboardState.chartDesign}
-            height={280}
-          />
+          <div style={{ 
+            background: 'var(--bg-secondary, #1a2332)', 
+            borderRadius: '12px', 
+            padding: '2rem', 
+            textAlign: 'center',
+            minHeight: '280px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <ProgressLoader 
+              progress={55} 
+              message="Loading Agent Data..." 
+              submessage="Fetching sales agent performance"
+              size={80}
+            />
+          </div>
+        )}
+
+        {brands && brands.length > 0 ? (
+          dashboardState.chartDesign === 'table' ? (
+            <TableCard
+              id="brand-orders-chart"
+              title="Most Orders (Brands)"
+              subtitle="Orders distribution by brand"
+              data={brands.slice(0, 5).map(brand => ({
+                name: brand.name || 'Unknown',
+                value: brand.orderCount || 0,
+                subtext: `£${Math.round(brand.revenue || 0).toLocaleString()} revenue`
+              }))}
+              columns={[
+                { key: 'name', label: 'Brand Name' },
+                { key: 'value', label: 'Orders' }
+              ]}
+              valueColor={(value) => '#22c55e'}
+              maxRows={5}
+            />
+          ) : (
+            <CardChart
+              id="brand-orders-chart"
+              title="Most Orders (Brands)"
+              subtitle="Orders distribution by brand"
+              data={brands.slice(0, 5).map(brand => ({
+                name: brand.name || 'Unknown',
+                value: brand.orderCount || 0
+              }))}
+              type="bar"
+              dataKey="value"
+              colors={getBarChartColors}
+              design={dashboardState.chartDesign}
+              height={280}
+            />
+          )
+        ) : (
+          <div style={{ 
+            background: 'var(--bg-secondary, #1a2332)', 
+            borderRadius: '12px', 
+            padding: '2rem', 
+            textAlign: 'center',
+            height: '280px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <ProgressLoader 
+              progress={40} 
+              message="Loading Brand Orders..." 
+              submessage="Processing brand order data"
+              size={75}
+            />
+          </div>
         )}
       </div>
 
@@ -236,9 +291,24 @@ const OrdersView: React.FC = () => {
           </tbody>
         </table>
         
-        {(!data?.orders || data.orders.length === 0) && (
+        {!data?.orders ? (
+          <div style={{ 
+            padding: '3rem', 
+            textAlign: 'center',
+            background: 'var(--bg-secondary, #1a2332)',
+            borderRadius: '12px',
+            marginTop: '1rem'
+          }}>
+            <ProgressLoader 
+              progress={85} 
+              message="Loading Recent Orders..." 
+              submessage="Fetching latest order transactions"
+              size={100}
+            />
+          </div>
+        ) : data.orders.length === 0 ? (
           <EmptyState message="No orders found for the selected period" />
-        )}
+        ) : null}
       </div>
     </div>
   );

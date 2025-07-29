@@ -6,7 +6,7 @@ import CardTable from '../shared/CardTable';
 import FullGraph from '../shared/FullGraph';
 import { TableCard } from '../shared';
 import MetricIcon from '../shared/MetricIcon';
-import { ProgressLoader } from '../ProgressLoader';
+import { ProgressLoader } from '../shared/ProgressLoader';
 
 interface SalesAgentViewProps {
   data: any;

@@ -5,6 +5,7 @@ import MetricCardSquare from '../shared/MetricCardSquare';
 import CardChart from '../shared/CardChart';
 import FullGraph from '../shared/FullGraph';
 import MetricIcon from '../shared/MetricIcon';
+import { ProgressLoader } from '../shared/ProgressLoader';
 
 interface RevenueViewProps {
   data: any;
@@ -32,6 +33,20 @@ const RevenueView: React.FC = () => {
     getMetricCardColor,
     updateDashboardState
   } = useOutletContext<RevenueViewProps>();
+
+  // Loading state check
+  if (!data || !data.metrics) {
+    return (
+      <div className="revenue-view-loading">
+        <ProgressLoader 
+          progress={75} 
+          message="Loading Revenue Data..." 
+          submessage="Calculating revenue metrics and trends"
+          size={120}
+        />
+      </div>
+    );
+  }
 
   // Generate daily revenue trend data
   const dailyRevenueTrendData = React.useMemo(() => {
@@ -185,45 +200,96 @@ const RevenueView: React.FC = () => {
           />
         </div>
 
-        <FullGraph
-          id="revenue-by-agent"
-          title="Revenue by Agent"
-          subtitle="Performance comparison across sales team"
-          data={agents.map(agent => ({
-            name: agent.agentName,
-            revenue: Math.round(agent.totalRevenue)
-          }))}
-          type="bar"
-          lines={[{ dataKey: 'revenue', color: graphColors.primary, name: 'Revenue' }]}
-          showGrid={true}
-          height={400}
-        />
+        {agents && agents.length > 0 ? (
+          <FullGraph
+            id="revenue-by-agent"
+            title="Revenue by Agent"
+            subtitle="Performance comparison across sales team"
+            data={agents.map(agent => ({
+              name: agent.agentName || agent.name,
+              revenue: Math.round(agent.totalRevenue || agent.totalSales || 0)
+            }))}
+            type="bar"
+            lines={[{ dataKey: 'revenue', color: graphColors.primary, name: 'Revenue' }]}
+            showGrid={true}
+            height={400}
+          />
+        ) : (
+          <div style={{ padding: '2rem', textAlign: 'center' }}>
+            <ProgressLoader 
+              progress={45} 
+              message="Loading Agent Performance..." 
+              submessage="Analyzing sales team revenue data"
+              size={80}
+            />
+          </div>
+        )}
 
         <div className="card-charts-grid">
-          <CardChart
-            id="revenue-by-brand-bar"
-            title="Revenue by Brand"
-            subtitle="Brand contribution to total revenue"
-            data={brands.length > 0 ? brands.map(brand => ({
-              name: brand.name,
-              value: brand.revenue
-            })) : [{ name: 'No brand data', value: 0 }]}
-            type="bar"
-            dataKey="value"
-            colors={['#4daeac']}
-            height={300}
-          />
+          {brands && brands.length > 0 ? (
+            <CardChart
+              id="revenue-by-brand-bar"
+              title="Revenue by Brand"
+              subtitle="Brand contribution to total revenue"
+              data={brands.map(brand => ({
+                name: brand.name,
+                value: brand.revenue
+              }))}
+              type="bar"
+              dataKey="value"
+              colors={['#4daeac']}
+              height={300}
+            />
+          ) : (
+            <div style={{ 
+              background: 'var(--bg-secondary, #1a2332)', 
+              borderRadius: '12px', 
+              padding: '2rem', 
+              textAlign: 'center',
+              height: '300px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <ProgressLoader 
+                progress={35} 
+                message="Loading Brand Data..." 
+                submessage="Processing brand revenue metrics"
+                size={70}
+              />
+            </div>
+          )}
 
-          <CardChart
-            id="daily-revenue-trend"
-            title="Daily Revenue Trend"
-            subtitle="Last 30 days"
-            data={dailyRevenueTrendData}
-            type="area"
-            dataKey="value"
-            colors={['#79d5e9']}
-            height={300}
-          />
+          {dailyRevenueTrendData && dailyRevenueTrendData.length > 0 ? (
+            <CardChart
+              id="daily-revenue-trend"
+              title="Daily Revenue Trend"
+              subtitle="Last 30 days"
+              data={dailyRevenueTrendData}
+              type="area"
+              dataKey="value"
+              colors={['#79d5e9']}
+              height={300}
+            />
+          ) : (
+            <div style={{ 
+              background: 'var(--bg-secondary, #1a2332)', 
+              borderRadius: '12px', 
+              padding: '2rem', 
+              textAlign: 'center',
+              height: '300px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <ProgressLoader 
+                progress={60} 
+                message="Processing Revenue Trends..." 
+                submessage="Calculating daily revenue patterns"
+                size={70}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

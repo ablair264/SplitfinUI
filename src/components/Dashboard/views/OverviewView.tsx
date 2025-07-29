@@ -5,7 +5,7 @@ import CardChart from '../shared/CardChart';
 import CardTable from '../shared/CardTable';
 import FullGraph from '../shared/FullGraph';
 import { TableCard } from '../shared';
-import { ProgressLoader } from '../ProgressLoader';
+import { ProgressLoader } from '../shared/ProgressLoader';
 import MetricIcon from '../shared/MetricIcon';
 import MetricCardSquare from '../shared/MetricCardSquare';
 // import { useColors } from '../shared/ColorProvider'; // Removed - using props instead
