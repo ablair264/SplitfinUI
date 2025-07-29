@@ -495,7 +495,6 @@ const LandingPage: React.FC = () => {
                     trend={{ value: 5, isPositive: true }}
                     format="number"
                     design={squareCardVariants.orders}
-                    onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, orders: variant }))}
                     color={getMetricCardColor(1)}
                     cardIndex={1}
                   />
@@ -507,7 +506,6 @@ const LandingPage: React.FC = () => {
                     trend={{ value: 8, isPositive: true }}
                     format="number"
                     design={squareCardVariants.customers}
-                    onVariantChange={(variant) => setSquareCardVariants(prev => ({ ...prev, customers: variant }))}
                     color={getMetricCardColor(2)}
                     cardIndex={2}
                   />
@@ -522,54 +520,6 @@ const LandingPage: React.FC = () => {
                     color={getMetricCardColor(3)}
                     cardIndex={3}
                   />
-                  
-                  {metricDisplayMode === 'square' && (
-                    <>
-                      <MetricCardSquare
-                        id="demo-square-sessions"
-                        title="Sessions"
-                        value={2847}
-                        trend={{ value: 18, isPositive: true }}
-                        format="number"
-                        design="variant2"
-                        color={getMetricCardColor(4)}
-                        cardIndex={4}
-                      />
-                      
-                      <MetricCardSquare
-                        id="demo-square-retention"
-                        title="Retention"
-                        value={78.5}
-                        trend={{ value: 6, isPositive: true }}
-                        format="percentage"
-                        design="variant3"
-                        color={getMetricCardColor(5)}
-                        cardIndex={5}
-                      />
-                      
-                      <MetricCardSquare
-                        id="demo-square-bounce"
-                        title="Bounce Rate"
-                        value={32.4}
-                        trend={{ value: 4, isPositive: false }}
-                        format="percentage"
-                        design="variant1"
-                        color={getMetricCardColor(6)}
-                        cardIndex={6}
-                      />
-                      
-                      <MetricCardSquare
-                        id="demo-square-ltv"
-                        title="LTV"
-                        value={485}
-                        trend={{ value: 12, isPositive: true }}
-                        format="currency"
-                        design="variant2"
-                        color={getMetricCardColor(7)}
-                        cardIndex={7}
-                      />
-                    </>
-                  )}
                 </div>
               )}
             </ColorProvider>

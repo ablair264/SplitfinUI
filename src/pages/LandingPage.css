@@ -773,6 +773,7 @@
   gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
+  padding-top: 1rem; /* Add padding to accommodate badges */
 }
 
 .pricing-card {
@@ -783,6 +784,7 @@
   position: relative;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  margin-top: 20px; /* Add space for badge */
 }
 
 .pricing-card:hover {
@@ -795,7 +797,20 @@
   border-color: rgba(121, 213, 233, 0.5);
   background: rgba(121, 213, 233, 0.05);
   position: relative;
+  overflow: visible; /* Allow badge to be visible */
+}
+
+.pricing-card.featured::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
   overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .featured-glow {
@@ -806,6 +821,8 @@
   height: 200%;
   background: radial-gradient(circle, rgba(121, 213, 233, 0.1) 0%, transparent 70%);
   animation: rotate 20s linear infinite;
+  z-index: -1; /* Keep glow behind content */
+  pointer-events: none;
 }
 
 @keyframes rotate {

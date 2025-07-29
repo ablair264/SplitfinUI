@@ -107,10 +107,12 @@ const CardChart: React.FC<CardChartProps> = ({
                 color: '#a0a0a0',
                 paddingTop: '10px'
               }}
-              formatter={(value, entry, index) => [
-                <span style={{ color: colors[index % colors.length] }}>●</span>,
-                `${value}: ${chartData[index]?.[dataKey] || 0}`
-              ]}
+              formatter={(value, entry, index) => (
+                <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ color: colors[index % colors.length], fontSize: '16px' }}>●</span>
+                  {value}: {chartData[index]?.[dataKey] || 0}
+                </span>
+              )}
             />
           </PieChart>
         </ResponsiveContainer>
@@ -151,7 +153,7 @@ const CardChart: React.FC<CardChartProps> = ({
               }}
               labelStyle={{ color: '#a0a0a0' }}
             />
-            <Bar dataKey={dataKey} radius={[0, 4, 4, 0]}>
+            <Bar dataKey={dataKey} radius={[0, 4, 4, 0]} activeBar={false}>
               {chartData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
               ))}
@@ -271,10 +273,10 @@ const CardChart: React.FC<CardChartProps> = ({
                 }}
                 labelStyle={{ color: '#a0a0a0' }}
               />
-              <Bar dataKey={dataKey} radius={[6, 6, 0, 0]}>
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-                ))}
+              <Bar dataKey={dataKey} radius={[6, 6, 0, 0]} activeBar={false}>
+              {chartData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+              ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>

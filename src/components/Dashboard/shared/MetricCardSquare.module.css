@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  overflow: hidden; /* Keep hidden but allow children to overflow */
+  overflow: hidden; /* Keep edges clean */
   box-sizing: border-box;
 }
 
@@ -208,7 +208,10 @@
   border-radius: inherit;
   pointer-events: none;
   overflow: hidden;
-  max-height: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  padding-top: 80px; /* Space for header and value */
+  box-sizing: border-box;
 }
 
 /* Apply variant-specific styles to table view */
@@ -229,6 +232,7 @@
   font-size: 11px;
   overflow: hidden;
   height: 100%;
+  max-height: 180px; /* Ensure it fits within card */
 }
 
 .tableHeader {
@@ -261,9 +265,8 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: calc(100% - 60px);
+  overflow: hidden;
+  max-height: 140px; /* Limited height to fit in card */
   padding-right: 4px;
 }
 

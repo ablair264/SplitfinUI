@@ -354,13 +354,7 @@ const MetricCardSquare: React.FC<MetricCardSquareProps> = ({
       </div>
       
       <div className={styles.tableView}>
-        <div style={{ position: 'absolute', top: '20px', right: '20px', zIndex: 30 }}>
-          {renderVariantSelector()}
-        </div>
-        
-        <div style={{ marginTop: '50px' }}>
-          {renderTable()}
-        </div>
+        {renderTable()}
       </div>
     </div>
   );
