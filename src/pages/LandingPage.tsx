@@ -121,11 +121,11 @@ const LandingPage: React.FC = () => {
             {isMobile && (
               <>
                 <Link to="/demo" className="nav-button-mobile" onClick={() => setIsMenuOpen(false)}>
-                  <MetricIcon name="play" size={20} color="var(--accent-primary)" />
+                  <MetricIcon name="eye" size={20} color="var(--accent-primary)" />
                   <span>Live Demo</span>
                 </Link>
                 <a href="#pricing" className="nav-button-mobile secondary" onClick={() => setIsMenuOpen(false)}>
-                  <MetricIcon name="tag" size={20} color="var(--text-primary)" />
+                  <MetricIcon name="dollar-sign" size={20} color="var(--text-primary)" />
                   <span>View Pricing</span>
                 </a>
               </>
