@@ -69,6 +69,7 @@ const CardChart: React.FC<CardChartProps> = ({
       name: item.name || 'Unknown'
     }));
   }, [data, type, design, dataKey]);
+
   const renderChart = () => {
 
     // Handle pie design for any chart type
@@ -90,6 +91,7 @@ const CardChart: React.FC<CardChartProps> = ({
               ))}
             </Pie>
             <Tooltip
+              cursor={false}
               contentStyle={{
                 background: '#1a1f2a',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -109,7 +111,6 @@ const CardChart: React.FC<CardChartProps> = ({
               }}
               formatter={(value, entry, index) => (
                 <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: colors[index % colors.length], fontSize: '16px' }}>●</span>
                   {value}: {chartData[index]?.[dataKey] || 0}
                 </span>
               )}
@@ -145,6 +146,7 @@ const CardChart: React.FC<CardChartProps> = ({
               width={80}
             />
             <Tooltip
+              cursor={false}
               contentStyle={{
                 background: '#1a1f2a',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -153,7 +155,14 @@ const CardChart: React.FC<CardChartProps> = ({
               }}
               labelStyle={{ color: '#a0a0a0' }}
             />
-            <Bar dataKey={dataKey} radius={[0, 4, 4, 0]} activeBar={false}>
+            <Bar 
+              dataKey={dataKey} 
+              radius={[0, 4, 4, 0]} 
+              activeBar={false}
+              isAnimationActive={false}
+              onMouseEnter={null}
+              onMouseLeave={null}
+            >
               {chartData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
               ))}
@@ -190,6 +199,7 @@ const CardChart: React.FC<CardChartProps> = ({
                 tickFormatter={(value) => `${value}`}
               />
               <Tooltip
+                cursor={false}
                 contentStyle={{
                   background: '#1a1f2a',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -227,6 +237,7 @@ const CardChart: React.FC<CardChartProps> = ({
                 axisLine={false}
               />
               <Tooltip
+                cursor={false}
                 contentStyle={{
                   background: '#1a1f2a',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -265,6 +276,7 @@ const CardChart: React.FC<CardChartProps> = ({
                 axisLine={false}
               />
               <Tooltip
+                cursor={false}
                 contentStyle={{
                   background: '#1a1f2a',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -273,10 +285,17 @@ const CardChart: React.FC<CardChartProps> = ({
                 }}
                 labelStyle={{ color: '#a0a0a0' }}
               />
-              <Bar dataKey={dataKey} radius={[6, 6, 0, 0]} activeBar={false}>
-              {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-              ))}
+              <Bar 
+                dataKey={dataKey} 
+                radius={[6, 6, 0, 0]} 
+                activeBar={false}
+                isAnimationActive={false}
+                onMouseEnter={null}
+                onMouseLeave={null}
+              >
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
@@ -302,6 +321,7 @@ const CardChart: React.FC<CardChartProps> = ({
                 ))}
               </Pie>
               <Tooltip
+                cursor={false}
                 contentStyle={{
                   background: '#1a1f2a',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -335,6 +355,7 @@ const CardChart: React.FC<CardChartProps> = ({
                 fill={colors[0]}
               />
               <Tooltip
+                cursor={false}
                 contentStyle={{
                   background: '#1a1f2a',
                   border: '1px solid rgba(255, 255, 255, 0.1)',

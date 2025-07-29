@@ -175,3 +175,56 @@
     gap: 16px;
   }
 }
+
+/* Add this to your CardChart.module.css to completely disable bar hover effects */
+
+/* Disable all Recharts hover effects - most aggressive approach */
+.cardChartContainer :global(.recharts-bar-rectangle) {
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+.cardChartContainer :global(.recharts-bar-rectangle:hover) {
+  filter: none !important;
+  opacity: 1 !important;
+  background: none !important;
+  fill: inherit !important;
+}
+
+/* Disable active bar styling */
+.cardChartContainer :global(.recharts-active-bar) {
+  filter: none !important;
+  opacity: 1 !important;
+  background: none !important;
+}
+
+/* Target all possible bar elements */
+.cardChartContainer :global(.recharts-rectangle) {
+  pointer-events: none !important;
+}
+
+.cardChartContainer :global(.recharts-rectangle:hover) {
+  filter: none !important;
+  opacity: 1 !important;
+  background: none !important;
+  fill: inherit !important;
+}
+
+/* Override any background or fill changes on hover */
+.cardChartContainer :global(.recharts-bar) {
+  pointer-events: none !important;
+}
+
+.cardChartContainer :global(.recharts-bar:hover) {
+  background: none !important;
+  fill: inherit !important;
+}
+
+/* Allow tooltip to still work by re-enabling pointer events on the chart container */
+.cardChartContainer :global(.recharts-wrapper) {
+  pointer-events: auto !important;
+}
+
+.cardChartContainer :global(.recharts-surface) {
+  pointer-events: auto !important;
+}
