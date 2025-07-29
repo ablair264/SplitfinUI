@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, ComponentType } from 'react';
-import { ProgressLoader } from '../components/Dashboard/ProgressLoader';
+import { ProgressLoader } from '../components/Dashboard/shared/ProgressLoader';
 
 interface RetryState {
   hasError: boolean;
