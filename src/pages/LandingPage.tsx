@@ -21,6 +21,7 @@ import '../components/Dashboard/shared/MetricCardSquare.module.css';
 const LandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   // State for interactive demo components
   const [selectedColor, setSelectedColor] = useState<'primary' | 'secondary' | 'tertiary' | 'fourth' | 'fifth' | 'sixth' | 'seventh' | 'eighth' | 'ninth' | 'tenth' | 'eleventh' | 'multicolored'>('primary');
@@ -69,6 +70,36 @@ const LandingPage: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (isMenuOpen && !(e.target as HTMLElement).closest('.nav-menu') && 
+          !(e.target as HTMLElement).closest('.nav-toggle')) {
+        setIsMenuOpen(false);
+      }
+    };
+    if (isMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   return (
     <div className="landing-page">
       {/* Animated background layers from login - enhanced for landing page */}
@@ -83,10 +114,22 @@ const LandingPage: React.FC = () => {
           </Link>
           
           <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-            <a href="#components" className="nav-link">Components</a>
-            <a href="#features" className="nav-link">Features</a>
-            <a href="#pricing" className="nav-link">Pricing</a>
-            <a href="/documentation" className="nav-link" target="_blank">Documentation</a>
+            <a href="#components" className="nav-link" onClick={() => setIsMenuOpen(false)}>Components</a>
+            <a href="#features" className="nav-link" onClick={() => setIsMenuOpen(false)}>Features</a>
+            <a href="#pricing" className="nav-link" onClick={() => setIsMenuOpen(false)}>Pricing</a>
+            <a href="/documentation" className="nav-link" target="_blank" onClick={() => setIsMenuOpen(false)}>Documentation</a>
+            {isMobile && (
+              <>
+                <Link to="/demo" className="nav-button-mobile" onClick={() => setIsMenuOpen(false)}>
+                  <MetricIcon name="play" size={20} color="var(--accent-primary)" />
+                  <span>Live Demo</span>
+                </Link>
+                <a href="#pricing" className="nav-button-mobile secondary" onClick={() => setIsMenuOpen(false)}>
+                  <MetricIcon name="tag" size={20} color="var(--text-primary)" />
+                  <span>View Pricing</span>
+                </a>
+              </>
+            )}
           </div>
           
           <button 
@@ -110,7 +153,7 @@ const LandingPage: React.FC = () => {
               <span className="badge-text">Premium React UI Kit</span>
             </div>
             
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)' }}>
+            <h1 className="hero-title">
               React Based Dashboard Components &
               <span className="title-gradient"> Template</span> with Customer Management Modules.
             </h1>
@@ -172,10 +215,10 @@ const LandingPage: React.FC = () => {
               className="hero-logo"
               style={{
                 width: '100%',
-                maxWidth: '400px',
+                maxWidth: isMobile ? '300px' : '400px',
                 height: 'auto',
                 filter: 'brightness(1.1) drop-shadow(0 25px 50px rgba(121, 213, 233, 0.3))',
-                animation: 'gentleFloat 20s ease-in-out infinite'
+                animation: isMobile ? 'none' : 'gentleFloat 20s ease-in-out infinite'
               }}
             />
             <div className="dashboard-glow"></div>
@@ -199,25 +242,40 @@ const LandingPage: React.FC = () => {
             <div className="demo-controls" style={{
               display: 'flex',
               justifyContent: 'center',
-              gap: '2rem',
+              gap: isMobile ? '1rem' : '2rem',
               marginBottom: '2rem',
-              padding: '1.5rem',
+              padding: isMobile ? '1rem' : '1.5rem',
               background: 'rgba(20, 28, 38, 0.95)',
               borderRadius: '12px',
               border: '1px solid rgba(255, 255, 255, 0.1)',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
               backdropFilter: 'blur(10px)',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
+              flexDirection: isMobile ? 'column' : 'row'
             }}>
               {/* Color Theme Selector */}
-              <div className="dark-theme-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: '500' }}>COLOR THEME</span>
+              <div className="dark-theme-wrapper" style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '1rem',
+                width: isMobile ? '100%' : 'auto',
+                flexDirection: isMobile ? 'column' : 'row'
+              }}>
+                <span style={{ 
+                  color: 'var(--text-secondary)', 
+                  fontSize: '0.875rem', 
+                  fontWeight: '500',
+                  marginBottom: isMobile ? '0.5rem' : '0'
+                }}>COLOR THEME</span>
                 <div style={{
                   display: 'flex',
                   gap: '0.5rem',
                   padding: '0.25rem',
                   background: 'rgba(0, 0, 0, 0.3)',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  flexWrap: isMobile ? 'wrap' : 'nowrap',
+                  justifyContent: 'center',
+                  maxWidth: isMobile ? '100%' : 'none'
                 }}>
                   {Object.entries(colorMap).map(([key, color]) => (
                     <button
@@ -252,8 +310,19 @@ const LandingPage: React.FC = () => {
               </div>
               
               {/* Display Mode Selector */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: '500' }}>DISPLAY MODE</span>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '1rem',
+                width: isMobile ? '100%' : 'auto',
+                flexDirection: isMobile ? 'column' : 'row'
+              }}>
+                <span style={{ 
+                  color: 'var(--text-secondary)', 
+                  fontSize: '0.875rem', 
+                  fontWeight: '500',
+                  marginBottom: isMobile ? '0.5rem' : '0'
+                }}>DISPLAY MODE</span>
                 <div style={{
                   display: 'flex',
                   gap: '0.5rem',
@@ -266,13 +335,13 @@ const LandingPage: React.FC = () => {
                       key={mode}
                       onClick={() => setMetricDisplayMode(mode.toLowerCase() as any)}
                       style={{
-                        padding: '0.5rem 1rem',
+                        padding: isMobile ? '0.4rem 0.8rem' : '0.5rem 1rem',
                         borderRadius: '6px',
                         background: metricDisplayMode === mode.toLowerCase() ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
                         border: 'none',
                         color: metricDisplayMode === mode.toLowerCase() ? 'white' : 'var(--text-secondary)',
                         cursor: 'pointer',
-                        fontSize: '0.875rem',
+                        fontSize: isMobile ? '0.75rem' : '0.875rem',
                         fontWeight: '500',
                         transition: 'all 0.2s ease'
                       }}
@@ -285,8 +354,19 @@ const LandingPage: React.FC = () => {
               
               {/* Hover Table Toggle - Only show when Square mode is selected */}
               {metricDisplayMode === 'square' && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: '500' }}>HOVER TABLE</span>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '1rem',
+                  width: isMobile ? '100%' : 'auto',
+                  flexDirection: isMobile ? 'column' : 'row'
+                }}>
+                  <span style={{ 
+                    color: 'var(--text-secondary)', 
+                    fontSize: '0.875rem', 
+                    fontWeight: '500',
+                    marginBottom: isMobile ? '0.5rem' : '0'
+                  }}>HOVER TABLE</span>
                   <button
                     onClick={() => setShowHoverTable(!showHoverTable)}
                     style={{
@@ -507,10 +587,11 @@ const LandingPage: React.FC = () => {
               {(metricDisplayMode === 'square' || metricDisplayMode === 'all') && (
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(4, 1fr)',
-                  gap: '1rem',
+                  gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
+                  gap: isMobile ? '0.75rem' : '1rem',
                   marginBottom: '3rem',
-                  overflowX: 'auto'
+                  overflowX: 'auto',
+                  paddingBottom: isMobile ? '0.5rem' : '0'
                 }}>
                   <MetricCardSquare
                     id="demo-square-revenue"
@@ -608,16 +689,20 @@ const LandingPage: React.FC = () => {
               <div style={{
                 display: 'flex',
                 justifyContent: 'center',
-                gap: '1rem',
-                marginBottom: '2rem'
+                gap: isMobile ? '0.5rem' : '1rem',
+                marginBottom: '2rem',
+                flexWrap: 'wrap'
               }}>
                 <div style={{
                   display: 'flex',
-                  gap: '0.5rem',
-                  padding: '0.5rem',
+                  gap: isMobile ? '0.25rem' : '0.5rem',
+                  padding: isMobile ? '0.25rem' : '0.5rem',
                   background: 'rgba(0, 0, 0, 0.3)',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  flexWrap: isMobile ? 'wrap' : 'nowrap',
+                  width: isMobile ? '100%' : 'auto',
+                  justifyContent: 'center'
                 }}>
                   <button
                     onClick={() => setChartType('table')}
@@ -688,16 +773,17 @@ const LandingPage: React.FC = () => {
               
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(400px, 1fr))',
                 gap: '1.5rem',
                 maxWidth: '900px',
-                margin: '0 auto'
+                margin: '0 auto',
+                padding: isMobile ? '0 1rem' : '0'
               }}>
                 {chartType === 'table' ? (
                   <div style={{
                     background: 'rgba(20, 28, 38, 0.95)',
                     borderRadius: '12px',
-                    padding: '1.5rem',
+                    padding: isMobile ? '1rem' : '1.5rem',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
                   }}>
@@ -927,7 +1013,7 @@ const LandingPage: React.FC = () => {
             <div className="showcase-item" style={{ marginBottom: '4rem' }}>
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(400px, 1fr))',
                 gap: '1.5rem'
               }}>
                 <CardTable

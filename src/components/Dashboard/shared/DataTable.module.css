@@ -604,6 +604,252 @@
   }
 }
 
+/* Mobile-specific styles with media queries (fallback for browsers without container query support) */
+@media (max-width: 768px) {
+  .dataTableContainer {
+    border-radius: 12px;
+    overflow: visible;
+  }
+  
+  /* Make table horizontally scrollable on mobile */
+  .dataTable {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: visible;
+  }
+  
+  /* Ensure minimum width for proper scrolling */
+  .tableRow {
+    min-width: 600px;
+  }
+  
+  /* Sticky first column for mobile */
+  .tableRow .tableCell:first-child {
+    position: sticky;
+    left: 0;
+    background: #1a1f2a;
+    z-index: 2;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Header sticky positioning */
+  .tableHeader {
+    position: sticky;
+    top: 0;
+    z-index: 11;
+    background: #1a1f2a;
+  }
+  
+  .headerCell:first-child {
+    position: sticky;
+    left: 0;
+    background: #1a1f2a;
+    z-index: 12;
+  }
+  
+  /* Adjust cell padding for mobile */
+  .headerCell,
+  .tableCell {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  /* Status badge mobile adjustments */
+  .statusBadge {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+  
+  /* Action buttons mobile layout */
+  .actionButtons {
+    gap: 6px;
+  }
+  
+  .actionBtn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  /* Empty state mobile */
+  .emptyState {
+    padding: 40px 16px;
+  }
+  
+  .emptyState .emptyIcon {
+    font-size: 36px;
+  }
+  
+  .emptyState h3 {
+    font-size: 16px;
+  }
+  
+  .emptyState p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dataTableContainer {
+    border-radius: 8px;
+  }
+  
+  /* Even smaller table rows on mobile */
+  .tableRow {
+    min-width: 500px;
+  }
+  
+  /* Smaller cells */
+  .headerCell,
+  .tableCell {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  
+  .headerCell {
+    font-size: 10px;
+  }
+  
+  /* Compact customer info */
+  .customerInfo .companyName {
+    font-size: 11px;
+  }
+  
+  /* Compact contact info */
+  .contactInfo .phone {
+    font-size: 11px;
+  }
+  
+  /* Smaller status badges */
+  .statusBadge {
+    padding: 2px 8px;
+    font-size: 10px;
+    border-radius: 14px;
+  }
+  
+  /* Compact action buttons */
+  .actionButtons {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .actionBtn {
+    padding: 5px 8px;
+    font-size: 11px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .actionBtn svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Empty state compact */
+  .emptyState {
+    padding: 30px 12px;
+  }
+  
+  .emptyState .emptyIcon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  
+  .emptyState h3 {
+    font-size: 14px;
+  }
+  
+  .emptyState p {
+    font-size: 12px;
+  }
+}
+
+/* Ultra-small screens */
+@media (max-width: 360px) {
+  /* Switch to card layout on very small screens */
+  .tableHeader {
+    display: none;
+  }
+  
+  .tableRow {
+    flex-direction: column;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    min-width: unset;
+  }
+  
+  .tableCell {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    position: static !important;
+  }
+  
+  .tableCell:last-child {
+    border-bottom: none;
+  }
+  
+  /* Add labels for card view */
+  .tableCell::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #8b8b8b;
+    font-size: 10px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  /* Full width elements in card view */
+  .customerInfo,
+  .contactInfo,
+  .statusBadge,
+  .actionButtons {
+    width: 100%;
+  }
+  
+  .actionButtons {
+    margin-top: 8px;
+  }
+  
+  .actionBtn {
+    flex: 1;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .tableRow.clickable:active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .actionBtn {
+    min-height: 44px;
+  }
+  
+  /* Increase tap target size */
+  .tableCell {
+    min-height: 44px;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+  .dataTableContainer {
+    max-height: 80vh;
+  }
+  
+  .tableBody {
+    max-height: calc(80vh - 100px);
+    overflow-y: auto;
+  }
+  
+  .headerCell,
+  .tableCell {
+    padding: 8px 12px;
+  }
+}
+
 /* Force remove all shadows from data tables globally */
 .dataTableContainer,
 [class*="dataTable"] {

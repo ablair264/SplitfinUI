@@ -57,6 +57,7 @@ function DataTable<T>({
                     key={column.key}
                     className={`${styles.tableCell} ${column.className || ''}`}
                     style={{ width: column.width }}
+                    data-label={column.header}
                   >
                     <div className={styles.skeletonText}></div>
                   </div>
@@ -109,6 +110,7 @@ function DataTable<T>({
                     key={column.key}
                     className={`${styles.tableCell} ${column.className || ''}`}
                     style={{ width: column.width }}
+                    data-label={column.header}
                   >
                     {column.render
                       ? column.render(item)

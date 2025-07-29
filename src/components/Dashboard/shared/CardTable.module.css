@@ -286,6 +286,11 @@
   .cardTableContainer {
     min-height: 240px;
     padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .cardTableHeader {
+    margin-bottom: 16px;
   }
   
   .tableTitle {
@@ -296,19 +301,140 @@
     font-size: 12px;
   }
   
+  .viewAllButton {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  /* Make table horizontally scrollable on mobile */
+  .cardTableContent {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+  
+  .cardTable {
+    min-width: 400px;
+  }
+  
   .cardTable th,
   .cardTable td {
-    padding: 8px 12px;
+    padding: 10px 12px;
     font-size: 12px;
   }
   
   .cardTable th {
     font-size: 11px;
+    position: sticky;
+    left: 0;
+    background: #1a1f2a;
+    z-index: 1;
+  }
+  
+  .cardTable th:first-child,
+  .cardTable td:first-child {
+    position: sticky;
+    left: 0;
+    background: #1a1f2a;
+    z-index: 1;
+  }
+  
+  /* Table content (non-table version) mobile styles */
+  .tableContent .tableRow {
+    padding: 10px 0;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  
+  .tableContent .tableRow .rank {
+    min-width: 24px;
+    font-size: 12px;
+  }
+  
+  .tableContent .tableRow .name {
+    font-size: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .tableContent .tableRow .value {
+    font-size: 12px;
+  }
+  
+  .tableContent .tableRow .subtext {
+    font-size: 11px;
+    padding-left: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardTableContainer {
+    padding: 12px;
+    min-height: 200px;
+  }
+  
+  .cardTableHeader {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .tableHeaderActions {
+    width: 100%;
+    justify-content: flex-end;
   }
   
   .viewAllButton {
-    padding: 4px 12px;
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .tableOptionsButton {
+    display: none;
+  }
+  
+  .cardTable th,
+  .cardTable td {
+    padding: 8px 10px;
     font-size: 11px;
+  }
+  
+  .cardTable th {
+    font-size: 10px;
+  }
+  
+  /* Mobile-specific table content adjustments */
+  .tableContent .tableRow {
+    padding: 8px 0;
+  }
+  
+  .tableContent .tableRow .rank {
+    font-size: 11px;
+  }
+  
+  .tableContent .tableRow .name {
+    font-size: 11px;
+  }
+  
+  .tableContent .tableRow .value {
+    font-size: 11px;
+  }
+  
+  .tableContent .tableRow .subtext {
+    font-size: 10px;
+    display: none; /* Hide subtext on very small screens */
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .cardTable tbody tr.clickable:active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .viewAllButton {
+    min-height: 44px;
   }
 }
 

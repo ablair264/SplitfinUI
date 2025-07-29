@@ -441,36 +441,158 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .squareCardsGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .metricCardSquare {
+    width: 100%;
+    height: 240px;
   }
 }
 
 @media (max-width: 768px) {
   .metricCardSquare {
     width: 100%;
-    max-width: 280px;
-    margin: 0 auto;
+    height: auto;
+    aspect-ratio: 1;
+    min-height: 160px;
+    max-height: 200px;
+    padding: 12px;
   }
   
   .squareCardsGrid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  /* Adjust header for mobile */
+  .cardHeader {
+    margin-bottom: 8px;
+    min-height: 24px;
+  }
+  
+  .cardTitle {
+    font-size: 10px;
+  }
+  
+  .cardValue {
+    font-size: clamp(20px, 6vw, 28px);
+    margin: 4px 0 8px 0;
+  }
+  
+  /* Smaller trend indicator */
+  .trendIndicator {
+    font-size: 10px;
+  }
+  
+  .trendIcon {
+    font-size: 10px;
+  }
+  
+  /* Touch-friendly variant selector */
+  .variantSelector {
+    /* Hide on mobile to save space */
+    display: none;
+  }
+  
+  /* Adjust table view for mobile */
+  .tableView {
+    padding: 12px;
+    padding-top: 50px;
+  }
+  
+  .tableContainer {
+    font-size: 10px;
+  }
+  
+  .tableRow {
+    padding: 4px 4px;
+  }
+  
+  .tableName {
+    font-size: 9px;
+  }
+  
+  .tableValue {
+    font-size: 9px;
+  }
+  
+  .tablePercentage {
+    font-size: 7px;
+  }
+  
+  /* Disable hover effects on mobile */
+  @media (hover: none) and (pointer: coarse) {
+    .metricCardSquare:hover .cardContent {
+      opacity: 1;
+    }
+    
+    .metricCardSquare:hover .tableView {
+      opacity: 0;
+    }
+    
+    .metricCardSquare:active {
+      transform: scale(0.98);
+      transition: transform 0.1s ease;
+    }
   }
 }
 
 @media (max-width: 480px) {
   .metricCardSquare {
-    height: 260px;
-    padding: 16px;
+    min-height: 140px;
+    max-height: 160px;
+    padding: 10px;
   }
   
   .cardValue {
-    font-size: 24px;
+    font-size: 18px;
   }
   
   .cardTitle {
-    font-size: 11px;
+    font-size: 9px;
+  }
+  
+  .squareCardsGrid {
+    gap: 8px;
+  }
+}
+
+/* Portrait mobile optimization */
+@media (max-width: 414px) and (orientation: portrait) {
+  .squareCardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0 8px;
+  }
+  
+  .metricCardSquare {
+    border-radius: 12px;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 600px) and (orientation: landscape) {
+  .squareCardsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  
+  .metricCardSquare {
+    height: auto;
+    min-height: 120px;
+    max-height: 140px;
+  }
+  
+  .cardValue {
+    font-size: 16px;
+  }
+  
+  /* Hide chart on landscape to save space */
+  .cardContent {
+    min-height: 60px;
   }
 }
