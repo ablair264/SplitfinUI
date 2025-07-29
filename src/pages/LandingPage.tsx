@@ -86,27 +86,6 @@ const LandingPage: React.FC = () => {
             <a href="#features" className="nav-link">Features</a>
             <a href="#pricing" className="nav-link">Pricing</a>
             <a href="/documentation" className="nav-link" target="_blank">Documentation</a>
-            
-            {/* Navigation buttons styled like MetricCard compact variant */}
-            <Link to="/demo" className="nav-button-compact">
-              <div className="nav-button-icon">
-                <span style={{ fontSize: '20px' }}>D</span>
-              </div>
-              <span className="nav-button-text">Live Demo</span>
-              <svg className="nav-button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
-            
-            <a href="#pricing" className="nav-button-compact">
-              <div className="nav-button-icon">
-                <span style={{ fontSize: '20px' }}>£</span>
-              </div>
-              <span className="nav-button-text">View Pricing</span>
-              <svg className="nav-button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
           </div>
           
           <button 
@@ -141,14 +120,29 @@ const LandingPage: React.FC = () => {
             </p>
             
             <div className="hero-actions">
-              <Link to="/demo" className="cta-button primary">
-                <span>Explore Live Demo</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {/* Navigation buttons styled like MetricCard compact variant */}
+              <Link to="/demo" className="hero-button-compact">
+                <div className="hero-button-icon">
+                  <span style={{ fontSize: '20px', fontWeight: 700 }}>D</span>
+                </div>
+                <div className="hero-button-content">
+                  <span className="hero-button-text">Live Demo</span>
+                </div>
+                <svg className="hero-button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </Link>
-              <a href="#pricing" className="cta-button secondary">
-                <span>View Pricing</span>
+              
+              <a href="#pricing" className="hero-button-compact">
+                <div className="hero-button-icon">
+                  <span style={{ fontSize: '20px', fontWeight: 700 }}>£</span>
+                </div>
+                <div className="hero-button-content">
+                  <span className="hero-button-text">View Pricing</span>
+                </div>
+                <svg className="hero-button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </a>
             </div>
             
@@ -581,37 +575,37 @@ const LandingPage: React.FC = () => {
             </ColorProvider>
             
             {/* Feature Boxes */}
-            <div className="features-grid" style={{ marginTop: '4rem', marginBottom: '4rem' }}>
+            <div className="features-grid features-4-col" style={{ marginTop: '4rem', marginBottom: '4rem' }}>
               <div className="feature-box">
                 <div className="feature-box-icon">
-                  <MetricIcon name="star" size={24} color="#79d5e9" />
+                  <MetricIcon name="trending-up" size={24} color="#79d5e9" />
                 </div>
-                <h3>Timeless aesthetics</h3>
-                <p>Build beautiful UIs with ease. Start with Google's Material Design, or create your own sophisticated theme.</p>
+                <h3>Real-time updates</h3>
+                <p>Live data visualization with smooth animations and automatic refresh intervals</p>
               </div>
               
               <div className="feature-box">
                 <div className="feature-box-icon">
-                  <MetricIcon name="settings" size={24} color="#799de9" />
+                  <MetricIcon name="bar-chart" size={24} color="#799de9" />
                 </div>
-                <h3>Intuitive customization</h3>
-                <p>Our components are as flexible as they are powerful. You always have full control over how they look and behave.</p>
+                <h3>Multiple chart types</h3>
+                <p>Area, line, and bar charts with variant selectors for different visualization styles</p>
               </div>
               
               <div className="feature-box">
                 <div className="feature-box-icon">
-                  <MetricIcon name="order" size={24} color="#79e9c5" />
+                  <MetricIcon name="settings" size={24} color="#79e9c5" />
                 </div>
-                <h3>Unrivaled documentation</h3>
-                <p>The answer to your problem can be found in our docs. How can we be so sure? Because our docs boast over 2,000 contributors.</p>
+                <h3>Fully customizable</h3>
+                <p>Change colors, formats, and layouts to match your brand perfectly</p>
               </div>
               
               <div className="feature-box">
                 <div className="feature-box-icon">
                   <MetricIcon name="users" size={24} color="#FF9F00" />
                 </div>
-                <h3>Dedicated to accessibility</h3>
-                <p>We believe in building for everyone. That's why accessibility is a high priority with every new feature we ship.</p>
+                <h3>Responsive design</h3>
+                <p>Optimized for all screen sizes with intelligent layout adjustments</p>
               </div>
             </div>
             
@@ -793,7 +787,7 @@ const LandingPage: React.FC = () => {
           </div>
           
           {/* Feature boxes for other components */}
-          <div className="features-grid" style={{ marginBottom: '3rem' }}>
+          <div className="features-grid features-4-col" style={{ marginBottom: '3rem' }}>
             <div className="feature-box">
               <div className="feature-box-icon">
                 <MetricIcon name="activity" size={24} color="#79d5e9" />
@@ -1004,7 +998,7 @@ const LandingPage: React.FC = () => {
             </h2>
           </div>
           
-          <div className="pricing-cards">
+          <div className="pricing-cards-3-col">
             <div className="pricing-card">
               <div className="price-badge">STARTER</div>
               <h3 className="price-title">Components Package</h3>
