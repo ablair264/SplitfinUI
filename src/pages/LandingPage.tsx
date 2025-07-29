@@ -584,7 +584,7 @@ const LandingPage: React.FC = () => {
             <div className="features-grid" style={{ marginTop: '4rem', marginBottom: '4rem' }}>
               <div className="feature-box">
                 <div className="feature-box-icon">
-                  <MetricIcon name="droplet" size={24} color="#79d5e9" />
+                  <MetricIcon name="star" size={24} color="#79d5e9" />
                 </div>
                 <h3>Timeless aesthetics</h3>
                 <p>Build beautiful UIs with ease. Start with Google's Material Design, or create your own sophisticated theme.</p>
@@ -600,7 +600,7 @@ const LandingPage: React.FC = () => {
               
               <div className="feature-box">
                 <div className="feature-box-icon">
-                  <MetricIcon name="file-text" size={24} color="#79e9c5" />
+                  <MetricIcon name="order" size={24} color="#79e9c5" />
                 </div>
                 <h3>Unrivaled documentation</h3>
                 <p>The answer to your problem can be found in our docs. How can we be so sure? Because our docs boast over 2,000 contributors.</p>
@@ -804,7 +804,7 @@ const LandingPage: React.FC = () => {
             
             <div className="feature-box">
               <div className="feature-box-icon">
-                <MetricIcon name="grid" size={24} color="#799de9" />
+                <MetricIcon name="bar-chart" size={24} color="#799de9" />
               </div>
               <h3>Data Tables</h3>
               <p>Sortable, searchable tables with pagination and bulk actions</p>
@@ -812,7 +812,7 @@ const LandingPage: React.FC = () => {
             
             <div className="feature-box">
               <div className="feature-box-icon">
-                <MetricIcon name="list" size={24} color="#79e9c5" />
+                <MetricIcon name="package" size={24} color="#79e9c5" />
               </div>
               <h3>Card Tables</h3>
               <p>Compact tables designed for dashboard cards with automatic truncation</p>
@@ -820,7 +820,7 @@ const LandingPage: React.FC = () => {
             
             <div className="feature-box">
               <div className="feature-box-icon">
-                <MetricIcon name="bar-chart-2" size={24} color="#FF9F00" />
+                <MetricIcon name="area-chart" size={24} color="#FF9F00" />
               </div>
               <h3>Export Ready</h3>
               <p>Export to PNG, SVG, CSV, and Excel with built-in functionality</p>
