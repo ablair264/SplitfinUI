@@ -1,11 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Login from '../components/Login/Login'
 
 const LoginDemo: React.FC = () => {
+  const navigate = useNavigate()
+
   const handleLogin = async (email: string, password: string) => {
     // Demo login simulation
     await new Promise(resolve => setTimeout(resolve, 1500))
-    alert(`Demo login successful! Email: ${email}`)
+    // Navigate to dashboard demo instead of showing alert
+    navigate('/dashboard-demo')
   }
 
   const handleSocialLogin = async (provider: string) => {

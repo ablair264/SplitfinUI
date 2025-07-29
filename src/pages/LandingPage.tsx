@@ -120,7 +120,7 @@ const LandingPage: React.FC = () => {
             <Link to="/documentation" className="nav-link" onClick={() => setIsMenuOpen(false)}>Documentation</Link>
             {isMobile && (
               <>
-                <Link to="/demo" className="nav-button-mobile" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/login-demo" className="nav-button-mobile" onClick={() => setIsMenuOpen(false)}>
                   <MetricIcon name="eye" size={20} color="var(--accent-primary)" />
                   <span>Live Demo</span>
                 </Link>
@@ -165,7 +165,7 @@ const LandingPage: React.FC = () => {
             
             <div className="hero-actions">
               {/* Navigation buttons styled like MetricCard compact variant */}
-              <Link to="/demo" className="hero-button-compact">
+              <Link to="/login-demo" className="hero-button-compact">
                 <div className="hero-button-icon">
                   <span style={{ fontSize: '20px', fontWeight: 700 }}>D</span>
                 </div>
@@ -1068,134 +1068,68 @@ const LandingPage: React.FC = () => {
         <div className="section-container">
           <div className="section-header">
             <h2 className="section-title">
-              Simple, Transparent Pricing
-              <span className="section-subtitle">Choose the package that fits your needs</span>
+              Complete UI Kit Package
+              <span className="section-subtitle">Everything you need to build professional dashboards</span>
             </h2>
           </div>
           
-          <div className="pricing-cards-3-col">
-            <div className="pricing-card">
-              <div className="price-badge">STARTER</div>
-              <h3 className="price-title">Components Package</h3>
-              <div className="price-amount">
-                <span className="currency">£</span>
-                <span className="amount">10</span>
-              </div>
-              <p className="price-description">Essential dashboard components for your project</p>
-              
-              <ul className="price-features">
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  MetricCard Components (3 variants)
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  CardChart Components
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  FullGraph Component
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  DataTable & CardTable
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Basic Documentation
-                </li>
-              </ul>
-              
-              <button className="price-button">
-                Get Components Package
-              </button>
-            </div>
-            
-            <div className="pricing-card">
-              <div className="price-badge">PROFESSIONAL</div>
-              <h3 className="price-title">Templates Package</h3>
-              <div className="price-amount">
-                <span className="currency">£</span>
-                <span className="amount">10</span>
-              </div>
-              <p className="price-description">Complete dashboard and management templates</p>
-              
-              <ul className="price-features">
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Full Dashboard Template
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Login Component
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Customer Management
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Google Maps Integration
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Layout Components
-                </li>
-              </ul>
-              
-              <button className="price-button">
-                Get Templates Package
-              </button>
-            </div>
-            
-            <div className="pricing-card featured">
-              <div className="price-badge featured">BEST VALUE</div>
+          <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+            <div className="pricing-card featured" style={{ maxWidth: '800px', width: '100%' }}>
               <div className="featured-glow"></div>
-              <h3 className="price-title">Everything Package</h3>
+              <h3 className="price-title">All Components</h3>
               <div className="price-amount">
                 <span className="currency">£</span>
                 <span className="amount">20</span>
               </div>
-              <p className="price-description">Complete UI kit with all components and templates</p>
+              <p className="price-description">Complete React UI kit with all components, templates, and features</p>
               
-              <ul className="price-features">
-                <li className="highlight">
+              <ul className="price-features" style={{ 
+                display: 'grid', 
+                gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', 
+                gap: '1rem',
+                alignItems: 'start'
+              }}>
+                <li>
                   <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Everything in Components
-                </li>
-                <li className="highlight">
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Everything in Templates
+                  Metric Card (Full, Compact & Square)
                 </li>
                 <li>
                   <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Full Source Code
+                  Card Chart
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Table Card & Data Table
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Dashboard Template
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Customer Management Module
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Login Page
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Full Comprehensive Documentation
                 </li>
                 <li>
                   <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
@@ -1207,18 +1141,12 @@ const LandingPage: React.FC = () => {
                   <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Priority Support
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
                   Commercial License
                 </li>
               </ul>
               
               <button className="price-button featured">
-                Get Everything - Save 50%
+                Get Complete Package
               </button>
             </div>
           </div>
@@ -1232,7 +1160,7 @@ const LandingPage: React.FC = () => {
             <h2>Ready to Build Amazing Dashboards?</h2>
             <p>Join hundreds of developers using Split UI</p>
             <div className="cta-actions">
-              <Link to="/demo" className="cta-button primary large">
+              <Link to="/login-demo" className="cta-button primary large">
                 Try Live Demo
               </Link>
               <a href="#pricing" className="cta-button secondary large">
@@ -1256,7 +1184,7 @@ const LandingPage: React.FC = () => {
               <a href="#components">Components</a>
               <a href="#features">Features</a>
               <a href="#pricing">Pricing</a>
-              <Link to="/demo">Live Demo</Link>
+              <Link to="/login-demo">Live Demo</Link>
             </div>
             <div className="footer-column">
               <h4>Support</h4>

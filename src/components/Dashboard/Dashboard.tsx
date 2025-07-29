@@ -135,6 +135,7 @@ interface DashboardProps {
   defaultDateRange?: string;
   autoRefresh?: boolean;
   refreshInterval?: number;
+  hideHeader?: boolean;
 }
 
 interface AIInsightModalState {
@@ -206,7 +207,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   theme = 'dark',
   defaultDateRange = '30_days',
   autoRefresh = false,
-  refreshInterval = 300000 // 5 minutes
+  refreshInterval = 300000, // 5 minutes
+  hideHeader = false
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -816,21 +818,23 @@ const Dashboard: React.FC<DashboardProps> = ({
     <div className={`dashboard-wrapper ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`} style={{ position: 'relative', minHeight: '100vh' }}>
       <div className="enhanced-dashboard brand-manager-view">
         {/* Dashboard Header */}
-        <DashboardHeader
-          title="Dashboard"
-          subtitle="Business Analytics Overview"
-          dateRange={dashboardState.dateRange}
-          onDateRangeChange={(value) => updateDashboardState({ dateRange: value })}
-          isEditMode={dashboardState.isEditMode}
-          onEditModeToggle={() => updateDashboardState({ isEditMode: !dashboardState.isEditMode })}
-          onRefresh={refresh}
-          metricDisplayMode={dashboardState.metricDisplayMode}
-          onMetricDisplayModeChange={(value) => updateDashboardState({ metricDisplayMode: value })}
-          barChartColors={dashboardState.barChartColors}
-          onBarChartColorsChange={(value) => updateDashboardState({ barChartColors: value })}
-          chartDesign={dashboardState.chartDesign}
-          onChartDesignChange={(value) => updateDashboardState({ chartDesign: value })}
-        />
+        {!hideHeader && (
+          <DashboardHeader
+            title="Dashboard"
+            subtitle="Business Analytics Overview"
+            dateRange={dashboardState.dateRange}
+            onDateRangeChange={(value) => updateDashboardState({ dateRange: value })}
+            isEditMode={dashboardState.isEditMode}
+            onEditModeToggle={() => updateDashboardState({ isEditMode: !dashboardState.isEditMode })}
+            onRefresh={refresh}
+            metricDisplayMode={dashboardState.metricDisplayMode}
+            onMetricDisplayModeChange={(value) => updateDashboardState({ metricDisplayMode: value })}
+            barChartColors={dashboardState.barChartColors}
+            onBarChartColorsChange={(value) => updateDashboardState({ barChartColors: value })}
+            chartDesign={dashboardState.chartDesign}
+            onChartDesignChange={(value) => updateDashboardState({ chartDesign: value })}
+          />
+        )}
         
         {/* Cache Status Component - Hidden (edit mode disabled) */}
 

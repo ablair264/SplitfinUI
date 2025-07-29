@@ -166,6 +166,7 @@
   background: transparent;
   border-bottom: 1px solid var(--layout-border);
   padding: 0 1.5rem;
+  margin-top: 2rem;
   flex-shrink: 0;
   position: sticky;
   top: 0;

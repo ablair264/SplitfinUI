@@ -93,6 +93,12 @@ const defaultNavigationSections: NavigationSection[] = [
     ]
   },
   {
+    id: 'pricing',
+    label: 'Pricing',
+    icon: <FaFileAlt />,
+    to: '/'
+  },
+  {
     id: 'settings',
     label: 'Settings',
     icon: <FaCog />,
@@ -410,6 +416,10 @@ export default function MasterLayout({
     }
   };
 
+  const handleHome = () => {
+    navigate('/');
+  };
+
 
 
   const handleSettingsActions = {
@@ -522,10 +532,11 @@ export default function MasterLayout({
           </button>
           <SettingsDropdown {...handleSettingsActions} />
           <button 
-            className="master-sidebar-action-btn logout-btn"
-            onClick={handleLogout}
+            className="master-sidebar-action-btn home-btn"
+            onClick={handleHome}
+            title="Back to Homepage"
           >
-            <FaPowerOff />
+            <FaHome />
           </button>
         </div>
 
