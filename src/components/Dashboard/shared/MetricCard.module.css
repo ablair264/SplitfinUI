@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible */
   min-width: 280px;
   box-sizing: border-box;
   width: 100%;
@@ -208,6 +208,7 @@
   height: 120px;
   position: relative;
   display: flex;
+  overflow: visible; /* Changed from default to visible */
 }
 
 .cardDateRange {
@@ -299,6 +300,17 @@
 .metricCardFull :global(.recharts-surface),
 .metricCardCompact :global(.recharts-surface) {
   overflow: visible;
+}
+
+/* Ensure responsive container doesn't clip content */
+.metricCardFull :global(.recharts-responsive-container),
+.metricCardCompact :global(.recharts-responsive-container) {
+  overflow: visible !important;
+}
+
+.metricCardFull :global(.recharts-wrapper),
+.metricCardCompact :global(.recharts-wrapper) {
+  overflow: visible !important;
 }
 
 .metricCardFull :global(.recharts-cartesian-axis-line),
@@ -423,13 +435,42 @@
   }
   
   .metricCardFull {
-    height: 220px;
+    height: auto;
+    min-height: 260px;
     padding: 16px;
     min-width: unset;
   }
   
+  /* Ensure proper spacing for mobile */
+  .cardHeader {
+    margin-bottom: 12px;
+  }
+  
   .cardValue {
     font-size: 32px;
+    margin: 12px 0;
+  }
+  
+  .cardSubtitle {
+    margin-bottom: 16px;
+  }
+  
+  /* Chart adjustments for mobile */
+  .cardChart {
+    height: 100px;
+    margin-top: auto;
+    margin-bottom: -8px; /* Compensate for padding */
+  }
+  
+  /* Date range should be visible */
+  .cardDateRange {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+  
+  /* Variant selector mobile optimization */
+  .variantSelector {
+    transform: scale(0.9);
   }
   
   .metricCardCompact {
@@ -440,6 +481,39 @@
   
   .compactValue {
     font-size: 24px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .metricCardFull {
+    min-height: 240px;
+    padding: 14px;
+  }
+  
+  .cardTitle {
+    font-size: 12px;
+  }
+  
+  .cardValue {
+    font-size: 28px;
+  }
+  
+  .cardSubtitle {
+    font-size: 12px;
+  }
+  
+  .cardChart {
+    height: 90px;
+  }
+  
+  .variantSelector {
+    transform: scale(0.85);
+  }
+  
+  .variantButton {
+    font-size: 9px;
+    min-width: 20px;
   }
 }
 

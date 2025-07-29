@@ -375,7 +375,7 @@ const CardChart: React.FC<CardChartProps> = ({
 
   const containerClasses = [
     styles.cardChartContainer,
-    type === 'pie' ? styles.pieChart : ''
+    (type === 'pie' || design === 'pie-with-legend') ? styles.pieChart : ''
   ].filter(Boolean).join(' ');
 
   return (

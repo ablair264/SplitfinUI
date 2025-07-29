@@ -117,7 +117,7 @@ const LandingPage: React.FC = () => {
             <a href="#components" className="nav-link" onClick={() => setIsMenuOpen(false)}>Components</a>
             <a href="#features" className="nav-link" onClick={() => setIsMenuOpen(false)}>Features</a>
             <a href="#pricing" className="nav-link" onClick={() => setIsMenuOpen(false)}>Pricing</a>
-            <a href="/documentation" className="nav-link" target="_blank" onClick={() => setIsMenuOpen(false)}>Documentation</a>
+            <Link to="/documentation" className="nav-link" onClick={() => setIsMenuOpen(false)}>Documentation</Link>
             {isMobile && (
               <>
                 <Link to="/demo" className="nav-button-mobile" onClick={() => setIsMenuOpen(false)}>
@@ -1260,7 +1260,7 @@ const LandingPage: React.FC = () => {
             </div>
             <div className="footer-column">
               <h4>Support</h4>
-              <a href="/documentation" target="_blank">Documentation</a>
+              <Link to="/documentation">Documentation</Link>
               <a href="#">Support Center</a>
               <a href="#">License</a>
             </div>

@@ -11,12 +11,12 @@
   min-height: 280px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible */
 }
 
 /* Pie chart specific padding */
 .cardChartContainer.pieChart .chartContent {
-  padding-bottom: 20px;
+  padding-bottom: 40px; /* Increased from 20px */
 }
 
 .cardChartContainer:hover {
@@ -77,11 +77,22 @@
   align-items: center;
   justify-content: center;
   min-height: 0;
+  overflow: visible; /* Add visible overflow */
+  padding-bottom: 10px; /* Add padding to prevent cutoff */
 }
 
 /* Recharts customization */
 .cardChartContainer :global(.recharts-surface) {
   overflow: visible;
+}
+
+/* Ensure responsive container doesn't clip content */
+.cardChartContainer :global(.recharts-responsive-container) {
+  overflow: visible !important;
+}
+
+.cardChartContainer :global(.recharts-wrapper) {
+  overflow: visible !important;
 }
 
 .cardChartContainer :global(.recharts-cartesian-grid line) {
@@ -146,8 +157,8 @@
 /* Responsive */
 @media (max-width: 768px) {
   .cardChartContainer {
-    min-height: 240px;
-    padding: 20px;
+    min-height: 300px; /* Increased from 240px */
+    padding: 16px; /* Reduced padding for mobile */
   }
   
   .chartTitle {
@@ -156,6 +167,21 @@
   
   .chartSubtitle {
     font-size: 12px;
+  }
+  
+  .cardChartHeader {
+    margin-bottom: 12px; /* Reduced margin */
+  }
+  
+  /* Ensure chart content has enough space */
+  .chartContent {
+    min-height: 200px;
+    padding-bottom: 20px;
+  }
+  
+  /* Pie chart mobile adjustments */
+  .cardChartContainer.pieChart .chartContent {
+    padding-bottom: 60px; /* Extra padding for legend */
   }
 }
 
