@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './DashboardHeader.module.css';
 
 interface DashboardHeaderProps {
@@ -32,6 +32,8 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   chartDesign = 'default',
   onChartDesignChange
 }) => {
+  const [showCustomization, setShowCustomization] = useState(false);
+
   return (
     <div className={styles.dashboardHeader}>
       <div className={styles.headerMain}>
@@ -54,137 +56,150 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <option value="all_time">All Time</option>
           </select>
 
+          {/* Edit Button */}
+          <button
+            onClick={() => setShowCustomization(!showCustomization)}
+            className={`${styles.iconButton} ${showCustomization ? styles.active : ''}`}
+            title="Customize Dashboard"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+          </button>
         </div>
       </div>
 
-      <div className={styles.customizationPanel}>
-        <div className={styles.instructionBox}>
-          <svg className={styles.infoIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-          </svg>
-          <span>Customize your dashboard appearance - Choose colors for metric cards and chart styles</span>
-        </div>
-
-        <div className={styles.customizationOptions}>
-          <div className={styles.editOption}>
-            <span className={styles.editLabel}>Card Style</span>
-            <div className={styles.toggleGroup}>
-              <button 
-                className={`${styles.toggleButton} ${metricDisplayMode === 'full' ? styles.active : ''}`}
-                onClick={() => onMetricDisplayModeChange?.('full')}
-              >
-                Full
-              </button>
-              <button 
-                className={`${styles.toggleButton} ${metricDisplayMode === 'compact' ? styles.active : ''}`}
-                onClick={() => onMetricDisplayModeChange?.('compact')}
-              >
-                Compact
-              </button>
-            </div>
+      {showCustomization && (
+        <div className={styles.customizationPanel}>
+          <div className={styles.instructionBox}>
+            <svg className={styles.infoIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span>Customize your dashboard appearance - Choose colors for metric cards and chart styles</span>
           </div>
 
-          <div className={styles.editOption}>
-            <span className={styles.editLabel}>Chart Type</span>
-            <div className={styles.toggleGroup}>
-              <button 
-                className={`${styles.toggleButton} ${chartDesign === 'table' ? styles.active : ''}`}
-                onClick={() => {
-                  onChartDesignChange?.('table');
-                  // Scroll to card charts section
-                  setTimeout(() => {
-                    const cardChartsSection = document.querySelector('#card-charts-section');
-                    if (cardChartsSection) {
-                      cardChartsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                  }, 100);
-                }}
-                title="Table View"
-              >
-                Table
-              </button>
-              <button 
-                className={`${styles.toggleButton} ${chartDesign === 'default' ? styles.active : ''}`}
-                onClick={() => {
-                  onChartDesignChange?.('default');
-                  // Scroll to card charts section
-                  setTimeout(() => {
-                    const cardChartsSection = document.querySelector('#card-charts-section');
-                    if (cardChartsSection) {
-                      cardChartsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                  }, 100);
-                }}
-                title="Bar Chart"
-              >
-                Bar
-              </button>
-              <button 
-                className={`${styles.toggleButton} ${chartDesign === 'horizontal-bars' ? styles.active : ''}`}
-                onClick={() => {
-                  onChartDesignChange?.('horizontal-bars');
-                  // Scroll to card charts section
-                  setTimeout(() => {
-                    const cardChartsSection = document.querySelector('#card-charts-section');
-                    if (cardChartsSection) {
-                      cardChartsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                  }, 100);
-                }}
-                title="Horizontal Bars"
-              >
-                Horizontal
-              </button>
-              <button 
-                className={`${styles.toggleButton} ${chartDesign === 'pie-with-legend' ? styles.active : ''}`}
-                onClick={() => {
-                  onChartDesignChange?.('pie-with-legend');
-                  // Scroll to card charts section
-                  setTimeout(() => {
-                    const cardChartsSection = document.querySelector('#card-charts-section');
-                    if (cardChartsSection) {
-                      cardChartsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                  }, 100);
-                }}
-                title="Pie Chart"
-              >
-                Pie
-              </button>
-            </div>
-          </div>
-
-          <div className={styles.editOption}>
-            <span className={styles.editLabel}>Color Theme</span>
-            <div className={styles.colorPicker}>
-              {[
-                { value: 'primary', color: '#79d5e9', label: 'Ocean Blue' },
-                { value: 'secondary', color: '#799de9', label: 'Sky Purple' },
-                { value: 'tertiary', color: '#79e9c5', label: 'Mint Green' },
-                { value: 'fourth', color: '#FF9F00', label: 'Sunset Orange' },
-                { value: 'fifth', color: '#C96868', label: 'Rose Pink' },
-                { value: 'multicolored', gradient: 'linear-gradient(to right, #79d5e9, #799de9, #79e9c5, #FF9F00)', label: 'Rainbow Mix' }
-              ].map((option) => (
-                <button
-                  key={option.value}
-                  className={`${styles.colorOption} ${barChartColors === option.value ? styles.active : ''}`}
-                  onClick={() => onBarChartColorsChange?.(option.value as any)}
+          <div className={styles.customizationOptions}>
+            <div className={styles.editOption}>
+              <span className={styles.editLabel}>Card Style</span>
+              <div className={styles.toggleGroup}>
+                <button 
+                  className={`${styles.toggleButton} ${metricDisplayMode === 'full' ? styles.active : ''}`}
+                  onClick={() => onMetricDisplayModeChange?.('full')}
                 >
-                  <span
-                    className={styles.colorDot}
-                    style={{ 
-                      background: option.gradient || option.color,
-                    }}
-                  />
-                  <span className={styles.colorLabel}>{option.label}</span>
+                  Full
                 </button>
-              ))}
+                <button 
+                  className={`${styles.toggleButton} ${metricDisplayMode === 'compact' ? styles.active : ''}`}
+                  onClick={() => onMetricDisplayModeChange?.('compact')}
+                >
+                  Compact
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.editOption}>
+              <span className={styles.editLabel}>Chart Type</span>
+              <div className={styles.toggleGroup}>
+                <button 
+                  className={`${styles.toggleButton} ${chartDesign === 'table' ? styles.active : ''}`}
+                  onClick={() => {
+                    onChartDesignChange?.('table');
+                    // Scroll to card charts section
+                    setTimeout(() => {
+                      const cardChartsSection = document.querySelector('#card-charts-section');
+                      if (cardChartsSection) {
+                        cardChartsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }, 100);
+                  }}
+                  title="Table View"
+                >
+                  Table
+                </button>
+                <button 
+                  className={`${styles.toggleButton} ${chartDesign === 'default' ? styles.active : ''}`}
+                  onClick={() => {
+                    onChartDesignChange?.('default');
+                    // Scroll to card charts section
+                    setTimeout(() => {
+                      const cardChartsSection = document.querySelector('#card-charts-section');
+                      if (cardChartsSection) {
+                        cardChartsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }, 100);
+                  }}
+                  title="Bar Chart"
+                >
+                  Bar
+                </button>
+                <button 
+                  className={`${styles.toggleButton} ${chartDesign === 'horizontal-bars' ? styles.active : ''}`}
+                  onClick={() => {
+                    onChartDesignChange?.('horizontal-bars');
+                    // Scroll to card charts section
+                    setTimeout(() => {
+                      const cardChartsSection = document.querySelector('#card-charts-section');
+                      if (cardChartsSection) {
+                        cardChartsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }, 100);
+                  }}
+                  title="Horizontal Bars"
+                >
+                  Horizontal
+                </button>
+                <button 
+                  className={`${styles.toggleButton} ${chartDesign === 'pie-with-legend' ? styles.active : ''}`}
+                  onClick={() => {
+                    onChartDesignChange?.('pie-with-legend');
+                    // Scroll to card charts section
+                    setTimeout(() => {
+                      const cardChartsSection = document.querySelector('#card-charts-section');
+                      if (cardChartsSection) {
+                        cardChartsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }, 100);
+                  }}
+                  title="Pie Chart"
+                >
+                  Pie
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.editOption}>
+              <span className={styles.editLabel}>Color Theme</span>
+              <div className={styles.colorPicker}>
+                {[
+                  { value: 'primary', color: '#79d5e9', label: 'Ocean Blue' },
+                  { value: 'secondary', color: '#799de9', label: 'Sky Purple' },
+                  { value: 'tertiary', color: '#79e9c5', label: 'Mint Green' },
+                  { value: 'fourth', color: '#FF9F00', label: 'Sunset Orange' },
+                  { value: 'fifth', color: '#C96868', label: 'Rose Pink' },
+                  { value: 'multicolored', gradient: 'linear-gradient(to right, #79d5e9, #799de9, #79e9c5, #FF9F00)', label: 'Rainbow Mix' }
+                ].map((option) => (
+                  <button
+                    key={option.value}
+                    className={`${styles.colorOption} ${barChartColors === option.value ? styles.active : ''}`}
+                    onClick={() => onBarChartColorsChange?.(option.value as any)}
+                  >
+                    <span
+                      className={styles.colorDot}
+                      style={{ 
+                        background: option.gradient || option.color,
+                      }}
+                    />
+                    <span className={styles.colorLabel}>{option.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

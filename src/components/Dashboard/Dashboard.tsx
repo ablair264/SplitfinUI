@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import CountUp from 'react-countup';
 import "./dashboard.css";
-import { ProgressLoader } from './ProgressLoader';
+import { ProgressLoader } from './shared/ProgressLoader';
 import MetricCard from './shared/MetricCard';
 import CardChart from './shared/CardChart';
 import CardTable from './shared/CardTable';

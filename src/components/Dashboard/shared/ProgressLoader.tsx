@@ -1,5 +1,7 @@
 // src/components/ProgressLoader.tsx
 import React, { useEffect, useState } from 'react';
+import Lottie from 'lottie-react';
+import loaderAnimation from '../../loader.json';
 import './ProgressLoader.css';
 
 interface ProgressLoaderProps {
@@ -37,13 +39,12 @@ export const ProgressLoader: React.FC<ProgressLoaderProps> = ({
   return (
     <div className="progress-loader-container">
       <div className="progress-loader-content">
-        {/* CSS-based spinner instead of Lottie */}
-        <div className="progress-spinner" style={{ width: size, height: size }}>
-          <div className="spinner-ring"></div>
-          <div className="spinner-ring"></div>
-          <div className="spinner-ring"></div>
-          <div className="spinner-ring"></div>
-        </div>
+        <Lottie 
+          animationData={loaderAnimation}
+          loop={true}
+          autoplay={true}
+          style={{ width: size, height: size }}
+        />
         <div className="progress-info">
           <h3 className={`progress-message progress-fade${fade ? ' in' : ' out'}`}>{displayMessage}</h3>
           {submessage && <p className="progress-submessage">{submessage}</p>}

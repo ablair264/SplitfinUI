@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Plus, Search, ShoppingCart, User, Eye } from 'lucide-react';
 import { MetricCard } from '../Dashboard/shared';
 import MetricIcon from '../Dashboard/shared/MetricIcon';
-import { ProgressLoader } from '../Dashboard/ProgressLoader';
+import { ProgressLoader } from '../Dashboard/shared/ProgressLoader';
 import styles from './CustomersManagement.module.css';
 import '../../styles/animations.css';
 

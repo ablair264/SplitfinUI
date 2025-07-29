@@ -210,6 +210,7 @@ const FullGraph: React.FC<FullGraphProps> = ({
             />
           )}
           <Tooltip
+            cursor={false}
             contentStyle={{
               background: '#1a1f2a',
               border: '1px solid rgba(255, 255, 255, 0.1)',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 import MetricCard from '../shared/MetricCard';
+import MetricCardSquare from '../shared/MetricCardSquare';
 import CardChart from '../shared/CardChart';
 import FullGraph from '../shared/FullGraph';
 import MetricIcon from '../shared/MetricIcon';
@@ -31,14 +32,6 @@ const RevenueView: React.FC = () => {
     getMetricCardColor,
     updateDashboardState
   } = useOutletContext<RevenueViewProps>();
-  const availableViews = [
-    { id: 'overview', label: 'Overview', icon: '📊' },
-    { id: 'orders', label: 'Orders', icon: '📦' },
-    { id: 'revenue', label: 'Revenue', icon: '💰' },
-    { id: 'invoices', label: 'Invoices', icon: '📄' },
-    { id: 'brands', label: 'Brands', icon: '🏷️' },
-    { id: 'forecasting', label: 'Forecasting', icon: '🔮' }
-  ];
 
   // Generate daily revenue trend data
   const dailyRevenueTrendData = React.useMemo(() => {
@@ -117,6 +110,78 @@ const RevenueView: React.FC = () => {
             icon={dashboardState.metricDisplayMode === 'compact' ? '🏆' : undefined}
             color={getMetricCardColor(2)}
             cardIndex={2}
+          />
+        </div>
+
+        {/* Revenue Period Cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+          <MetricCardSquare
+            id="weeklyRevenue"
+            title="Weekly Revenue"
+            value={(data?.metrics.totalRevenue || 0) / 4}
+            trend={{
+              value: 12,
+              isPositive: true
+            }}
+            chartData={chartDataCache.revenue.slice(-7)}
+            format="currency"
+            design={dashboardState.cardVariants?.weeklyRevenue || 'variant1'}
+            onVariantChange={(variant) => updateDashboardState?.({
+              cardVariants: { ...dashboardState.cardVariants, weeklyRevenue: variant }
+            })}
+            color={getMetricCardColor(0)}
+            cardIndex={0}
+          />
+          <MetricCardSquare
+            id="monthlyRevenue"
+            title="Monthly Revenue"
+            value={(data?.metrics.totalRevenue || 0)}
+            trend={{
+              value: 8,
+              isPositive: true
+            }}
+            chartData={chartDataCache.revenue}
+            format="currency"
+            design={dashboardState.cardVariants?.monthlyRevenue || 'variant2'}
+            onVariantChange={(variant) => updateDashboardState?.({
+              cardVariants: { ...dashboardState.cardVariants, monthlyRevenue: variant }
+            })}
+            color={getMetricCardColor(1)}
+            cardIndex={1}
+          />
+          <MetricCardSquare
+            id="quarterlyRevenue"
+            title="Quarterly Revenue"
+            value={(data?.metrics.totalRevenue || 0) * 3}
+            trend={{
+              value: 15,
+              isPositive: true
+            }}
+            chartData={chartDataCache.revenue}
+            format="currency"
+            design={dashboardState.cardVariants?.quarterlyRevenue || 'variant3'}
+            onVariantChange={(variant) => updateDashboardState?.({
+              cardVariants: { ...dashboardState.cardVariants, quarterlyRevenue: variant }
+            })}
+            color={getMetricCardColor(2)}
+            cardIndex={2}
+          />
+          <MetricCardSquare
+            id="yearlyRevenue"
+            title="Yearly Revenue"
+            value={(data?.metrics.totalRevenue || 0) * 12}
+            trend={{
+              value: 24,
+              isPositive: true
+            }}
+            chartData={chartDataCache.revenue}
+            format="currency"
+            design={dashboardState.cardVariants?.yearlyRevenue || 'variant1'}
+            onVariantChange={(variant) => updateDashboardState?.({
+              cardVariants: { ...dashboardState.cardVariants, yearlyRevenue: variant }
+            })}
+            color={getMetricCardColor(3)}
+            cardIndex={3}
           />
         </div>
 

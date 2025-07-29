@@ -59,9 +59,8 @@ const defaultNavigationSections: NavigationSection[] = [
     label: 'Dashboard',
     icon: <FaChartLine />,
     links: [
-      { to: '/dashboard', label: 'Overview', icon: <FaChartLine /> },
-      { to: '/dashboard/analytics', label: 'Analytics', icon: <FaChartLine /> },
-      { to: '/dashboard/reports', label: 'Reports', icon: <FaFileInvoice /> }
+      { to: '/dashboard/orders', label: 'Orders', icon: <FaClipboardList /> },
+      { to: '/dashboard/revenue', label: 'Revenue', icon: <FaChartLine /> }
     ]
   },
   {
@@ -70,8 +69,7 @@ const defaultNavigationSections: NavigationSection[] = [
     icon: <FaUsers />,
     links: [
       { to: '/customers/new', label: 'Add New Customer', icon: <FaPlus /> },
-      { to: '/customers', label: 'View All Customers', icon: <FaUsers /> },
-      { to: '/customers/map', label: 'Customer Map', icon: <FaMap /> }
+      { to: '/customers', label: 'View All Customers', icon: <FaUsers /> }
     ]
   },
   {

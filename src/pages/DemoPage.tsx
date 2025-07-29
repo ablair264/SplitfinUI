@@ -94,12 +94,6 @@ const DemoPage: React.FC = () => {
       title: 'Customers',
       icon: <FaUsers />
     },
-    {
-      id: 'map',
-      path: '/demo/map',
-      title: 'Customer Map',
-      icon: <FaMap />
-    }
   ]
 
   const currentDemo = demos.find(demo => location.pathname.startsWith(demo.path))
@@ -199,10 +193,8 @@ const DemoPage: React.FC = () => {
                   label: 'Dashboard',
                   icon: <FaChartLine />,
                   links: [
-                    { to: '/demo/dashboard', label: 'Overview', icon: <FaChartBar /> },
-                    { to: '/demo/dashboard/revenue', label: 'Revenue', icon: <FaDollarSign /> },
                     { to: '/demo/dashboard/orders', label: 'Orders', icon: <FaShoppingCart /> },
-                    { to: '/demo/dashboard/forecasting', label: 'Forecasting', icon: <FaChartLine /> }
+                    { to: '/demo/dashboard/revenue', label: 'Revenue', icon: <FaDollarSign /> }
                   ]
                 },
                 {
@@ -210,8 +202,7 @@ const DemoPage: React.FC = () => {
                   label: 'Customers',
                   icon: <FaUsers />,
                   links: [
-                    { to: '/demo/customers', label: 'View All Customers', icon: <FaUsers /> },
-                    { to: '/demo/map', label: 'Customer Map', icon: <FaMapMarkedAlt /> }
+                    { to: '/demo/customers', label: 'View All Customers', icon: <FaUsers /> }
                   ]
                 }
               ]}
@@ -248,8 +239,7 @@ const DemoPage: React.FC = () => {
                   label: 'Customers',
                   icon: <FaUsers />,
                   links: [
-                    { to: '/demo/customers', label: 'View All Customers', icon: <FaUsers /> },
-                    { to: '/demo/map', label: 'Customer Map', icon: <FaMapMarkedAlt /> }
+                    { to: '/demo/customers', label: 'View All Customers', icon: <FaUsers /> }
                   ]
                 }
               ]}
@@ -258,57 +248,6 @@ const DemoPage: React.FC = () => {
               enableBreadcrumbs={true}
             >
               <CustomersManagement customers={customers} />
-            </MasterLayout>
-          } />
-          
-          {/* Customer Map Demo - Full Screen */}
-          <Route path="map" element={
-            <MasterLayout
-              user={{
-                id: 'demo-user',
-                name: 'Demo User',
-                email: 'demo@splitui.com',
-                role: 'admin',
-                avatar: undefined,
-                initials: 'DU'
-              }}
-              navigationSections={[
-                {
-                  id: 'dashboard',
-                  label: 'Dashboard',
-                  icon: <FaChartLine />,
-                  to: '/demo/dashboard'
-                },
-                {
-                  id: 'customers',
-                  label: 'Customers',
-                  icon: <FaUsers />,
-                  links: [
-                    { to: '/demo/customers', label: 'View All Customers', icon: <FaUsers /> },
-                    { to: '/demo/map', label: 'Customer Map', icon: <FaMapMarkedAlt /> }
-                  ]
-                }
-              ]}
-              logoSrc="/splitui.png"
-              showThemeSelector={true}
-              enableBreadcrumbs={true}
-            >
-              <div style={{ height: 'calc(100vh - 100px)', width: '100%' }}>
-                <CustomerMapGoogle
-                  customers={customers.map(convertToMapCustomer)}
-                  googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}
-                  onViewCustomer={(mapCustomer) => {
-                    const customer = customers.find(c => c.id === mapCustomer.id);
-                    if (customer) {
-                      navigate('/demo/customers');
-                    }
-                  }}
-                  enableClustering={true}
-                  enableRegionFilter={true}
-                  enableInfoWindow={true}
-                  enableDirections={true}
-                />
-              </div>
             </MasterLayout>
           } />
         </Routes>
