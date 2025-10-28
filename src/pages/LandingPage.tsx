@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Paintbrush, Plus, Layout, Code2, ShoppingCart, TrendingUp, Zap, Monitor, MessageSquare, PenTool, CheckCircle2, Rocket, Check, ArrowRight } from 'lucide-react'
+import { Paintbrush, Plus, Layout, Code2, ShoppingCart, TrendingUp, Zap, Monitor, MessageSquare, PenTool, CheckCircle2, Rocket, Check, ArrowRight, Users, Award, Clock, HeartHandshake, Star, Phone, Mail, MapPin, Wrench } from 'lucide-react'
 import TiltedCard from '@/components/ui/TiltedCard'
 import Reveal from '@/components/Reveal'
 import BentoDemo from '@/components/BentoDemo'
@@ -140,14 +140,14 @@ const Footer: React.FC = () => {
                 <a href="/web-design" className="block mt-2 text-sm text-white/60 hover:underline">Web Design</a>
                 <a href="/web-development" className="block mt-2 text-sm text-white/60 hover:underline">Web Development</a>
                 <a href="/ecommerce" className="block mt-2 text-sm text-white/60 hover:underline">E‑Commerce</a>
-                <a href="/seo" className="block mt-2 text-sm text-white/60 hover:underline">SEO</a>
+                <a href="/website-maintenance" className="block mt-2 text-sm text-white/60 hover:underline">Website Maintenance</a>
                 <a href="/automation" className="block mt-2 text-sm text-white/60 hover:underline">Automation</a>
               </div>
               <div>
-                <h3 className="text-white uppercase">Products</h3>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Split UI</a>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Components</a>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Templates</a>
+                <h3 className="text-white uppercase">Services</h3>
+                <a href="/pc-repair" className="block mt-2 text-sm text-white/60 hover:underline">PC Repair</a>
+                <a href="/website-maintenance" className="block mt-2 text-sm text-white/60 hover:underline">Website Maintenance</a>
+                <a href="/automation" className="block mt-2 text-sm text-white/60 hover:underline">Automation</a>
               </div>
               <div>
                 <h3 className="text-white uppercase">Contact</h3>
@@ -174,12 +174,60 @@ const LandingPage: React.FC = () => {
   const [previewService, setPreviewService] = useState<number | null>(null);
   const hoverTimer = React.useRef<number | null>(null);
   const serviceCards = [
-    { Icon: Layout, title: 'Web Design', color: '#0ea5e9', copy: 'Bespoke, conversion‑focused designs for your brand.', details: ['Custom UI/UX design','Responsive layouts','Brand integration'], href: '/web-design' },
-    { Icon: Code2, title: 'Web Development', color: '#22c55e', copy: 'High‑performance builds with modern stacks.', details: ['React / Next.js','WordPress / PHP','API integration'], href: '/web-development' },
-    { Icon: ShoppingCart, title: 'E‑Commerce', color: '#f59e0b', copy: 'Shopify, WooCommerce and custom storefronts.', details: ['Payment integration','Inventory management','Secure checkout'], href: '/ecommerce' },
-    { Icon: TrendingUp, title: 'SEO Services', color: '#6366f1', copy: 'Technical, on‑page and content optimisation.', details: ['Keyword research','On‑page optimisation','Performance tracking'], href: '/seo' },
-    { Icon: Zap, title: 'Automation', color: '#a855f7', copy: 'Workflows and integrations that save time.', details: ['Process automation','Email marketing','Workflow integration'], href: '/automation' },
-    { Icon: Monitor, title: 'PC Repair', color: '#ef4444', copy: 'Diagnostics, upgrades and maintenance.', details: ['Hardware diagnostics','Software updates','Network setup'], href: '/pc-repair' },
+    {
+      Icon: Layout,
+      title: 'Web Design',
+      color: '#0ea5e9',
+      copy: 'Bespoke, conversion‑focused designs for your brand.',
+      longCopy: 'Bespoke, conversion‑focused designs crafted around your brand and goals. Every page is responsive, accessible, and built to convert.',
+      details: ['Custom UI/UX tailored to audience','Mobile‑first responsive layouts','Brand‑aligned visuals and typography','Clear calls‑to‑action that convert'],
+      href: '/web-design'
+    },
+    {
+      Icon: Code2,
+      title: 'Web Development',
+      color: '#22c55e',
+      copy: 'High‑performance builds with modern stacks.',
+      longCopy: 'Robust builds using modern stacks. We prioritise speed, maintainability and scalability so your site grows with your business.',
+      details: ['React/Next.js + TypeScript','WordPress custom themes/plugins','API integrations and automations','Performance and accessibility baked in'],
+      href: '/web-development'
+    },
+    {
+      Icon: ShoppingCart,
+      title: 'E‑Commerce',
+      color: '#f59e0b',
+      copy: 'Shopify, WooCommerce and custom storefronts.',
+      longCopy: 'Sell with confidence on Shopify, WooCommerce, or a custom storefront. Seamless checkout and optimised product pages included.',
+      details: ['Payments + shipping setup','Product/catalog management','Optimised PDP/PLP templates','Secure checkout and analytics'],
+      href: '/ecommerce'
+    },
+    {
+      Icon: Wrench,
+      title: 'Website Maintenance',
+      color: '#06b6d4',
+      copy: 'Updates, security, backups and proactive care.',
+      longCopy: 'Proactive care to keep your site fast, secure and up‑to‑date. We handle updates, security, backups and fixes before they become issues.',
+      details: ['Core/plugin/theme updates','Daily backups + quick restores','Security monitoring + patches','Performance checks and fixes'],
+      href: '/website-maintenance'
+    },
+    {
+      Icon: Zap,
+      title: 'Automation',
+      color: '#a855f7',
+      copy: 'Workflows and integrations that save time.',
+      longCopy: 'Connect tools and automate workflows to save time. From marketing automation to internal processes — less manual work, more results.',
+      details: ['CRM/email automation flows','No‑code/low‑code integrations','Back‑office process automation','Zapier/Make/API connectors'],
+      href: '/automation'
+    },
+    {
+      Icon: Monitor,
+      title: 'PC Repair',
+      color: '#ef4444',
+      copy: 'Diagnostics, upgrades and maintenance.',
+      longCopy: 'Diagnostics, upgrades and repairs for home and office setups. Get your devices running fast and reliably again.',
+      details: ['Hardware diagnostics + upgrades','OS cleanups and reinstalls','Network/Wi‑Fi troubleshooting','Data transfer and backups'],
+      href: '/pc-repair'
+    },
   ];
   return (
     <div className="landing-page">
@@ -267,7 +315,7 @@ const LandingPage: React.FC = () => {
                   {previewService !== null && (
                     <div className="h-full w-full">
                       <h3 className="text-white text-2xl font-semibold mb-2">{serviceCards[previewService].title}</h3>
-                      <p className="text-white/80 text-sm mb-4">{serviceCards[previewService].copy}</p>
+                      <p className="text-white/80 text-sm mb-4">{(serviceCards[previewService] as any).longCopy || serviceCards[previewService].copy}</p>
                       <ul className="text-white/85 text-sm space-y-2">
                         {serviceCards[previewService].details.map((d, idx) => (
                           <li key={idx} className="flex items-start gap-2"><Check size={16} className="text-[#79d5e9] mt-0.5" /><span>{d}</span></li>
@@ -284,6 +332,34 @@ const LandingPage: React.FC = () => {
 
       {/* Portfolio (Bento) */}
       <Reveal><BentoDemo /></Reveal>
+      
+       {/* Why Choose Us Section */}
+      <section id="why-choose" className="w-full flex flex-col items-center bg-[#79d5e908] px-6 py-24">
+        <Reveal className="w-full max-w-[1280px] flex flex-col items-center gap-4 mb-12">
+          <span className="text-[14px] font-semibold tracking-wider text-[#79d5e9] uppercase">Why Choose Us</span>
+          <h2 className="w-full max-w-[768px] text-[36px] md:text-[48px] font-bold leading-tight text-white text-center -tracking-[0.035em]">Your Trusted Web Partner</h2>
+          <p className="w-full max-w-[576px] text-[18px] leading-[26px] text-white/75 text-center">Over 15 years of experience delivering exceptional web solutions to businesses across the UK</p>
+        </Reveal>
+
+        <div className="w-full max-w-[1280px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { icon: Award, title: '15+ Years Experience', desc: 'Proven track record of successful projects', color: '#79d5e9' },
+            { icon: Users, title: '100+ Happy Clients', desc: 'Businesses trust us with their online presence', color: '#22c55e' },
+            { icon: Clock, title: 'Fast Turnaround', desc: 'Launch your website in weeks, not months', color: '#f59e0b' },
+            { icon: HeartHandshake, title: 'Ongoing Support', desc: '7 days a week support and maintenance', color: '#8b5cf6' },
+          ].map((item, i) => (
+            <Reveal key={i} delayMs={i * 100}>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-all duration-300 h-full">
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={{ background: `${item.color}33`, color: item.color }}>
+                  <item.icon size={24} />
+                </div>
+                <h3 className="text-white text-lg font-semibold mb-2">{item.title}</h3>
+                <p className="text-white/75 text-sm">{item.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
       {/* Final CTA */}
       <section id="cta" className="w-full flex flex-col items-center bg-[#79d5e90d] px-6 py-24">
@@ -335,118 +411,452 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Process */}
-      <section id="process" className="w-full flex flex-col items-center bg-[#79d5e908] px-6 py-24">
-        <div className="w-full max-w-[1280px] flex flex-col items-center gap-4">
-          <span className="text-[14px] font-semibold tracking-wider text-[#79d5e9] uppercase">Our Process</span>
-          <h2 className="w-full max-w-[768px] text-[36px] md:text-[48px] font-bold leading-tight text-white text-center -tracking-[0.035em]">From Concept to Launch</h2>
-          <p className="w-full max-w-[576px] text-[18px] leading-[26px] text-white/75 text-center">Our proven workflow ensures your project is delivered on time and exceeds expectations.</p>
-        </div>
-        <div className="w-full max-w-[768px] mt-10 flex flex-col gap-8">
-          {[
-            { icon: MessageSquare, t: '1. Discovery & Planning', d: 'We start by understanding your goals, target audience, and requirements. Together we create a detailed project plan and timeline.' },
-            { icon: PenTool, t: '2. Design & Prototype', d: 'We create stunning mockups and interactive prototypes that bring your vision to life before any code is written.' },
-            { icon: Code2, t: '3. Development', d: 'Our developers build your site with clean, efficient code optimized for performance and scalability.' },
-            { icon: CheckCircle2, t: '4. Testing & QA', d: 'Rigorous testing across devices and browsers ensures everything works flawlessly before launch.' },
-            { icon: Rocket, t: '5. Launch & Support', d: 'We handle deployment and provide ongoing support to keep your site running smoothly.' },
-          ].map(({ icon: Icon, t, d }, i, arr) => (
-            <Reveal key={i} delayMs={i * 120}>
-              <div className="flex items-start gap-6">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-lg bg-[#79d5e9] text-[#0f1419] flex items-center justify-center"><Icon size={22} /></div>
-                  {i < arr.length - 1 && <div className="h-24 w-px bg-[#79d5e94d]" />}
+  {/* Process Section - Journey Style */}
+      <section className="w-full bg-[#79d5e90d] px-6 py-24 overflow-hidden">
+        <div className="container mx-auto max-w-[1280px]">
+          <Reveal className="text-center mb-16">
+            <span className="text-[14px] font-semibold tracking-wider text-[#3b82f6] uppercase">Our Process</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">From Vision to Reality</h2>
+            <p className="text-white/75 text-lg mt-4 max-w-[700px] mx-auto">
+              A proven design process that delivers exceptional results
+            </p>
+          </Reveal>
+
+          {/* Desktop Journey Layout */}
+          <div className="hidden lg:block relative">
+            {/* Flowing Line SVG */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none" 
+              style={{ top: '50%', transform: 'translateY(-50%)' }}
+            >
+              <path
+                d="M 80 50 Q 280 20, 480 50 T 880 50 Q 1080 20, 1280 50"
+                fill="none"
+                stroke="url(#processGradient)"
+                strokeWidth="2"
+                strokeDasharray="8 8"
+                opacity="0.3"
+              />
+              <defs>
+                <linearGradient id="processGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
+                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            {/* Process Steps */}
+            <div className="relative flex justify-between items-center">
+              {[
+                { num: '01', title: 'Discovery', desc: 'Understanding your goals, audience, and requirements', Icon: MessageSquare, offset: 'translate-y-0' },
+                { num: '02', title: 'Design', desc: 'Creating stunning mockups and interactive prototypes', Icon: PenTool, offset: '-translate-y-12' },
+                { num: '03', title: 'Development', desc: 'Building with clean, efficient, optimized code', Icon: Code2, offset: 'translate-y-0' },
+                { num: '04', title: 'Testing', desc: 'Rigorous QA across devices and browsers', Icon: CheckCircle2, offset: '-translate-y-12' },
+                { num: '05', title: 'Launch', desc: 'Deployment and ongoing support for your success', Icon: Rocket, offset: 'translate-y-0' },
+              ].map((step, i) => (
+                <Reveal key={i} delayMs={i * 150}>
+                  <div className={`relative w-[220px] ${step.offset} transition-all duration-500`}>
+                    {/* Connection Dot */}
+                    <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 w-4 h-4 rounded-full bg-[#3b82f6] border-4 border-[#0f1419] shadow-lg shadow-[#3b82f6]/50 z-10" />
+                    
+                    {/* Card */}
+                    <div className="group rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 hover:border-[#3b82f6]/50 hover:shadow-xl hover:shadow-[#3b82f6]/10 transition-all duration-300 backdrop-blur-sm">
+                      {/* Number Badge */}
+                      <div className="absolute -top-4 -left-4 w-12 h-12 rounded-xl bg-gradient-to-br from-[#3b82f6] to-[#2563eb] flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-[#3b82f6]/30 group-hover:scale-110 transition-transform">
+                        {step.num}
+                      </div>
+                      
+                      {/* Icon */}
+                      <div className="w-14 h-14 rounded-xl bg-[#3b82f6]/10 text-[#3b82f6] flex items-center justify-center mb-4 mt-2 group-hover:bg-[#3b82f6]/20 group-hover:scale-110 transition-all">
+                        <step.Icon size={28} />
+                      </div>
+                      
+                      {/* Content */}
+                      <h3 className="text-white text-lg font-semibold mb-2">{step.title}</h3>
+                      <p className="text-white/70 text-sm leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile/Tablet Vertical Layout */}
+          <div className="lg:hidden space-y-8">
+            {[
+              { num: '01', title: 'Discovery', desc: 'Understanding your goals, audience, and requirements', Icon: MessageSquare },
+              { num: '02', title: 'Design', desc: 'Creating stunning mockups and interactive prototypes', Icon: PenTool },
+              { num: '03', title: 'Development', desc: 'Building with clean, efficient, optimized code', Icon: Code2 },
+              { num: '04', title: 'Testing', desc: 'Rigorous QA across devices and browsers', Icon: CheckCircle2 },
+              { num: '05', title: 'Launch', desc: 'Deployment and ongoing support for your success', Icon: Rocket },
+            ].map((step, i) => (
+              <Reveal key={i} delayMs={i * 100}>
+                <div className="relative">
+                  {/* Vertical Line */}
+                  {i < 4 && (
+                    <div className="absolute left-6 top-full w-0.5 h-8 bg-gradient-to-b from-[#3b82f6]/50 to-transparent" />
+                  )}
+                  
+                  {/* Card */}
+                  <div className="relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 hover:border-[#3b82f6]/50 transition-all duration-300">
+                    {/* Number Badge */}
+                    <div className="absolute -top-3 -left-3 w-12 h-12 rounded-xl bg-gradient-to-br from-[#3b82f6] to-[#2563eb] flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-[#3b82f6]/30">
+                      {step.num}
+                    </div>
+                    
+                    <div className="flex gap-4 items-start mt-2">
+                      {/* Icon */}
+                      <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#3b82f6]/10 text-[#3b82f6] flex items-center justify-center">
+                        <step.Icon size={28} />
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="flex-1">
+                        <h3 className="text-white text-xl font-semibold mb-2">{step.title}</h3>
+                        <p className="text-white/70 text-sm leading-relaxed">{step.desc}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="pt-2">
-                  <h3 className="text-white text-[22px] md:text-[24px] font-bold -tracking-[0.025em]">{t}</h3>
-                  <p className="text-white/75 text-[16px] leading-6 mt-2">{d}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="w-full flex flex-col items-center bg-[#0f1419] px-6 py-24">
+     {/* Pricing Section - Improved */}
+      <section id="pricing" className="w-full flex flex-col items-center bg-[#79d5e908] px-6 py-24">
         <Reveal className="w-full max-w-[1280px] flex flex-col items-center gap-4">
           <span className="text-[14px] font-semibold tracking-wider text-[#79d5e9] uppercase">Pricing</span>
-          <h2 className="w-full max-w-[768px] text-[36px] md:text-[48px] font-bold leading-tight text-white text-center -tracking-[0.035em]">Flexible Plans for Every Budget</h2>
-          <p className="w-full max-w-[576px] text-[18px] leading-[26px] text-white/75 text-center">Choose a package that fits your needs or contact us for a custom quote.</p>
-          <p className="w-full max-w-[768px] text-[16px] leading-[24px] text-white/70 text-center mt-2">Need ongoing maintenance, updates and support? Try our subscription model. From £39 a month.</p>
+          <h2 className="w-full max-w-[768px] text-[36px] md:text-[48px] font-bold leading-tight text-white text-center -tracking-[0.035em]">
+            Flexible Plans for Every Budget
+          </h2>
+          <p className="w-full max-w-[576px] text-[18px] leading-[26px] text-white/75 text-center">
+            Choose a package that fits your needs or contact us for a custom quote.
+          </p>
         </Reveal>
 
-        {/* Pricing mode toggle */}
-        <div className="mt-8 flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 p-1">
-          <button onClick={() => setPricingMode('oneoff')} className={`${pricingMode === 'oneoff' ? 'bg-[#79d5e9] text-[#0f1419]' : 'text-white'} px-4 py-2 rounded-md text-sm font-semibold transition`}>One‑Off Cost</button>
-          <button onClick={() => setPricingMode('subscription')} className={`${pricingMode === 'subscription' ? 'bg-[#79d5e9] text-[#0f1419]' : 'text-white'} px-4 py-2 rounded-md text-sm font-semibold transition`}>Subscription</button>
+        {/* Enhanced Pricing Mode Toggle */}
+        <div className="mt-12 relative">
+          <div className="flex items-center gap-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-2 backdrop-blur-sm">
+            <button 
+              onClick={() => setPricingMode('oneoff')} 
+              className={`relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                pricingMode === 'oneoff' 
+                  ? 'bg-gradient-to-br from-[#79d5e9] to-[#6bc7db] text-[#0f1419] shadow-lg shadow-[#79d5e9]/30 scale-105' 
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <div className="text-left">
+                  <div className="text-sm font-semibold">One-Off Payment</div>
+                  <div className={`text-xs ${pricingMode === 'oneoff' ? 'opacity-80' : 'opacity-50'}`}>
+                    Pay once, own forever
+                  </div>
+                </div>
+              </div>
+            </button>
+
+            <button 
+              onClick={() => setPricingMode('subscription')} 
+              className={`relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                pricingMode === 'subscription' 
+                  ? 'bg-gradient-to-br from-[#79d5e9] to-[#6bc7db] text-[#0f1419] shadow-lg shadow-[#79d5e9]/30 scale-105' 
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <div className="text-left">
+                  <div className="text-sm font-semibold">Monthly Subscription</div>
+                  <div className={`text-xs ${pricingMode === 'subscription' ? 'opacity-80' : 'opacity-50'}`}>
+                    Ongoing support & updates
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          {/* Info Badge below toggle */}
+          <div className="mt-4 text-center">
+            {pricingMode === 'oneoff' ? (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/70">
+                <svg className="w-4 h-4 text-[#79d5e9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Full ownership with optional support packages available
+              </div>
+            ) : (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/70">
+                <svg className="w-4 h-4 text-[#79d5e9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Includes hosting, maintenance, and unlimited updates
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Plans */}
-        {pricingMode === 'oneoff' ? (
-          <div className="w-full max-w-[1280px] mt-10 flex flex-wrap gap-8 items-stretch justify-center">
-            {[
-              { title: 'Starter', price: '£499', note: 'starting', desc: 'Perfect for small businesses and startups', features: ['5‑page website','Responsive design','Basic SEO setup','Contact form','30 days support','7 days a week support'], highlight: false, badge: undefined },
-              { title: 'Professional', price: '£999', note: 'starting', desc: 'For growing businesses with advanced needs', features: ['15‑page website','Custom design & animations','Advanced SEO','CMS integration','90 days support','7 days a week support'], highlight: true, badge: undefined },
-              { title: 'E‑Commerce', price: '£1399', note: 'starting', desc: 'For online retailers and marketplaces', features: ['E‑Commerce Ready (Any Platform)','15‑page website','Custom design & animations','Advanced SEO','CMS integration','90 days support','7 days a week support'], highlight: false, badge: undefined },
-            ].map((p, i) => (
-              <div key={i} className={`${p.highlight ? 'border-2 border-[#79d5e9] bg-[#79d5e914]' : 'border border-white/10 bg-white/10'} rounded-xl max-w-[384px] flex flex-col gap-8 p-10 grow` }>
-                {p.badge && (
-                  <div className="inline-flex items-center gap-2 rounded-md bg-[#79d5e9] px-3 py-1 w-min text-[#0f1419] text-[12px] font-semibold tracking-wider uppercase">{p.badge}</div>
-                )}
-                <div>
-                  <h3 className="text-white text-[20px] font-bold -tracking-[0.02em]">{p.title}</h3>
-                  <div className="flex items-end gap-2 mt-2">
-                    <span className="text-white text-[40px] md:text-[48px] font-bold -tracking-[0.035em] leading-none">{p.price}</span>
-                    {p.note && <span className="text-white/60 pb-1">{p.note}</span>}
-                  </div>
-                  <p className="text-white/75 mt-2">{p.desc}</p>
-                </div>
-                <ul className="flex flex-col gap-3 text-[15px]">
-                  {p.features.map((f, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-white/90"><Check size={16} className="text-[#79d5e9]" />{f}</li>
-                  ))}
-                </ul>
-                <div className="mt-auto">
-                  <a href="mailto:alastair.blair@splitfin.uk" className={`${p.highlight ? 'bg-[#79d5e9] text-[#0f1419]' : 'bg-transparent text-white border border-white/20'} rounded-[10px] px-4 py-2 inline-flex items-center justify-center w-full hover:opacity-95`}>Get Started</a>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="w-full max-w-[1280px] mt-10 flex flex-wrap gap-8 items-stretch justify-center">
-            {[
-              { title: 'Starter', price: '£39', note: 'a month', desc: 'Perfect for small businesses and startups', features: ['5‑page website','Responsive design','Ongoing SEO support','Webpage updates','Image changes','Contact form','7 days a week support'], highlight: false, badge: 'From £39/mo' },
-              { title: 'Professional', price: '£49', note: 'a month', desc: 'For growing businesses with advanced needs', features: ['15‑page website','Ongoing support','Website updates','Image changes','Content changes','Ongoing SEO support','7 days a week support'], highlight: false, badge: undefined },
-              { title: 'E‑Commerce', price: '£59', note: 'a month', desc: 'For online retailers and marketplaces', features: ['E‑Commerce ready (any platform)','15‑page website','Ongoing support','Website updates','Image changes','Content changes','Product changes & uploads','Ongoing SEO support','7 days a week support'], highlight: false, badge: undefined },
-            ].map((p, i) => (
-              <div key={i} className={`${p.highlight ? 'border-2 border-[#79d5e9] bg-[#79d5e914]' : 'border border-white/10 bg-white/10'} rounded-xl max-w-[384px] flex flex-col gap-8 p-10 grow` }>
-                {p.badge && (
-                  <div className="inline-flex items-center gap-2 rounded-md bg-[#79d5e9] px-3 py-1 w-min text-[#0f1419] text-[12px] font-semibold tracking-wider uppercase">{p.badge}</div>
-                )}
-                <div>
-                  <h3 className="text-white text-[20px] font-bold -tracking-[0.02em]">{p.title}</h3>
-                  <div className="flex items-end gap-2 mt-2">
-                    <span className="text-white text-[40px] md:text-[48px] font-bold -tracking-[0.035em] leading-none">{p.price}</span>
-                    <span className="text-white/60 pb-1">{p.note}</span>
-                  </div>
-                  <p className="text-white/75 mt-2">{p.desc}</p>
-                </div>
-                <ul className="flex flex-col gap-3 text-[15px]">
-                  {p.features.map((f, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-white/90"><Check size={16} className="text-[#79d5e9]" />{f}</li>
-                  ))}
-                </ul>
-                <div className="mt-auto">
-                  <a href="mailto:alastair.blair@splitfin.uk" className={`${p.highlight ? 'bg-[#79d5e9] text-[#0f1419]' : 'bg-transparent text-white border border-white/20'} rounded-[10px] px-4 py-2 inline-flex items-center justify-center w-full hover:opacity-95`}>Subscribe</a>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
+        {/* Pricing Cards */}
+        <div className="w-full max-w-[1280px] mt-12">
+          {pricingMode === 'oneoff' ? (
+            // One-Off Pricing
+            <div className="flex flex-wrap gap-8 items-stretch justify-center">
+              {[
+                { 
+                  title: 'Starter', 
+                  price: '£499', 
+                  desc: 'Perfect for small businesses and startups', 
+                  features: [
+                    '5-page website',
+                    'Responsive design',
+                    'Basic SEO setup',
+                    'Contact form integration',
+                    '30 days post-launch support',
+                    '7 days a week support'
+                  ],
+                  highlight: false,
+                  color: '#22c55e'
+                },
+                { 
+                  title: 'Professional', 
+                  price: '£999', 
+                  desc: 'For growing businesses with advanced needs', 
+                  features: [
+                    '15-page website',
+                    'Custom design & animations',
+                    'Advanced SEO optimization',
+                    'CMS integration',
+                    '90 days post-launch support',
+                    '7 days a week support'
+                  ],
+                  highlight: false,
+                  color: '#3b82f6'
+                },
+                { 
+                  title: 'E-Commerce', 
+                  price: '£1,399', 
+                  desc: 'For online retailers and marketplaces', 
+                  features: [
+                    'E-Commerce ready (any platform)',
+                    '15-page website',
+                    'Custom design & animations',
+                    'Advanced SEO optimization',
+                    'CMS integration',
+                    '90 days post-launch support',
+                    '7 days a week support'
+                  ],
+                  highlight: false,
+                  color: '#8b5cf6'
+                },
+              ].map((plan, i) => (
+                <Reveal key={i} delayMs={i * 100}>
+                  <div className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] hover:border-white/20 max-w-[384px] flex flex-col p-8 grow transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 backdrop-blur-sm">
+                    {/* Colored accent line */}
+                    <div 
+                      className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+                      style={{ background: `linear-gradient(90deg, ${plan.color}, transparent)` }}
+                    />
+                    
+                    {/* Header */}
+                    <div className="mb-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-white text-2xl font-bold">{plan.title}</h3>
+                        <div 
+                          className="w-12 h-12 rounded-xl flex items-center justify-center"
+                          style={{ backgroundColor: `${plan.color}15`, color: plan.color }}
+                        >
+                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-baseline gap-2 mb-3">
+                        <span className="text-white text-5xl font-bold">{plan.price}</span>
+                        <span className="text-white/40 text-sm">one-time</span>
+                      </div>
+                      
+                      <p className="text-white/70 text-sm leading-relaxed">{plan.desc}</p>
+                    </div>
 
+                    {/* Features */}
+                    <ul className="flex flex-col gap-3 mb-8 flex-grow">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-3 text-white/85 text-sm">
+                          <svg 
+                            className="w-5 h-5 flex-shrink-0 mt-0.5" 
+                            style={{ color: plan.color }}
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA Button */}
+                    <a 
+                      href="mailto:alastair.blair@splitfin.uk?subject=One-Off%20Website%20Package%20Enquiry" 
+                      className="w-full py-3 px-6 rounded-xl font-semibold text-center transition-all duration-300 border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30"
+                    >
+                      Get Started
+                    </a>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            // Subscription Pricing
+            <div className="flex flex-wrap gap-8 items-stretch justify-center">
+              {[
+                { 
+                  title: 'Starter', 
+                  price: '£39', 
+                  desc: 'Perfect for small businesses and startups', 
+                  features: [
+                    '5-page website',
+                    'Responsive design',
+                    'Ongoing SEO support',
+                    'Regular webpage updates',
+                    'Image changes & optimization',
+                    'Contact form management',
+                    '7 days a week support'
+                  ],
+                  savings: 'Save £460 in year 1',
+                  color: '#22c55e'
+                },
+                { 
+                  title: 'Professional', 
+                  price: '£49', 
+                  desc: 'For growing businesses with advanced needs', 
+                  features: [
+                    '15-page website',
+                    'Priority support & updates',
+                    'Regular website updates',
+                    'Image & graphic changes',
+                    'Content updates & edits',
+                    'Ongoing SEO optimization',
+                    '7 days a week support'
+                  ],
+                  savings: 'Save £411 in year 1',
+                  color: '#3b82f6'
+                },
+                { 
+                  title: 'E-Commerce', 
+                  price: '£59', 
+                  desc: 'For online retailers and marketplaces', 
+                  features: [
+                    'E-Commerce ready (any platform)',
+                    '15-page website',
+                    'Priority support & updates',
+                    'Product changes & uploads',
+                    'Image & content updates',
+                    'Inventory management support',
+                    'Ongoing SEO optimization',
+                    '7 days a week support'
+                  ],
+                  savings: 'Save £691 in year 1',
+                  color: '#8b5cf6'
+                },
+              ].map((plan, i) => (
+                <Reveal key={i} delayMs={i * 100}>
+                  <div className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] hover:border-[#79d5e9]/30 max-w-[384px] flex flex-col p-8 grow transition-all duration-300 hover:shadow-2xl hover:shadow-[#79d5e9]/10 hover:-translate-y-1 backdrop-blur-sm">
+                    {/* Colored accent line */}
+                    <div 
+                      className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+                      style={{ background: `linear-gradient(90deg, ${plan.color}, transparent)` }}
+                    />
+                    
+                    {/* Savings Badge */}
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#22c55e] to-[#16a34a] text-white text-xs font-semibold shadow-lg whitespace-nowrap">
+                      {plan.savings}
+                    </div>
+
+                    {/* Header */}
+                    <div className="mb-6 mt-2">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-white text-2xl font-bold">{plan.title}</h3>
+                        <div 
+                          className="w-12 h-12 rounded-xl flex items-center justify-center"
+                          style={{ backgroundColor: `${plan.color}15`, color: plan.color }}
+                        >
+                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                          </svg>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-baseline gap-2 mb-3">
+                        <span className="text-white text-5xl font-bold">{plan.price}</span>
+                        <span className="text-white/40 text-sm">/month</span>
+                      </div>
+                      
+                      <p className="text-white/70 text-sm leading-relaxed">{plan.desc}</p>
+                    </div>
+
+                    {/* Features */}
+                    <ul className="flex flex-col gap-3 mb-8 flex-grow">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-3 text-white/85 text-sm">
+                          <svg 
+                            className="w-5 h-5 flex-shrink-0 mt-0.5"
+                            style={{ color: plan.color }}
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA Button */}
+                    <a 
+                      href="mailto:alastair.blair@splitfin.uk?subject=Monthly%20Subscription%20Package%20Enquiry" 
+                      className="w-full py-3 px-6 rounded-xl font-semibold text-center transition-all duration-300 bg-gradient-to-r from-[#79d5e9] to-[#6bc7db] text-[#0f1419] hover:shadow-lg hover:shadow-[#79d5e9]/30"
+                    >
+                      Subscribe Now
+                    </a>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Additional Info */}
+        <Reveal className="mt-16 text-center max-w-[800px]">
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-8 backdrop-blur-sm">
+            <h3 className="text-white text-xl font-semibold mb-3">Need a Custom Solution?</h3>
+            <p className="text-white/70 mb-4">
+              Every project is unique. Contact us for a tailored quote that perfectly matches your requirements and budget.
+            </p>
+            <a 
+              href="mailto:alastair.blair@splitfin.uk?subject=Custom%20Website%20Quote%20Request" 
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[#79d5e9]/30 text-[#79d5e9] font-semibold hover:bg-[#79d5e9]/10 transition-all"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Get Custom Quote
+            </a>
+          </div>
+        </Reveal>
+      </section>
       {/* Technologies */}
-      <section id="technologies" className="w-full flex flex-col items-center bg-[#79d5e908] px-6 py-24">
+      <section id="technologies" className="w-full flex flex-col items-center bg-[#79d5e90d] px-6 py-24">
         <Reveal className="w-full max-w-[1280px] flex flex-col items-center gap-4">
           <span className="text-[14px] font-semibold tracking-wider text-[#79d5e9] uppercase">Technologies</span>
           <h2 className="w-full max-w-[768px] text-[36px] md:text-[48px] font-bold leading-tight text-white text-center -tracking-[0.035em]">Built With Industry‑Leading Tools</h2>
@@ -469,6 +879,91 @@ const LandingPage: React.FC = () => {
             </div>
           ))}
         </div>
+      </section>
+      
+            {/* Contact */}
+      <section id="contact" className="w-full flex flex-col items-center bg-[#79d5e908] px-6 py-24">
+        <Reveal className="w-full max-w-[1280px] flex flex-col items-center gap-4 mb-12">
+          <span className="text-[14px] font-semibold tracking-wider text-[#79d5e9] uppercase">Get In Touch</span>
+          <h2 className="w-full max-w-[768px] text-[36px] md:text-[48px] font-bold leading-tight text-white text-center -tracking-[0.035em]">Ready to Start Your Project?</h2>
+          <p className="w-full max-w-[576px] text-[18px] leading-[26px] text-white/75 text-center">Get in touch today for a free consultation and quote</p>
+        </Reveal>
+
+        <div className="w-full max-w-[1000px] grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {[
+            { icon: Phone, title: 'Call Us', value: '+44 7405 578 939', href: 'tel:+447405578939' },
+            { icon: Mail, title: 'Email Us', value: 'alastair.blair@splitfin.uk', href: 'mailto:alastair.blair@splitfin.uk' },
+            { icon: MapPin, title: 'Location', value: 'Kidderminster, UK', href: '#' },
+          ].map((contact, i) => (
+            <Reveal key={i} delayMs={i * 100}>
+              <a 
+                href={contact.href}
+                className="rounded-xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-all duration-300 flex flex-col items-center text-center group"
+              >
+                <div className="w-12 h-12 rounded-lg bg-[#79d5e9]/10 text-[#79d5e9] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <contact.icon size={24} />
+                </div>
+                <div className="text-sm text-white/60 mb-1">{contact.title}</div>
+                <div className="text-white font-medium">{contact.value}</div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="w-full max-w-[700px]">
+          <form 
+            className="rounded-xl border border-white/10 bg-white/5 p-8"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const data = new FormData(e.currentTarget as HTMLFormElement);
+              const name = data.get('name');
+              const email = data.get('email');
+              const phone = data.get('phone');
+              const message = data.get('message');
+              const subject = encodeURIComponent(`Website enquiry from ${name}`);
+              const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`);
+              window.location.href = `mailto:alastair.blair@splitfin.uk?subject=${subject}&body=${body}`;
+            }}
+          >
+            <h3 className="text-2xl font-bold text-white mb-6">Send Us a Message</h3>
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input 
+                  name="name" 
+                  placeholder="Your name" 
+                  className="rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all" 
+                  required 
+                />
+                <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="Email address" 
+                  className="rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all" 
+                  required 
+                />
+              </div>
+              <input 
+                type="tel" 
+                name="phone" 
+                placeholder="Phone number (optional)" 
+                className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all" 
+              />
+              <textarea 
+                name="message" 
+                placeholder="Tell us about your project..." 
+                rows={5} 
+                className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all resize-none" 
+                required 
+              />
+              <button 
+                type="submit" 
+                className="w-full rounded-lg px-6 py-3 bg-[#79d5e9] text-[#0f1419] font-semibold hover:bg-[#6bc7db] transition-colors shadow-lg"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </Reveal>
       </section>
 
 

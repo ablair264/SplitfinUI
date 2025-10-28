@@ -44,13 +44,13 @@ const Footer: React.FC = () => {
                 <h3 className="text-white uppercase">Services</h3>
                 <a href="/web-design" className="block mt-2 text-sm text-white/60 hover:underline">Web Design</a>
                 <a href="/ecommerce" className="block mt-2 text-sm text-white/60 hover:underline">E‑Commerce</a>
-                <a href="/seo" className="block mt-2 text-sm text-white/60 hover:underline">SEO</a>
+                <a href="/website-maintenance" className="block mt-2 text-sm text-white/60 hover:underline">Website Maintenance</a>
               </div>
               <div>
-                <h3 className="text-white uppercase">Products</h3>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Split UI</a>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Components</a>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Templates</a>
+                <h3 className="text-white uppercase">Services</h3>
+                <a href="/web-development" className="block mt-2 text-sm text-white/60 hover:underline">Web Development</a>
+                <a href="/automation" className="block mt-2 text-sm text-white/60 hover:underline">Automation</a>
+                <a href="/pc-repair" className="block mt-2 text-sm text-white/60 hover:underline">PC Repair</a>
               </div>
               <div>
                 <h3 className="text-white uppercase">Contact</h3>

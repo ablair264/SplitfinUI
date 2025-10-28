@@ -45,14 +45,14 @@ const Footer: React.FC = () => {
                 <h3 className="text-white uppercase">Services</h3>
                 <a href="/web-design" className="block mt-2 text-sm text-white/60 hover:underline">Web Design</a>
                 <a href="/ecommerce" className="block mt-2 text-sm text-white/60 hover:underline">E‑Commerce</a>
-                <a href="/seo" className="block mt-2 text-sm text-white/60 hover:underline">SEO</a>
+                <a href="/website-maintenance" className="block mt-2 text-sm text-white/60 hover:underline">Website Maintenance</a>
                 <a href="/automation" className="block mt-2 text-sm text-white/60 hover:underline">Automation</a>
               </div>
               <div>
-                <h3 className="text-white uppercase">Products</h3>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Split UI</a>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Components</a>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Templates</a>
+                <h3 className="text-white uppercase">Services</h3>
+                <a href="/web-development" className="block mt-2 text-sm text-white/60 hover:underline">Web Development</a>
+                <a href="/pc-repair" className="block mt-2 text-sm text-white/60 hover:underline">PC Repair</a>
+                <a href="/automation" className="block mt-2 text-sm text-white/60 hover:underline">Automation</a>
               </div>
               <div>
                 <h3 className="text-white uppercase">Contact</h3>
@@ -232,10 +232,10 @@ const WebDevelopmentPage: React.FC = () => {
         </Reveal>
       </section>
 
-      {/* Process Section */}
-      <section className="w-full bg-[#79d5e908] px-6 py-24">
-        <div className="container mx-auto max-w-[1280px]">
-          <Reveal className="text-center mb-16">
+{/* Process Section - Timeline Flow Style */}
+      <section className="w-full bg-[#79d5e908] px-6 py-24 overflow-hidden">
+        <div className="container mx-auto max-w-[1400px]">
+          <Reveal className="text-center mb-20">
             <span className="text-[14px] font-semibold tracking-wider text-[#22c55e] uppercase">Development Process</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Our Proven Workflow</h2>
             <p className="text-white/75 text-lg mt-4 max-w-[700px] mx-auto">
@@ -243,29 +243,101 @@ const WebDevelopmentPage: React.FC = () => {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { num: '01', title: 'Discovery', desc: 'We analyse your requirements, goals, and technical needs', Icon: Server },
-              { num: '02', title: 'Architecture', desc: 'Design the system architecture and technology stack', Icon: Layout },
-              { num: '03', title: 'Development', desc: 'Build your solution with clean, maintainable code', Icon: Code2 },
-              { num: '04', title: 'Deployment', desc: 'Launch your application with monitoring and support', Icon: Rocket },
-            ].map((step, i) => (
-              <Reveal key={i} delayMs={i * 150}>
-                <div className="relative">
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-all duration-300">
-                    <div className="text-[#22c55e] text-5xl font-bold opacity-20 mb-4">{step.num}</div>
-                    <div className="w-12 h-12 rounded-lg bg-[#22c55e]/10 text-[#22c55e] flex items-center justify-center mb-4">
-                      <step.Icon size={24} />
+          {/* Desktop Alternating Timeline */}
+          <div className="hidden lg:block relative">
+            {/* Central Timeline */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#22c55e]/20 via-[#22c55e]/50 to-[#22c55e]/20" />
+            
+            <div className="space-y-16">
+              {[
+                { num: '01', title: 'Discovery', desc: 'We analyse your requirements, goals, and technical needs', Icon: Server, align: 'left' },
+                { num: '02', title: 'Architecture', desc: 'Design the system architecture and technology stack', Icon: Layout, align: 'right' },
+                { num: '03', title: 'Development', desc: 'Build your solution with clean, maintainable code', Icon: Code2, align: 'left' },
+                { num: '04', title: 'Deployment', desc: 'Launch your application with monitoring and support', Icon: Rocket, align: 'right' },
+              ].map((step, i) => (
+                <Reveal key={i} delayMs={i * 150}>
+                  <div className={`relative flex items-center ${step.align === 'right' ? 'flex-row-reverse' : ''}`}>
+                    {/* Card */}
+                    <div className="w-[48%] group">
+                      <div className="relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#0f1419] to-[#1a1f2e] p-8 hover:border-[#22c55e]/50 hover:shadow-2xl hover:shadow-[#22c55e]/20 transition-all duration-500 hover:-translate-y-1">
+                        {/* Glowing corner accent */}
+                        <div className="absolute -top-px -right-px w-20 h-20 bg-gradient-to-br from-[#22c55e]/20 to-transparent rounded-tr-2xl" />
+                        
+                        {/* Number Badge */}
+                        <div className={`absolute -top-6 ${step.align === 'left' ? '-right-6' : '-left-6'} w-16 h-16 rounded-2xl bg-gradient-to-br from-[#22c55e] to-[#16a34a] flex items-center justify-center text-white font-bold text-2xl shadow-xl shadow-[#22c55e]/40 group-hover:scale-110 transition-transform border-4 border-[#0f1419]`}>
+                          {step.num}
+                        </div>
+                        
+                        <div className="flex items-start gap-5">
+                          {/* Icon */}
+                          <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#22c55e]/10 text-[#22c55e] flex items-center justify-center group-hover:bg-[#22c55e]/20 group-hover:scale-110 transition-all shadow-lg shadow-[#22c55e]/10">
+                            <step.Icon size={32} />
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="flex-1">
+                            <h3 className="text-white text-2xl font-bold mb-3">{step.title}</h3>
+                            <p className="text-white/70 text-base leading-relaxed">{step.desc}</p>
+                          </div>
+                        </div>
+
+                        {/* Connector Line to Timeline */}
+                        <div className={`absolute top-1/2 ${step.align === 'left' ? '-right-[52px]' : '-left-[52px]'} w-12 h-0.5 bg-gradient-to-${step.align === 'left' ? 'r' : 'l'} from-white/20 to-[#22c55e]/50`} />
+                      </div>
                     </div>
-                    <h3 className="text-white text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-white/75 text-sm">{step.desc}</p>
+
+                    {/* Timeline Dot */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-[#22c55e] border-4 border-[#0f1419] shadow-lg shadow-[#22c55e]/60 z-10 group-hover:scale-125 transition-transform" />
                   </div>
-                  {i < 3 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-px bg-[#22c55e]/30" />
-                  )}
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile/Tablet Vertical Layout */}
+          <div className="lg:hidden relative">
+            {/* Vertical Timeline */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#22c55e]/20 via-[#22c55e]/50 to-[#22c55e]/20" />
+            
+            <div className="space-y-12 pl-16">
+              {[
+                { num: '01', title: 'Discovery', desc: 'We analyse your requirements, goals, and technical needs', Icon: Server },
+                { num: '02', title: 'Architecture', desc: 'Design the system architecture and technology stack', Icon: Layout },
+                { num: '03', title: 'Development', desc: 'Build your solution with clean, maintainable code', Icon: Code2 },
+                { num: '04', title: 'Deployment', desc: 'Launch your application with monitoring and support', Icon: Rocket },
+              ].map((step, i) => (
+                <Reveal key={i} delayMs={i * 100}>
+                  <div className="relative">
+                    {/* Timeline Dot */}
+                    <div className="absolute -left-[67px] top-8 w-5 h-5 rounded-full bg-[#22c55e] border-4 border-[#0f1419] shadow-lg shadow-[#22c55e]/60 z-10" />
+                    
+                    {/* Connector Line */}
+                    <div className="absolute -left-16 top-[42px] w-8 h-0.5 bg-gradient-to-r from-[#22c55e]/50 to-white/20" />
+                    
+                    {/* Card */}
+                    <div className="relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#0f1419] to-[#1a1f2e] p-6 hover:border-[#22c55e]/50 hover:shadow-xl hover:shadow-[#22c55e]/20 transition-all duration-300">
+                      {/* Number Badge */}
+                      <div className="absolute -top-4 -left-4 w-14 h-14 rounded-xl bg-gradient-to-br from-[#22c55e] to-[#16a34a] flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-[#22c55e]/30 border-4 border-[#0f1419]">
+                        {step.num}
+                      </div>
+                      
+                      <div className="flex items-start gap-4 mt-4">
+                        {/* Icon */}
+                        <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#22c55e]/10 text-[#22c55e] flex items-center justify-center shadow-lg shadow-[#22c55e]/10">
+                          <step.Icon size={28} />
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="flex-1">
+                          <h3 className="text-white text-xl font-bold mb-2">{step.title}</h3>
+                          <p className="text-white/70 text-sm leading-relaxed">{step.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>

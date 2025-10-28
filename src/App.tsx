@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
 import WebDesign from './pages/WebDesign'
+import WebsiteMaintenance from './pages/WebsiteMaintenance'
 import WebDevelopment from './pages/WebDevelopment'
 import Automation from './pages/Automation'
 import ECommerce from './pages/ECommerce'
@@ -15,6 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/web-design" element={<WebDesign />} />
+        <Route path="/website-maintenance" element={<WebsiteMaintenance />} />
+        {/* Temporary alias for older links */}
+        <Route path="/seo" element={<WebsiteMaintenance />} />
         <Route path="/web-development" element={<WebDevelopment />} />
         <Route path="/automation" element={<Automation />} />
         <Route path="/ecommerce" element={<ECommerce />} />

@@ -45,13 +45,13 @@ const Footer: React.FC = () => {
                 <h3 className="text-white uppercase">Services</h3>
                 <a href="/web-design" className="block mt-2 text-sm text-white/60 hover:underline">Web Design</a>
                 <a href="/ecommerce" className="block mt-2 text-sm text-white/60 hover:underline">E‑Commerce</a>
-                <a href="/seo" className="block mt-2 text-sm text-white/60 hover:underline">SEO</a>
+                <a href="/website-maintenance" className="block mt-2 text-sm text-white/60 hover:underline">Website Maintenance</a>
               </div>
               <div>
-                <h3 className="text-white uppercase">Products</h3>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Split UI</a>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Components</a>
-                <a href="#" className="block mt-2 text-sm text-white/60 hover:underline">Templates</a>
+                <h3 className="text-white uppercase">Services</h3>
+                <a href="/web-development" className="block mt-2 text-sm text-white/60 hover:underline">Web Development</a>
+                <a href="/automation" className="block mt-2 text-sm text-white/60 hover:underline">Automation</a>
+                <a href="/pc-repair" className="block mt-2 text-sm text-white/60 hover:underline">PC Repair</a>
               </div>
               <div>
                 <h3 className="text-white uppercase">Contact</h3>
@@ -235,10 +235,10 @@ const AutomationPage: React.FC = () => {
         </Reveal>
       </section>
 
-      {/* Process */}
-      <section className="w-full bg-[#79d5e908] px-6 py-24">
-        <div className="container mx-auto max-w-[1280px]">
-          <Reveal className="text-center mb-16">
+  {/* Process Section - Timeline Flow Style */}
+      <section className="w-full bg-[#79d5e908] px-6 py-24 overflow-hidden">
+        <div className="container mx-auto max-w-[1400px]">
+          <Reveal className="text-center mb-20">
             <span className="text-[14px] font-semibold tracking-wider text-[#a855f7] uppercase">How It Works</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Simple Implementation Process</h2>
             <p className="text-white/75 text-lg mt-4 max-w-[700px] mx-auto">
@@ -246,30 +246,138 @@ const AutomationPage: React.FC = () => {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { num: '01', title: 'Audit', desc: 'Identify automation opportunities in your workflows' },
-              { num: '02', title: 'Design', desc: 'Create a custom automation strategy for your business' },
-              { num: '03', title: 'Build', desc: 'Develop and test automated workflows and integrations' },
-              { num: '04', title: 'Support', desc: 'Ongoing optimisation and maintenance of your automations' },
-            ].map((step, i) => (
-              <Reveal key={i} delayMs={i * 150}>
-                <div className="relative">
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-all duration-300">
-                    <div className="text-[#a855f7] text-5xl font-bold opacity-20 mb-4">{step.num}</div>
-                    <h3 className="text-white text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-white/75 text-sm">{step.desc}</p>
+          {/* Desktop Alternating Timeline */}
+          <div className="hidden lg:block relative">
+            {/* Central Timeline */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#a855f7]/20 via-[#a855f7]/50 to-[#a855f7]/20" />
+            
+            <div className="space-y-16">
+              {[
+                { num: '01', title: 'Audit', desc: 'Identify automation opportunities in your workflows', align: 'left' },
+                { num: '02', title: 'Design', desc: 'Create a custom automation strategy for your business', align: 'right' },
+                { num: '03', title: 'Build', desc: 'Develop and test automated workflows and integrations', align: 'left' },
+                { num: '04', title: 'Support', desc: 'Ongoing optimisation and maintenance of your automations', align: 'right' },
+              ].map((step, i) => (
+                <Reveal key={i} delayMs={i * 150}>
+                  <div className={`relative flex items-center ${step.align === 'right' ? 'flex-row-reverse' : ''}`}>
+                    {/* Card */}
+                    <div className="w-[48%] group">
+                      <div className="relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#0f1419] to-[#1a1f2e] p-8 hover:border-[#a855f7]/50 hover:shadow-2xl hover:shadow-[#a855f7]/20 transition-all duration-500 hover:-translate-y-1">
+                        {/* Glowing corner accent */}
+                        <div className="absolute -top-px -right-px w-20 h-20 bg-gradient-to-br from-[#a855f7]/20 to-transparent rounded-tr-2xl" />
+                        
+                        {/* Number Badge */}
+                        <div className={`absolute -top-6 ${step.align === 'left' ? '-right-6' : '-left-6'} w-16 h-16 rounded-2xl bg-gradient-to-br from-[#a855f7] to-[#9333ea] flex items-center justify-center text-white font-bold text-2xl shadow-xl shadow-[#a855f7]/40 group-hover:scale-110 transition-transform border-4 border-[#0f1419]`}>
+                          {step.num}
+                        </div>
+                        
+                        <div className="flex items-start gap-5">
+                          {/* Icon - Using generic automation icons */}
+                          <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#a855f7]/10 text-[#a855f7] flex items-center justify-center group-hover:bg-[#a855f7]/20 group-hover:scale-110 transition-all shadow-lg shadow-[#a855f7]/10">
+                            {i === 0 ? (
+                              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                              </svg>
+                            ) : i === 1 ? (
+                              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                              </svg>
+                            ) : i === 2 ? (
+                              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                            ) : (
+                              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                              </svg>
+                            )}
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="flex-1">
+                            <h3 className="text-white text-2xl font-bold mb-3">{step.title}</h3>
+                            <p className="text-white/70 text-base leading-relaxed">{step.desc}</p>
+                          </div>
+                        </div>
+
+                        {/* Connector Line to Timeline */}
+                        <div className={`absolute top-1/2 ${step.align === 'left' ? '-right-[52px]' : '-left-[52px]'} w-12 h-0.5 bg-gradient-to-${step.align === 'left' ? 'r' : 'l'} from-white/20 to-[#a855f7]/50`} />
+                      </div>
+                    </div>
+
+                    {/* Timeline Dot */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-[#a855f7] border-4 border-[#0f1419] shadow-lg shadow-[#a855f7]/60 z-10 group-hover:scale-125 transition-transform" />
                   </div>
-                  {i < 3 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-px bg-[#a855f7]/30" />
-                  )}
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile/Tablet Vertical Layout */}
+          <div className="lg:hidden relative">
+            {/* Vertical Timeline */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#a855f7]/20 via-[#a855f7]/50 to-[#a855f7]/20" />
+            
+            <div className="space-y-12 pl-16">
+              {[
+                { num: '01', title: 'Audit', desc: 'Identify automation opportunities in your workflows' },
+                { num: '02', title: 'Design', desc: 'Create a custom automation strategy for your business' },
+                { num: '03', title: 'Build', desc: 'Develop and test automated workflows and integrations' },
+                { num: '04', title: 'Support', desc: 'Ongoing optimisation and maintenance of your automations' },
+              ].map((step, i) => (
+                <Reveal key={i} delayMs={i * 100}>
+                  <div className="relative">
+                    {/* Timeline Dot */}
+                    <div className="absolute -left-[67px] top-8 w-5 h-5 rounded-full bg-[#a855f7] border-4 border-[#0f1419] shadow-lg shadow-[#a855f7]/60 z-10" />
+                    
+                    {/* Connector Line */}
+                    <div className="absolute -left-16 top-[42px] w-8 h-0.5 bg-gradient-to-r from-[#a855f7]/50 to-white/20" />
+                    
+                    {/* Card */}
+                    <div className="relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#0f1419] to-[#1a1f2e] p-6 hover:border-[#a855f7]/50 hover:shadow-xl hover:shadow-[#a855f7]/20 transition-all duration-300">
+                      {/* Number Badge */}
+                      <div className="absolute -top-4 -left-4 w-14 h-14 rounded-xl bg-gradient-to-br from-[#a855f7] to-[#9333ea] flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-[#a855f7]/30 border-4 border-[#0f1419]">
+                        {step.num}
+                      </div>
+                      
+                      <div className="flex items-start gap-4 mt-4">
+                        {/* Icon */}
+                        <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#a855f7]/10 text-[#a855f7] flex items-center justify-center shadow-lg shadow-[#a855f7]/10">
+                          {i === 0 ? (
+                            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                            </svg>
+                          ) : i === 1 ? (
+                            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                            </svg>
+                          ) : i === 2 ? (
+                            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                          ) : (
+                            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                          )}
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="flex-1">
+                          <h3 className="text-white text-xl font-bold mb-2">{step.title}</h3>
+                          <p className="text-white/70 text-sm leading-relaxed">{step.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-
       {/* Case Study */}
       <section className="w-full bg-[#0f1419] px-6 py-24">
         <Reveal className="container mx-auto max-w-[900px]">

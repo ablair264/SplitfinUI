@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, Bell, LineChart, Layers, Shield, Book, LifeBuoy, LayoutDashboard, Wrench, ShoppingCart, Search, Bot, Cpu, Code2 } from 'lucide-react';
+import { ChevronDown, Bell, LineChart, Layers, Shield, Book, LifeBuoy, LayoutDashboard, Wrench, ShoppingCart, Search, Bot, Cpu, Code2, X, Phone, Mail, User, AlertCircle } from 'lucide-react';
 
 const SlideItem: React.FC<{ label: string; href: string }> = ({ label, href }) => (
   <Link to={href} className="relative overflow-hidden h-7 group text-white/90 hover:text-white">
@@ -36,7 +36,7 @@ const FeaturesDropdown: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false);
-    }, 150); // Small delay to prevent flickering
+    }, 150);
   };
 
   React.useEffect(() => {
@@ -63,11 +63,11 @@ const FeaturesDropdown: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
       href: '/ecommerce',
     },
     {
-      title: 'SEO',
-      desc: 'Technical, on-page and content optimisation',
-      Icon: Search,
-      color: 'bg-indigo-500/10 text-indigo-400',
-      href: '/seo',
+      title: 'Website Maintenance',
+      desc: 'Updates, security, backups and proactive care',
+      Icon: Shield,
+      color: 'bg-sky-500/10 text-sky-400',
+      href: '/website-maintenance',
     },
   ];
 
@@ -146,6 +146,237 @@ const FeaturesDropdown: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   );
 };
 
+const PCRepairModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    issueType: '',
+    urgency: 'normal',
+    description: '',
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create email body
+    const subject = encodeURIComponent(`PC Repair Request from ${formData.name}`);
+    const body = encodeURIComponent(
+      `PC Repair Request Details:\n\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Issue Type: ${formData.issueType}\n` +
+      `Urgency: ${formData.urgency}\n\n` +
+      `Description:\n${formData.description}`
+    );
+    
+    // Open email client
+    window.location.href = `mailto:alastair.blair@splitfin.uk?subject=${subject}&body=${body}`;
+    
+    setSubmitted(true);
+    setTimeout(() => {
+      onClose();
+      setSubmitted(false);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        issueType: '',
+        urgency: 'normal',
+        description: '',
+      });
+    }, 2000);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0f1419] border border-white/10 rounded-2xl shadow-2xl">
+        {/* Header */}
+        <div className="sticky top-0 bg-[#0f1419] border-b border-white/10 p-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-[#79d5e9]/10 flex items-center justify-center">
+              <Wrench size={20} className="text-[#79d5e9]" />
+            </div>
+            <h2 className="text-2xl font-bold text-white">PC Repair Request</h2>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-6">
+          {submitted ? (
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Request Sent!</h3>
+              <p className="text-white/70">We'll be in touch shortly to discuss your PC repair needs.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Contact Information */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <User size={18} className="text-[#79d5e9]" />
+                  Your Information
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-white/80 mb-2">Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all"
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-white/80 mb-2">Email *</label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-white/80 mb-2">Phone *</label>
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all"
+                        placeholder="+44 7405 578 939"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Issue Details */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <AlertCircle size={18} className="text-[#79d5e9]" />
+                  Issue Details
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-white/80 mb-2">Type of Issue *</label>
+                    <select
+                      required
+                      value={formData.issueType}
+                      onChange={(e) => setFormData({ ...formData, issueType: e.target.value })}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all"
+                    >
+                      <option value="" className="bg-[#0f1419]">Select issue type</option>
+                      <option value="hardware" className="bg-[#0f1419]">Hardware Problem</option>
+                      <option value="software" className="bg-[#0f1419]">Software/OS Issue</option>
+                      <option value="virus" className="bg-[#0f1419]">Virus/Malware Removal</option>
+                      <option value="upgrade" className="bg-[#0f1419]">Upgrade/Installation</option>
+                      <option value="data-recovery" className="bg-[#0f1419]">Data Recovery</option>
+                      <option value="network" className="bg-[#0f1419]">Network/Connectivity</option>
+                      <option value="other" className="bg-[#0f1419]">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-white/80 mb-2">Urgency Level *</label>
+                    <div className="grid grid-cols-3 gap-3">
+                      {[
+                        { value: 'low', label: 'Low', color: 'border-green-500/50 bg-green-500/5 text-green-400' },
+                        { value: 'normal', label: 'Normal', color: 'border-[#79d5e9]/50 bg-[#79d5e9]/5 text-[#79d5e9]' },
+                        { value: 'urgent', label: 'Urgent', color: 'border-red-500/50 bg-red-500/5 text-red-400' },
+                      ].map((option) => (
+                        <button
+                          key={option.value}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, urgency: option.value })}
+                          className={`px-4 py-3 rounded-lg border-2 font-medium transition-all ${
+                            formData.urgency === option.value
+                              ? option.color
+                              : 'border-white/10 bg-white/5 text-white/60 hover:bg-white/10'
+                          }`}
+                        >
+                          {option.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-white/80 mb-2">Describe the Issue *</label>
+                    <textarea
+                      required
+                      value={formData.description}
+                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                      rows={5}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#79d5e9] focus:border-transparent transition-all resize-none"
+                      placeholder="Please describe what's wrong with your PC, any error messages you've seen, and when the problem started..."
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Info Box */}
+              <div className="bg-[#79d5e9]/10 border border-[#79d5e9]/20 rounded-lg p-4">
+                <div className="flex gap-3">
+                  <div className="flex-shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-[#79d5e9]/20 flex items-center justify-center">
+                      <Phone size={16} className="text-[#79d5e9]" />
+                    </div>
+                  </div>
+                  <div className="text-sm">
+                    <p className="text-white/90 font-medium mb-1">Need Immediate Help?</p>
+                    <p className="text-white/70 mb-2">Call us directly at:</p>
+                    <a href="tel:+447405578939" className="text-[#79d5e9] font-semibold hover:underline">
+                      +44 7405 578 939
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="flex-1 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-6 py-3 bg-[linear-gradient(135deg,#79d5e9_0%,#6bc7db_100%)] text-[#0f1419] rounded-lg font-semibold shadow-lg hover:shadow-[0_15px_35px_rgba(121,213,233,0.35)] hover:-translate-y-0.5 transition-all"
+                >
+                  Submit Request
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const BrandMark = () => (
   <Link to="/" aria-label="Home" className="inline-flex items-center">
     <img
@@ -159,13 +390,13 @@ const BrandMark = () => (
 const NavBar: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [pcRepairModalOpen, setPcRepairModalOpen] = useState(false);
   const last = React.useRef(0);
 
   React.useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY || 0;
       const delta = y - last.current;
-      // Hide when scrolling down past 80px, show when scrolling up
       if (!open) {
         if (delta > 4 && y > 80) setHidden(true);
         else if (delta < -4) setHidden(false);
@@ -181,68 +412,77 @@ const NavBar: React.FC = () => {
   }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full bg-[linear-gradient(180deg,rgba(15,20,25,0.92),rgba(15,20,25,0.6))] backdrop-blur-xl border-b border-white/10 shadow-[0_4px_8px_rgba(0,0,0,0.3)] transition-all duration-300 ${hidden ? 'opacity-0 -translate-y-6 pointer-events-none' : 'opacity-100 translate-y-0'}`}
-    >
-      <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-4 md:px-6 py-3 md:py-4 text-white text-[15px]">
-        <BrandMark />
-        <div className="hidden md:flex gap-6">
-          <FeaturesDropdown />
-          <SlideItem label="Portfolio" href="#features" />
-          <SlideItem label="Contact" href="#contact" />
-          <SlideItem label="About" href="#about" />
-        </div>
-        <div className="hidden md:flex gap-3">
-          <a
-            href="mailto:alastair.blair@splitfin.uk"
-            className="border border-slate-600 bg-transparent px-4 py-2 rounded-[10px] text-white no-underline transition-colors hover:bg-slate-800/80"
-          >
-            Contact
-          </a>
-          <Link
-            to="/pc-repair"
-            className="bg-[linear-gradient(135deg,#79d5e9_0%,#6bc7db_100%)] text-[#0f1419] px-4 py-2 rounded-[10px] no-underline shadow-[0_8px_25px_rgba(121,213,233,0.15)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(121,213,233,0.35)] inline-flex items-center gap-2"
-          >
-            <Wrench size={16} /> PC Repair
-          </Link>
-        </div>
-        <button
-          aria-label="Open menu"
-          className="md:hidden text-white/70"
-          onClick={() => setOpen((s) => !s)}
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </nav>
-      {/* Mobile */}
-      <div className={'md:hidden w-full px-4 ' + (open ? 'flex' : 'hidden') + ' flex-col items-center gap-4 text-white text-base'}>
-        <div className="w-full border-t border-white/10 bg-[rgba(26,31,42,0.95)] backdrop-blur-md p-6">
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex flex-col items-center gap-2">
-              <Link className="hover:text-cyan-300 text-sm" to="#features" onClick={() => setOpen(false)}>Portfolio</Link>
-              <a className="hover:text-cyan-300 text-sm" href="mailto:alastair.blair@splitfin.uk" onClick={() => setOpen(false)}>Contact</a>
-              <Link className="hover:text-cyan-300 text-sm" to="#about" onClick={() => setOpen(false)}>About</Link>
-            </div>
+    <>
+      <header
+        className={`sticky top-0 z-50 w-full bg-[linear-gradient(180deg,rgba(15,20,25,0.92),rgba(15,20,25,0.6))] backdrop-blur-xl border-b border-white/10 shadow-[0_4px_8px_rgba(0,0,0,0.3)] transition-all duration-300 ${hidden ? 'opacity-0 -translate-y-6 pointer-events-none' : 'opacity-100 translate-y-0'}`}
+      >
+        <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-4 md:px-6 py-3 md:py-4 text-white text-[15px]">
+          <BrandMark />
+          <div className="hidden md:flex gap-6">
+            <SlideItem label="Home" href="/" />
+            <FeaturesDropdown />
+            <SlideItem label="Portfolio" href="#features" />
+            <SlideItem label="Contact" href="#contact" />
+            <SlideItem label="About" href="#about" />
+          </div>
+          <div className="hidden md:flex gap-3">
             <a
               href="mailto:alastair.blair@splitfin.uk"
-              onClick={() => setOpen(false)}
               className="border border-slate-600 bg-transparent px-4 py-2 rounded-[10px] text-white no-underline transition-colors hover:bg-slate-800/80"
             >
               Contact
             </a>
-            <Link
-              to="/pc-repair"
-              onClick={() => setOpen(false)}
-              className="bg-[linear-gradient(135deg,#79d5e9_0%,#6bc7db_100%)] text-[#0f1419] px-4 py-2 rounded-[10px] no-underline shadow-[0_8px_25px_rgba(121,213,233,0.15)] inline-flex items-center gap-2"
+            <button
+              onClick={() => setPcRepairModalOpen(true)}
+              className="bg-[linear-gradient(135deg,#79d5e9_0%,#6bc7db_100%)] text-[#0f1419] px-4 py-2 rounded-[10px] shadow-[0_8px_25px_rgba(121,213,233,0.15)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(121,213,233,0.35)] inline-flex items-center gap-2"
             >
-              <Wrench size={16} /> PC Repair	
-            </Link>
+              <Wrench size={16} /> PC Repair
+            </button>
+          </div>
+          <button
+            aria-label="Open menu"
+            className="md:hidden text-white/70"
+            onClick={() => setOpen((s) => !s)}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </nav>
+        {/* Mobile */}
+        <div className={'md:hidden w-full px-4 ' + (open ? 'flex' : 'hidden') + ' flex-col items-center gap-4 text-white text-base'}>
+          <div className="w-full border-t border-white/10 bg-[rgba(26,31,42,0.95)] backdrop-blur-md p-6">
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex flex-col items-center gap-2">
+                <Link className="hover:text-cyan-300 text-sm" to="/" onClick={() => setOpen(false)}>Home</Link>
+                <Link className="hover:text-cyan-300 text-sm" to="#features" onClick={() => setOpen(false)}>Portfolio</Link>
+                <a className="hover:text-cyan-300 text-sm" href="mailto:alastair.blair@splitfin.uk" onClick={() => setOpen(false)}>Contact</a>
+                <Link className="hover:text-cyan-300 text-sm" to="#about" onClick={() => setOpen(false)}>About</Link>
+              </div>
+              <a
+                href="mailto:alastair.blair@splitfin.uk"
+                onClick={() => setOpen(false)}
+                className="border border-slate-600 bg-transparent px-4 py-2 rounded-[10px] text-white no-underline transition-colors hover:bg-slate-800/80"
+              >
+                Contact
+              </a>
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  setPcRepairModalOpen(true);
+                }}
+                className="bg-[linear-gradient(135deg,#79d5e9_0%,#6bc7db_100%)] text-[#0f1419] px-4 py-2 rounded-[10px] shadow-[0_8px_25px_rgba(121,213,233,0.15)] inline-flex items-center gap-2"
+              >
+                <Wrench size={16} /> PC Repair	
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* PC Repair Modal */}
+      <PCRepairModal isOpen={pcRepairModalOpen} onClose={() => setPcRepairModalOpen(false)} />
+    </>
   );
 };
 
