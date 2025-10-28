@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, Bell, LineChart, Layers, Shield, Book, LifeBuoy, LayoutDashboard, Wrench, ShoppingCart, Search, Bot, Cpu, Code2, X, Phone, Mail, User, AlertCircle } from 'lucide-react';
+import { ChevronDown, Bell, LineChart, Layers, Shield, Book, LifeBuoy, LayoutDashboard, Wrench, ShoppingCart, Search, Bot, Cpu, Code2, X, Phone, Mail, User, AlertCircle, Home, Layout } from 'lucide-react';
 
-const SlideItem: React.FC<{ label: string; href: string }> = ({ label, href }) => (
-  <Link to={href} className="relative overflow-hidden h-7 group text-white/90 hover:text-white">
+const SlideItem: React.FC<{ label: string; href: string; Icon?: React.ElementType }> = ({ label, href, Icon }) => (
+  <Link to={href} className="relative overflow-hidden h-7 group text-white/90 hover:text-white inline-flex items-center gap-1">
+    {Icon && <Icon size={14} className="opacity-80" />}
     <span className="block group-hover:-translate-y-full transition-transform duration-300">{label}</span>
-    <span className="block absolute top-full left-0 group-hover:translate-y-[-100%] transition-transform duration-300">
+    <span className="block absolute top-full left-[calc(1rem+0px)] group-hover:translate-y-[-100%] transition-transform duration-300">
       {label}
     </span>
   </Link>
@@ -419,11 +420,11 @@ const NavBar: React.FC = () => {
         <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-4 md:px-6 py-3 md:py-4 text-white text-[15px]">
           <BrandMark />
           <div className="hidden md:flex gap-6">
-            <SlideItem label="Home" href="/" />
+            <SlideItem label="Home" href="/" Icon={Home} />
             <FeaturesDropdown />
-            <SlideItem label="Portfolio" href="#features" />
-            <SlideItem label="Contact" href="#contact" />
-            <SlideItem label="About" href="#about" />
+            <SlideItem label="Web Design" href="/web-design" Icon={Layout} />
+            <SlideItem label="E‑Commerce" href="/ecommerce" Icon={ShoppingCart} />
+            <SlideItem label="Website Maintenance" href="/website-maintenance" Icon={Shield} />
           </div>
           <div className="hidden md:flex gap-3">
             <a
@@ -454,10 +455,10 @@ const NavBar: React.FC = () => {
           <div className="w-full border-t border-white/10 bg-[rgba(26,31,42,0.95)] backdrop-blur-md p-6">
             <div className="flex flex-col items-center gap-4">
               <div className="flex flex-col items-center gap-2">
-                <Link className="hover:text-cyan-300 text-sm" to="/" onClick={() => setOpen(false)}>Home</Link>
-                <Link className="hover:text-cyan-300 text-sm" to="#features" onClick={() => setOpen(false)}>Portfolio</Link>
-                <a className="hover:text-cyan-300 text-sm" href="mailto:alastair.blair@splitfin.uk" onClick={() => setOpen(false)}>Contact</a>
-                <Link className="hover:text-cyan-300 text-sm" to="#about" onClick={() => setOpen(false)}>About</Link>
+                <Link className="hover:text-cyan-300 text-sm inline-flex items-center gap-2" to="/" onClick={() => setOpen(false)}><Home size={14} /> Home</Link>
+                <Link className="hover:text-cyan-300 text-sm inline-flex items-center gap-2" to="/web-design" onClick={() => setOpen(false)}><Layout size={14} /> Web Design</Link>
+                <Link className="hover:text-cyan-300 text-sm inline-flex items-center gap-2" to="/ecommerce" onClick={() => setOpen(false)}><ShoppingCart size={14} /> E‑Commerce</Link>
+                <Link className="hover:text-cyan-300 text-sm inline-flex items-center gap-2" to="/website-maintenance" onClick={() => setOpen(false)}><Shield size={14} /> Website Maintenance</Link>
               </div>
               <a
                 href="mailto:alastair.blair@splitfin.uk"
