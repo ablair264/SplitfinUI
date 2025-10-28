@@ -1,0 +1,444 @@
+/* Base header styles */
+.typewriter,
+.fadeSlide,
+.glitch,
+.gradient,
+.splitText,
+.bounce,
+.scale,
+.neon,
+.blurIn {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* 1. Typewriter Animation */
+.typewriter {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  border-right: 3px solid transparent;
+}
+
+.cursor {
+  display: inline-block;
+  background-color: #8b5cf6;
+  margin-left: 2px;
+  width: 3px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* 2. Fade In Slide Up Animation */
+.fadeSlide {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fadeSlideVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3. Glitch Effect */
+.glitch {
+  position: relative;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+}
+
+.glitchActive::before {
+  animation: glitch-1 0.3s infinite linear alternate-reverse;
+  color: #ff0040;
+  z-index: -1;
+}
+
+.glitchActive::after {
+  animation: glitch-2 0.3s infinite linear alternate-reverse;
+  color: #00ffff;
+  z-index: -2;
+}
+
+.glitch-low.glitchActive::before,
+.glitch-low.glitchActive::after {
+  animation-duration: 0.6s;
+}
+
+.glitch-high.glitchActive::before,
+.glitch-high.glitchActive::after {
+  animation-duration: 0.1s;
+}
+
+@keyframes glitch-1 {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  7% {
+    transform: skew(-0.5deg, -0.9deg);
+    opacity: 0.75;
+  }
+  10% {
+    transform: none;
+    opacity: 1;
+  }
+  27% {
+    transform: none;
+    opacity: 1;
+  }
+  30% {
+    transform: skew(0.8deg, -0.1deg);
+    opacity: 0.75;
+  }
+  35% {
+    transform: none;
+    opacity: 1;
+  }
+  52% {
+    transform: none;
+    opacity: 1;
+  }
+  55% {
+    transform: skew(-1deg, 0.2deg);
+    opacity: 0.75;
+  }
+  50% {
+    transform: none;
+    opacity: 1;
+  }
+  72% {
+    transform: none;
+    opacity: 1;
+  }
+  75% {
+    transform: skew(0.4deg, 1deg);
+    opacity: 0.75;
+  }
+  80% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    transform: none;
+    opacity: 0.25;
+  }
+  7% {
+    transform: translate(-2px, -3px);
+    opacity: 0.5;
+  }
+  10% {
+    transform: none;
+    opacity: 0.25;
+  }
+  27% {
+    transform: none;
+    opacity: 0.25;
+  }
+  30% {
+    transform: translate(-5px, -2px);
+    opacity: 0.5;
+  }
+  35% {
+    transform: none;
+    opacity: 0.25;
+  }
+  52% {
+    transform: none;
+    opacity: 0.25;
+  }
+  55% {
+    transform: translate(-5px, -1px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: none;
+    opacity: 0.25;
+  }
+  72% {
+    transform: none;
+    opacity: 0.25;
+  }
+  75% {
+    transform: translate(-2px, -6px);
+    opacity: 0.5;
+  }
+  80% {
+    transform: none;
+    opacity: 0.25;
+  }
+  100% {
+    transform: none;
+    opacity: 0.25;
+  }
+}
+
+/* 4. Gradient Text Animation */
+.gradient {
+  background: linear-gradient(45deg, #8b5cf6, #06b6d4, #10b981);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+.gradientActive {
+  opacity: 1;
+  transform: scale(1);
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 5. Split Text Animation */
+.splitText {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.splitChar {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100px) rotateX(-90deg);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.splitCharVisible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+}
+
+/* 6. Bounce Animation */
+.bounce {
+  opacity: 0;
+  transform: scale(0.3);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.bounceVisible {
+  opacity: 1;
+  transform: scale(1);
+  animation: bounceEffect 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceEffect {
+  0% {
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 7. Scale Animation */
+.scale {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scaleVisible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 8. Neon Glow Animation */
+.neon {
+  color: #ffffff;
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px #8b5cf6,
+    0 0 35px #8b5cf6,
+    0 0 40px #8b5cf6;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.neonActive {
+  opacity: 1;
+  animation: neonFlicker 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonFlicker {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px #8b5cf6,
+      0 0 35px #8b5cf6,
+      0 0 40px #8b5cf6;
+  }
+  50% {
+    text-shadow: 
+      0 0 2px currentColor,
+      0 0 5px currentColor,
+      0 0 8px currentColor,
+      0 0 12px #8b5cf6,
+      0 0 18px #8b5cf6,
+      0 0 20px #8b5cf6;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .typewriter,
+  .fadeSlide,
+  .glitch,
+  .gradient,
+  .splitText,
+  .bounce,
+  .scale,
+  .neon,
+  .blurIn {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .typewriter,
+  .fadeSlide,
+  .glitch,
+  .gradient,
+  .splitText,
+  .bounce,
+  .scale,
+  .neon,
+  .blurIn {
+    font-size: 1.5rem;
+  }
+}
+
+/* 9. Blur In Animation */
+.blurIn {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.blurInPart {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(0);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blurInVisible {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* Blur In Variants */
+.blurIn-blurInUp {
+  transform: translateY(20px);
+}
+
+.blurIn-blurInUp.blurInVisible {
+  transform: translateY(0);
+}
+
+.blurIn-blurInDown {
+  transform: translateY(-20px);
+}
+
+.blurIn-blurInDown.blurInVisible {
+  transform: translateY(0);
+}
+
+.blurIn-blurIn {
+  transform: translateY(0);
+}
+
+.blurIn-blurIn.blurInVisible {
+  transform: translateY(0);
+}
+
+/* Performance optimizations */
+.glitch,
+.gradient,
+.splitText,
+.bounce,
+.scale,
+.neon,
+.blurIn {
+  will-change: transform, opacity;
+}
+
+/* Utility classes for customization */
+.headerLarge {
+  font-size: 4rem;
+}
+
+.headerMedium {
+  font-size: 2.5rem;
+}
+
+.headerSmall {
+  font-size: 1.8rem;
+}
+
+.headerPrimary {
+  color: #8b5cf6;
+}
+
+.headerSecondary {
+  color: #06b6d4;
+}
+
+.headerSuccess {
+  color: #10b981;
+}
+
+.headerWarning {
+  color: #f59e0b;
+}
+
+.headerDanger {
+  color: #ef4444;
+}

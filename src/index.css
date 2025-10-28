@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/* Optional: tailwindcss-animate plugin (safe to keep or remove) */
+@plugin "tailwindcss-animate";
+
+/* Minimal base to match the dark design */
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-[#0f1419] text-white antialiased;
+  }
+}
+
+/* Minimal keyframes used by ShineBorder */
+@keyframes shine {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}

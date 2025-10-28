@@ -1,0 +1,17 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
+
+// Import global styles in the correct order
+import './index.css'
+// Removed global.css to avoid overriding Tailwind navigation styles
+// Removed animations.css (not used by active components)
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+)
