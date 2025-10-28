@@ -5,7 +5,6 @@ import NavBar from './NavBar';
 import { GradientHeader } from '@/components/AnimatedHeaders';
 import TiltedCard from '@/components/ui/TiltedCard';
 import { Plasma } from '@/components/ui/Plasma';
-// Using bespoke layout for Bento-style cards on this page
 
 const Footer: React.FC = () => {
   return (
@@ -116,22 +115,61 @@ const HeroSection: React.FC = () => {
   );
 };
 
-// Main page component
 const WebDesignPage: React.FC = () => {
+  const services = [
+    {
+      Icon: Layout,
+      title: 'UI/UX Design',
+      color: '#3b82f6',
+      description: 'Intuitive interfaces that prioritize user experience and conversion',
+      features: ['User research', 'Wireframing', 'Interactive prototypes', 'Usability testing']
+    },
+    {
+      Icon: Smartphone,
+      title: 'Responsive Design',
+      color: '#8b5cf6',
+      description: 'Designs that look perfect on every device and screen size',
+      features: ['Mobile-first approach', 'Cross-browser compatibility', 'Flexible layouts', 'Touch-friendly interfaces']
+    },
+    {
+      Icon: Sparkles,
+      title: 'Brand Identity',
+      color: '#ec4899',
+      description: 'Cohesive visual identity that reflects your brand values',
+      features: ['Logo design', 'Colour schemes', 'Typography selection', 'Style guides']
+    },
+    {
+      Icon: Eye,
+      title: 'Visual Design',
+      color: '#f59e0b',
+      description: 'Stunning visuals that capture attention and communicate effectively',
+      features: ['Custom graphics', 'Icon design', 'Image selection', 'Visual hierarchy']
+    },
+    {
+      Icon: Zap,
+      title: 'Animations & Interactions',
+      color: '#10b981',
+      description: 'Engaging micro-interactions that bring your site to life',
+      features: ['Smooth transitions', 'Hover effects', 'Loading animations', 'Scroll animations']
+    },
+    {
+      Icon: Palette,
+      title: 'Design Systems',
+      color: '#06b6d4',
+      description: 'Scalable design systems for consistency across your platform',
+      features: ['Component libraries', 'Design tokens', 'Documentation', 'Version control']
+    },
+  ];
+
   return (
     <div className="web-design-page">
       <NavBar />
       <HeroSection />
 
-{/* Services Section - Dynamic Bento Grid */}
-      <section id="services" className="w-full bg-[#0f1419] px-6 py-24 relative overflow-hidden">
-        {/* Floating Gradient Orbs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#3b82f6]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#8b5cf6]/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#ec4899]/10 rounded-full blur-3xl" />
-
-        <Reveal className="container mx-auto max-w-[1400px] relative z-10">
-          <div className="text-center mb-16">
+      {/* Services Section */}
+      <section id="services" className="w-full bg-[#0f1419] px-6 py-24">
+        <Reveal className="container mx-auto max-w-[1280px]">
+          <div className="text-center mb-12">
             <span className="text-[14px] font-semibold tracking-wider text-[#3b82f6] uppercase">Our Services</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Comprehensive Design Solutions</h2>
             <p className="text-white/75 text-lg mt-4 max-w-[700px] mx-auto">
@@ -139,174 +177,26 @@ const WebDesignPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Bento Grid Layout (bespoke) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-fr">
-            {/* UI/UX Design - Large Featured Card */}
-            <Reveal delayMs={0}>
-              <div className="lg:col-span-3 lg:row-span-2 group relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#3b82f6]/5 to-white/[0.02] p-8 hover:border-[#3b82f6]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#3b82f6]/20 backdrop-blur-sm overflow-hidden">
-                {/* Floating Icon Background */}
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#3b82f6]/5 rounded-full group-hover:scale-150 transition-transform duration-700" />
-                
-                {/* Decorative Corner */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#3b82f6]/20 to-transparent rounded-bl-3xl" />
-                
-                <div className="relative">
-                  {/* Large Icon */}
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#3b82f6]/20 to-[#3b82f6]/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Layout size={36} className="text-[#3b82f6]" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, i) => (
+              <Reveal key={i} delayMs={i * 100}>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-8 hover:bg-white/10 transition-all duration-300 h-full flex flex-col">
+                  <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-4" style={{ background: `${service.color}33`, color: service.color }}>
+                    <service.Icon size={28} />
                   </div>
-                  
-                  <h3 className="text-white text-2xl font-bold mb-4">UI/UX Design</h3>
-                  <p className="text-white/75 text-base mb-6 leading-relaxed">
-                    Intuitive interfaces that prioritize user experience and conversion
-                  </p>
-                  
-                  <div className="grid grid-cols-2 gap-3">
-                    {['User research', 'Wireframing', 'Interactive prototypes', 'Usability testing'].map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-white/85 bg-white/5 rounded-lg px-3 py-2 group-hover:bg-white/10 transition-colors">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Responsive Design - Tall Card */}
-            <Reveal delayMs={100}>
-              <div className="lg:col-span-2 lg:row-span-2 group relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#8b5cf6]/5 to-white/[0.02] p-6 hover:border-[#8b5cf6]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#8b5cf6]/20 backdrop-blur-sm overflow-hidden">
-                <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[#8b5cf6]/5 rounded-full group-hover:scale-150 transition-transform duration-700" />
-                
-                <div className="relative h-full flex flex-col">
-                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#8b5cf6]/20 to-[#8b5cf6]/5 flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300">
-                    <Smartphone size={28} className="text-[#8b5cf6]" />
-                  </div>
-                  
-                  <h3 className="text-white text-xl font-bold mb-3">Responsive Design</h3>
-                  <p className="text-white/75 text-sm mb-4 flex-grow">
-                    Designs that look perfect on every device and screen size
-                  </p>
-                  
+                  <h3 className="text-white text-xl font-semibold mb-3">{service.title}</h3>
+                  <p className="text-white/75 text-sm mb-4 flex-grow">{service.description}</p>
                   <ul className="space-y-2">
-                    {['Mobile-first approach', 'Cross-browser compatibility', 'Flexible layouts', 'Touch-friendly interfaces'].map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-xs text-white/85">
-                        <CheckCircle2 size={14} className="text-[#8b5cf6] flex-shrink-0" />
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm text-white/85">
+                        <CheckCircle2 size={16} className="text-[#3b82f6]" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
-            </Reveal>
-
-            {/* Brand Identity - Wide Card */}
-            <Reveal delayMs={200}>
-              <div className="lg:col-span-3 group relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#ec4899]/5 to-white/[0.02] p-6 hover:border-[#ec4899]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#ec4899]/20 backdrop-blur-sm overflow-hidden">
-                <div className="absolute top-1/2 right-0 w-40 h-40 bg-[#ec4899]/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-125 transition-transform duration-700" />
-                
-                <div className="relative flex items-start gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#ec4899]/20 to-[#ec4899]/5 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-                    <Sparkles size={28} className="text-[#ec4899]" />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <h3 className="text-white text-xl font-bold mb-2">Brand Identity</h3>
-                    <p className="text-white/75 text-sm mb-3">
-                      Cohesive visual identity that reflects your brand values
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {['Logo design', 'Colour schemes', 'Typography selection', 'Style guides'].map((feature, idx) => (
-                        <span key={idx} className="text-xs text-white/85 bg-white/5 rounded-full px-3 py-1 group-hover:bg-white/10 transition-colors">
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Visual Design - Square Card */}
-            <Reveal delayMs={300}>
-              <div className="lg:col-span-2 group relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#f59e0b]/5 to-white/[0.02] p-6 hover:border-[#f59e0b]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#f59e0b]/20 backdrop-blur-sm overflow-hidden">
-                <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#f59e0b]/5 rounded-full group-hover:scale-150 transition-transform duration-700" />
-                
-                <div className="relative">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#f59e0b]/20 to-[#f59e0b]/5 flex items-center justify-center mb-4 group-hover:-rotate-6 transition-transform duration-300">
-                    <Eye size={24} className="text-[#f59e0b]" />
-                  </div>
-                  
-                  <h3 className="text-white text-lg font-bold mb-2">Visual Design</h3>
-                  <p className="text-white/75 text-sm mb-3">
-                    Stunning visuals that capture attention
-                  </p>
-                  
-                  <div className="space-y-1.5">
-                    {['Custom graphics', 'Icon design', 'Image selection', 'Visual hierarchy'].map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-white/80">
-                        <div className="w-1 h-1 rounded-full bg-[#f59e0b]" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Animations - Wide Short Card */}
-            <Reveal delayMs={400}>
-              <div className="lg:col-span-4 group relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#10b981]/5 to-white/[0.02] p-6 hover:border-[#10b981]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#10b981]/20 backdrop-blur-sm overflow-hidden">
-                <div className="absolute bottom-0 left-1/2 w-48 h-48 bg-[#10b981]/5 rounded-full -translate-x-1/2 translate-y-1/2 group-hover:scale-125 transition-transform duration-700" />
-                
-                <div className="relative flex items-start gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#10b981]/20 to-[#10b981]/5 flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
-                    <Zap size={28} className="text-[#10b981]" />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <h3 className="text-white text-xl font-bold mb-2">Animations & Interactions</h3>
-                    <p className="text-white/75 text-sm mb-3">
-                      Engaging micro-interactions that bring your site to life
-                    </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                      {['Smooth transitions', 'Hover effects', 'Loading animations', 'Scroll animations'].map((feature, idx) => (
-                        <div key={idx} className="text-xs text-white/85 bg-white/5 rounded-lg px-3 py-2 text-center group-hover:bg-white/10 transition-colors">
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Design Systems - Tall Card */}
-            <Reveal delayMs={500}>
-              <div className="lg:col-span-2 group relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#06b6d4]/5 to-white/[0.02] p-6 hover:border-[#06b6d4]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#06b6d4]/20 backdrop-blur-sm overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#06b6d4]/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
-                
-                <div className="relative">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#06b6d4]/20 to-[#06b6d4]/5 flex items-center justify-center mb-4 group-hover:-rotate-6 transition-transform duration-300">
-                    <Palette size={24} className="text-[#06b6d4]" />
-                  </div>
-                  
-                  <h3 className="text-white text-lg font-bold mb-2">Design Systems</h3>
-                  <p className="text-white/75 text-sm mb-4">
-                    Scalable design systems for consistency
-                  </p>
-                  
-                  <ul className="space-y-2">
-                    {['Component libraries', 'Design tokens', 'Documentation', 'Version control'].map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-xs text-white/85">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#06b6d4]" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            ))}
           </div>
         </Reveal>
       </section>
