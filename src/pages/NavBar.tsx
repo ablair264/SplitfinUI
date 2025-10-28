@@ -116,7 +116,7 @@ const FeaturesDropdown: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <button
-        className="flex items-center gap-1 h-6 group cursor-pointer"
+        className="inline-flex items-center gap-1 h-7 align-middle group cursor-pointer text-white/90 hover:text-white"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="transition-transform duration-300">Services</span>
@@ -450,32 +450,35 @@ const NavBar: React.FC = () => {
             </svg>
           </button>
         </nav>
-        {/* Mobile */}
-        <div className={'md:hidden w-full px-4 ' + (open ? 'flex' : 'hidden') + ' flex-col items-center gap-4 text-white text-base'}>
-          <div className="w-full border-t border-white/10 bg-[rgba(26,31,42,0.95)] backdrop-blur-md p-6">
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex flex-col items-center gap-2">
-                <Link className="hover:text-cyan-300 text-sm inline-flex items-center gap-2" to="/" onClick={() => setOpen(false)}><Home size={14} /> Home</Link>
-                <Link className="hover:text-cyan-300 text-sm inline-flex items-center gap-2" to="/web-design" onClick={() => setOpen(false)}><Layout size={14} /> Web Design</Link>
-                <Link className="hover:text-cyan-300 text-sm inline-flex items-center gap-2" to="/ecommerce" onClick={() => setOpen(false)}><ShoppingCart size={14} /> E‑Commerce</Link>
-                <Link className="hover:text-cyan-300 text-sm inline-flex items-center gap-2" to="/website-maintenance" onClick={() => setOpen(false)}><Shield size={14} /> Website Maintenance</Link>
+        {/* Mobile full-screen overlay menu */}
+        <div className={open ? 'md:hidden fixed inset-0 z-[80] flex' : 'hidden'}>
+          {/* Backdrop */}
+          <div className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0'}`} onClick={() => setOpen(false)} />
+          {/* Panel */}
+          <div className="relative z-[81] w-full h-full flex items-start justify-center pt-24 px-6">
+            <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-[rgba(26,31,42,0.95)] shadow-xl p-6 text-white">
+              <div className="flex flex-col items-start gap-4">
+                <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/" onClick={() => setOpen(false)}><Home size={18} /> Home</Link>
+                <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/web-design" onClick={() => setOpen(false)}><Layout size={18} /> Web Design</Link>
+                <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/web-development" onClick={() => setOpen(false)}><Code2 size={18} /> Website Development</Link>
+                <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/ecommerce" onClick={() => setOpen(false)}><ShoppingCart size={18} /> E‑Commerce</Link>
+                <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/automation" onClick={() => setOpen(false)}><Bot size={18} /> Automation</Link>
+                <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/website-maintenance" onClick={() => setOpen(false)}><Shield size={18} /> Website Maintenance</Link>
+
+                <a
+                  href="mailto:alastair.blair@splitfin.uk"
+                  onClick={() => setOpen(false)}
+                  className="mt-4 border border-slate-600 bg-transparent px-4 py-2 rounded-[10px] text-white no-underline transition-colors hover:bg-slate-800/80 self-stretch text-center"
+                >
+                  Contact
+                </a>
+                <button
+                  onClick={() => { setOpen(false); setPcRepairModalOpen(true); }}
+                  className="bg-[linear-gradient(135deg,#79d5e9_0%,#6bc7db_100%)] text-[#0f1419] px-4 py-3 rounded-[10px] shadow-[0_8px_25px_rgba(121,213,233,0.15)] inline-flex items-center gap-2 self-stretch justify-center"
+                >
+                  <Wrench size={16} /> PC Repair
+                </button>
               </div>
-              <a
-                href="mailto:alastair.blair@splitfin.uk"
-                onClick={() => setOpen(false)}
-                className="border border-slate-600 bg-transparent px-4 py-2 rounded-[10px] text-white no-underline transition-colors hover:bg-slate-800/80"
-              >
-                Contact
-              </a>
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  setPcRepairModalOpen(true);
-                }}
-                className="bg-[linear-gradient(135deg,#79d5e9_0%,#6bc7db_100%)] text-[#0f1419] px-4 py-2 rounded-[10px] shadow-[0_8px_25px_rgba(121,213,233,0.15)] inline-flex items-center gap-2"
-              >
-                <Wrench size={16} /> PC Repair	
-              </button>
             </div>
           </div>
         </div>

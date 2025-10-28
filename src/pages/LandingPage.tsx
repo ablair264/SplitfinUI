@@ -279,15 +279,14 @@ const LandingPage: React.FC = () => {
                     imageWidth="100%"
                     imageHeight="180px"
                     overlayContent={
-                      <div className="rounded-[15px] p-7 md:p-8 flex flex-col h-full gap-4" style={{ width: '100%', height: '180px', color: '#fff' }}>
+                      <div className="rounded-[15px] p-7 md:p-8 flex flex-col justify-between h-full gap-3" style={{ width: '100%', height: '180px', color: '#fff' }}>
                         <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: color, color: '#0f1419' }}>
                           <Icon size={20} />
                         </div>
-                        <div className="space-y-2">
+                        <div>
                           <h3 className="text-white text-base font-semibold">{title}</h3>
-                          <p className="text-white/80 text-xs leading-snug">{copy}</p>
                         </div>
-                        <a href={serviceCards[i].href} className="mt-auto pt-2 inline-flex items-center gap-2 text-xs text-white/90 hover:text-white">
+                        <a href={serviceCards[i].href} className="pt-1 inline-flex items-center gap-2 text-xs text-white/90 hover:text-white">
                           Learn More <ArrowRight size={14} />
                         </a>
                       </div>
