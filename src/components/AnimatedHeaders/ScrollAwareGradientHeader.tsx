@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GradientHeader, GradientProps } from './AnimatedHeaders';
+import { GradientHeader, type GradientProps } from './AnimatedHeaders';
 
 interface ScrollAwareGradientHeaderProps extends Omit<GradientProps, 'delay'> {
   threshold?: number; // Percentage of element visible before triggering (0-1)

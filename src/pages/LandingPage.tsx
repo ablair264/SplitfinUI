@@ -385,9 +385,9 @@ const LandingPage: React.FC = () => {
         {pricingMode === 'oneoff' ? (
           <div className="w-full max-w-[1280px] mt-10 flex flex-wrap gap-8 items-stretch justify-center">
             {[
-              { title: 'Starter', price: '£499', note: 'starting', desc: 'Perfect for small businesses and startups', features: ['5‑page website','Responsive design','Basic SEO setup','Contact form','30 days support','7 days a week support'], highlight: false },
-              { title: 'Professional', price: '£999', note: 'starting', desc: 'For growing businesses with advanced needs', features: ['15‑page website','Custom design & animations','Advanced SEO','CMS integration','90 days support','7 days a week support'], highlight: true },
-              { title: 'E‑Commerce', price: '£1399', note: 'starting', desc: 'For online retailers and marketplaces', features: ['E‑Commerce Ready (Any Platform)','15‑page website','Custom design & animations','Advanced SEO','CMS integration','90 days support','7 days a week support'], highlight: false },
+              { title: 'Starter', price: '£499', note: 'starting', desc: 'Perfect for small businesses and startups', features: ['5‑page website','Responsive design','Basic SEO setup','Contact form','30 days support','7 days a week support'], highlight: false, badge: undefined },
+              { title: 'Professional', price: '£999', note: 'starting', desc: 'For growing businesses with advanced needs', features: ['15‑page website','Custom design & animations','Advanced SEO','CMS integration','90 days support','7 days a week support'], highlight: true, badge: undefined },
+              { title: 'E‑Commerce', price: '£1399', note: 'starting', desc: 'For online retailers and marketplaces', features: ['E‑Commerce Ready (Any Platform)','15‑page website','Custom design & animations','Advanced SEO','CMS integration','90 days support','7 days a week support'], highlight: false, badge: undefined },
             ].map((p, i) => (
               <div key={i} className={`${p.highlight ? 'border-2 border-[#79d5e9] bg-[#79d5e914]' : 'border border-white/10 bg-white/10'} rounded-xl max-w-[384px] flex flex-col gap-8 p-10 grow` }>
                 {p.badge && (
@@ -416,8 +416,8 @@ const LandingPage: React.FC = () => {
           <div className="w-full max-w-[1280px] mt-10 flex flex-wrap gap-8 items-stretch justify-center">
             {[
               { title: 'Starter', price: '£39', note: 'a month', desc: 'Perfect for small businesses and startups', features: ['5‑page website','Responsive design','Ongoing SEO support','Webpage updates','Image changes','Contact form','7 days a week support'], highlight: false, badge: 'From £39/mo' },
-              { title: 'Professional', price: '£49', note: 'a month', desc: 'For growing businesses with advanced needs', features: ['15‑page website','Ongoing support','Website updates','Image changes','Content changes','Ongoing SEO support','7 days a week support'], highlight: false },
-              { title: 'E‑Commerce', price: '£59', note: 'a month', desc: 'For online retailers and marketplaces', features: ['E‑Commerce ready (any platform)','15‑page website','Ongoing support','Website updates','Image changes','Content changes','Product changes & uploads','Ongoing SEO support','7 days a week support'], highlight: false },
+              { title: 'Professional', price: '£49', note: 'a month', desc: 'For growing businesses with advanced needs', features: ['15‑page website','Ongoing support','Website updates','Image changes','Content changes','Ongoing SEO support','7 days a week support'], highlight: false, badge: undefined },
+              { title: 'E‑Commerce', price: '£59', note: 'a month', desc: 'For online retailers and marketplaces', features: ['E‑Commerce ready (any platform)','15‑page website','Ongoing support','Website updates','Image changes','Content changes','Product changes & uploads','Ongoing SEO support','7 days a week support'], highlight: false, badge: undefined },
             ].map((p, i) => (
               <div key={i} className={`${p.highlight ? 'border-2 border-[#79d5e9] bg-[#79d5e914]' : 'border border-white/10 bg-white/10'} rounded-xl max-w-[384px] flex flex-col gap-8 p-10 grow` }>
                 {p.badge && (
