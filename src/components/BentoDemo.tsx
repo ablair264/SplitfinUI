@@ -47,7 +47,7 @@ function VideoBackground({ cardName, src, poster }: { cardName: string; src: str
   }, [active]);
 
   return (
-    <div className="absolute inset-0" style={{ zIndex: 1, pointerEvents: 'none' }}>
+    <div className="absolute inset-0 hidden lg:block" style={{ zIndex: 1, pointerEvents: 'none' }}>
       <video
         ref={videoRef}
         src={src}

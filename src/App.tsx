@@ -6,6 +6,7 @@ import WebDevelopment from './pages/WebDevelopment'
 import Automation from './pages/Automation'
 import ECommerce from './pages/ECommerce'
 import PCRepair from './pages/PCRepair'
+import ScrollToTop from './components/ScrollToTop'
 
 // Import all CSS files to ensure they're bundled
 // Keep CSS centralized in main.tsx to avoid double-loading and overrides
@@ -13,6 +14,7 @@ import PCRepair from './pages/PCRepair'
 function App() {
   return (
     <div className="App">
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/web-design" element={<WebDesign />} />

@@ -425,6 +425,7 @@ const NavBar: React.FC = () => {
             <SlideItem label="Web Design" href="/web-design" Icon={Layout} />
             <SlideItem label="E‑Commerce" href="/ecommerce" Icon={ShoppingCart} />
             <SlideItem label="Website Maintenance" href="/website-maintenance" Icon={Shield} />
+            <SlideItem label="PC Repair" href="/pc-repair" Icon={Wrench} />
           </div>
           <div className="hidden md:flex gap-3">
             <a
@@ -451,12 +452,17 @@ const NavBar: React.FC = () => {
           </button>
         </nav>
         {/* Mobile full-screen overlay menu */}
-        <div className={open ? 'md:hidden fixed inset-0 z-[80] flex' : 'hidden'}>
+        <div className={open ? 'md:hidden fixed inset-0 z-[80] flex' : 'hidden'} onClick={() => setOpen(false)}>
           {/* Backdrop */}
           <div className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0'}`} onClick={() => setOpen(false)} />
           {/* Panel */}
           <div className="relative z-[81] w-full h-full flex items-start justify-center pt-24 px-6">
-            <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-[rgba(26,31,42,0.95)] shadow-xl p-6 text-white">
+            <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-[rgba(26,31,42,0.95)] shadow-xl p-6 text-white" onClick={(e) => e.stopPropagation()}>
+              <div className="absolute top-3 right-3">
+                <button aria-label="Close menu" className="w-9 h-9 rounded-lg hover:bg-white/10 text-white/70 hover:text-white inline-flex items-center justify-center" onClick={() => setOpen(false)}>
+                  <X size={18} />
+                </button>
+              </div>
               <div className="flex flex-col items-start gap-4">
                 <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/" onClick={() => setOpen(false)}><Home size={18} /> Home</Link>
                 <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/web-design" onClick={() => setOpen(false)}><Layout size={18} /> Web Design</Link>
@@ -464,6 +470,7 @@ const NavBar: React.FC = () => {
                 <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/ecommerce" onClick={() => setOpen(false)}><ShoppingCart size={18} /> E‑Commerce</Link>
                 <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/automation" onClick={() => setOpen(false)}><Bot size={18} /> Automation</Link>
                 <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/website-maintenance" onClick={() => setOpen(false)}><Shield size={18} /> Website Maintenance</Link>
+                <Link className="hover:text-cyan-300 text-base inline-flex items-center gap-3" to="/pc-repair" onClick={() => setOpen(false)}><Wrench size={18} /> PC Repair</Link>
 
                 <a
                   href="mailto:alastair.blair@splitfin.uk"
