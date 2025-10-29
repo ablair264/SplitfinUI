@@ -63,6 +63,7 @@ const BentoCard = ({
   const { hoveredCard, setHoveredCard } = useBentoHover();
   const isHovered = hoveredCard === name;
   const isOtherHovered = hoveredCard && hoveredCard !== name;
+  const isClickable = Boolean(href && href !== '#');
   
   return (
   <div
@@ -148,23 +149,32 @@ const BentoCard = ({
         )}
       </div>
 
+    {cta && href && href !== '#' && !isClickable && (
       <div className={cn("pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden")} style={{ marginTop: '24px' }}> 
         <a href={href} className="pointer-events-auto p-0 inline-flex items-center text-white/90 hover:text-white/100 text-sm">
           {cta}
           <ArrowRight className="ms-2 h-4 w-4 rtl:rotate-180" />
         </a>
       </div>
+    )}
     </div>
 
-    <div className={cn("pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex")} style={{ padding: '32px' }}> 
-      <a href={href} className="pointer-events-auto p-0 inline-flex items-center text-white/90 hover:text-white/100 text-sm">
-        {cta}
-        <ArrowRight className="ms-2 h-4 w-4 rtl:rotate-180" />
-      </a>
-    </div>
+    {cta && href && href !== '#' && !isClickable && (
+      <div className={cn("pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex")} style={{ padding: '32px' }}> 
+        <a href={href} className="pointer-events-auto p-0 inline-flex items-center text-white/90 hover:text-white/100 text-sm">
+          {cta}
+          <ArrowRight className="ms-2 h-4 w-4 rtl:rotate-180" />
+        </a>
+      </div>
+    )}
 
     {/* Gradient overlay that darkens on hover for better text readability */}
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 bg-gradient-to-t from-black/40 via-black/20 to-transparent group-hover:from-black/70 group-hover:via-black/40 group-hover:to-black/10" />
+
+    {/* Make whole card clickable when there's a real link */}
+    {isClickable && (
+      <a href={href} aria-label={name} className="absolute inset-0 z-20" />
+    )}
   </div>
   )
 }
