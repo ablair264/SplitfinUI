@@ -68,7 +68,7 @@ function VideoBackground({ cardName, src, poster }: { cardName: string; src: str
           filter: 'brightness(0.9) saturate(1.05)',
         }}
       />
-      {active && !hasError && (
+      {active && (
         <div 
           className="absolute inset-0"
           style={{
@@ -76,11 +76,6 @@ function VideoBackground({ cardName, src, poster }: { cardName: string; src: str
             zIndex: 1
           }}
         />
-      )}
-      {hasError && active && (
-        <div className="absolute inset-0 grid place-items-center text-white/70 text-sm" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.4))' }}>
-          Video placeholder (add {src})
-        </div>
       )}
     </div>
   );

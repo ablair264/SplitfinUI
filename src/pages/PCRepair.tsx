@@ -220,44 +220,44 @@ const HeroSection: React.FC = () => {
   return (
     <section
       aria-label="PC Repair Services Hero"
-      style={{ position: 'relative', overflow: 'hidden', width: '100%', height: '70vh', minHeight: '70svh', maxHeight: '70vh', background: 'transparent' }}
+      className="relative overflow-hidden w-full bg-transparent min-h-[60svh] md:h-[70vh] md:min-h-[70svh]"
     >
       <div className="absolute inset-0 overflow-hidden opacity-15" aria-hidden="true">
         <Plasma color="#ef4444" speed={0.3} direction="forward" scale={1.3} opacity={0.8} />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', padding: 'clamp(40px, 8vh, 60px) 20px', textAlign: 'center', maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="relative z-[1] flex flex-col items-center justify-center h-full px-5 py-12 sm:py-16 md:py-20 text-center max-w-[1200px] mx-auto">
         <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#ef4444]/10 px-4 py-2 border border-[#ef4444]/20">
           <Wrench size={18} className="text-[#ef4444]" aria-hidden="true" />
           <span className="text-sm font-medium text-white/90">PC Repair & IT Support</span>
         </div>
 
-        <h1 style={{ fontSize: 'clamp(32px, 6vw, 60px)', fontWeight: 800, lineHeight: 1.1, color: '#ffffff', marginBottom: '12px' }}>
+        <h1 style={{ fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 800, lineHeight: 1.1, color: '#ffffff', marginBottom: '8px' }}>
           Professional PC Repair Services in
         </h1>
-        <h2 style={{ fontSize: 'clamp(32px, 6vw, 60px)', fontWeight: 800, lineHeight: 1.1, marginBottom: '24px' }}>
+        <h2 style={{ fontSize: 'clamp(28px, 6vw, 46px)', fontWeight: 800, lineHeight: 1.1, marginBottom: '16px' }}>
           <span style={{ color: '#ef4444' }}>Worcester, Malvern & Worcestershire</span>
         </h2>
 
-        <p style={{ fontSize: 'clamp(16px, 2.5vw, 20px)', fontWeight: 450, lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.85)', maxWidth: '820px', marginBottom: '30px' }}>
+        <p className="text-white/85" style={{ fontSize: 'clamp(14px, 2.8vw, 18px)', fontWeight: 450, lineHeight: 1.45, maxWidth: '780px', marginBottom: '18px' }}>
           Expert computer repairs, hardware upgrades, virus removal, and IT guidance across Worcester, Malvern, Kidderminster, Knightwick, Suckley, Great Witley and throughout Worcestershire and Herefordshire. We also provide comprehensive computer guidance and software training for all your IT needs.
         </p>
 
-        <div className="mb-6 flex flex-wrap items-center gap-4 justify-center text-sm text-white/80">
+        <div className="mb-5 hidden sm:flex flex-wrap items-center gap-4 justify-center text-sm text-white/80">
           <div className="flex items-center gap-2">
             <MapPin size={16} className="text-[#ef4444]" aria-hidden="true" />
             <span>Serving Worcester, Hereford, Malvern, Kidderminster & surrounding villages</span>
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
           <a href="tel:+44000000000" aria-label="Call us now for PC repair">
-            <button style={{ padding: '14px 28px', fontSize: '18px', fontWeight: 600, background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 20px rgba(239, 68, 68, 0.3)' }}>
+            <button style={{ padding: '12px 20px', fontSize: '16px', fontWeight: 600, background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 20px rgba(239, 68, 68, 0.3)' }}>
               Call Now for Free Diagnosis
             </button>
           </a>
           <a href="#contact" aria-label="Book a PC repair appointment">
-            <button style={{ padding: '14px 28px', fontSize: '18px', fontWeight: 600, background: 'transparent', color: '#ffffff', border: '2px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.3s ease', backdropFilter: 'blur(10px)' }}>
+            <button style={{ padding: '12px 20px', fontSize: '16px', fontWeight: 600, background: 'transparent', color: '#ffffff', border: '2px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.3s ease', backdropFilter: 'blur(10px)' }}>
               Book Computer Repair
             </button>
           </a>
